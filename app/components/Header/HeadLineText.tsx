@@ -1,0 +1,50 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+// import { useGetHomeContentQuery } from '@/redux/services/client/homeContentApi';
+
+export default function HeadLineText() {
+  // const { data: home } = useGetHomeContentQuery();
+  const [width, setWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const texts = [
+    'ANNOUNCEMENT:',
+    
+    '24/7 Customer Support Available',
+    `All rights reserved © ${new Date().getFullYear()} Darkak`,
+    'Thank You for Shopping at Darkak.',
+  ];
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setWidth(containerRef.current.scrollWidth);
+    }
+  }, []);
+
+  return (
+    <div className="w-full overflow-hidden border-b border-t border-primaryWhite bg-primaryBlue text-primaryWhite">
+      <div className="container mx-auto flex items-center space-x-4 px-4 py-2">
+        <div className="relative flex-1 overflow-hidden" ref={containerRef}>
+          <motion.div
+            className="flex space-x-10 whitespace-nowrap"
+            animate={{ x: [width, -width] }}
+            // animate={{ x: [-width, 0] }}
+            transition={{
+              repeat: Infinity,
+              ease: 'linear',
+              duration: 30,
+            }}
+          >
+            {texts.map((text, index) => (
+              <span key={index} className="text-sm font-medium">
+                {text}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
