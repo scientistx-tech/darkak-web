@@ -71,12 +71,7 @@ const nextConfig: NextConfig = {
   //output: 'export',
   compress: true,
   experimental: {
-    optimizePackageImports: [
-      "react-icons",
-      "date-fns",
-      "firebase",
-      "antd"
-    ],
+   
   },
 };
 
