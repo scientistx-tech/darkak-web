@@ -74,7 +74,7 @@ export default function Test() {
                 ) : error ? (
                   <p className="text-sm text-red-500">Failed to load.</p>
                 ) : (
-                  categories?.map((cat:any) => (
+                  categories?.map((cat) => (
                     <div
                       key={cat.title}
                       onMouseEnter={() => {
@@ -115,8 +115,8 @@ export default function Test() {
                     ))
                   : hoveredMain &&
                     categories
-                      ?.find((c:any) => c.title === hoveredMain)
-                      ?.sub_category.map((sub:any) => (
+                      ?.find((c) => c.title === hoveredMain)
+                      ?.sub_category.map((sub) => (
                         <div
                           key={sub.title}
                           onMouseEnter={() => setHoveredSub(sub.title)}
@@ -147,9 +147,9 @@ export default function Test() {
                   : hoveredMain &&
                     hoveredSub &&
                     categories
-                      ?.find((c:any) => c.title === hoveredMain)
-                      ?.sub_category.find((s:any) => s.title === hoveredSub)
-                      ?.sub_sub_category.map((item:any) => (
+                      ?.find((c) => c.title === hoveredMain)
+                      ?.sub_category.find((s) => s.title === hoveredSub)
+                      ?.sub_sub_category.map((item) => (
                         <div
                           key={item.title}
                           className="cursor-pointer rounded-md px-3 py-2 transition-all hover:bg-secondaryLiteBlue"

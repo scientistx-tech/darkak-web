@@ -1,16 +1,10 @@
-//import 'remirror/styles/all.css';
-import 'antd/dist/reset.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import './globals.css';
 
 import type { Metadata } from 'next';
 import { PropsWithChildren } from 'react';
 import ReduxProvider from '@/redux/ReduxProvider';
-import DataLoader from '@/app/DataLoader';
-import GTMHead from '@/components/Scripts/GTMHead';
 import Script from 'next/script';
+import DataLoader from './DataLoader';
 
 export const metadata: Metadata = {
   title: {
@@ -263,7 +257,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <GTMHead />
+
         {headerScripts.map((s: any) => {
           const isMeta = s.script.trim().startsWith('<meta');
           const match = s.script.match(/name="([^"]+)"\s+content="([^"]+)"/);
@@ -284,6 +278,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             </Script>
           );
         })}
+
       </head>
       <body>
         {bodyTopScripts.map((s: any) => (
@@ -301,7 +296,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         </noscript>
         <ReduxProvider>
           <DataLoader>
-           
             {children}
           </DataLoader>
         </ReduxProvider>
