@@ -4,7 +4,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import ShopNowButton from "@/components/Button/ShopNowButton";
+// import ShopNowButton from "@/components/Button/ShopNowButton";
 
 
 import { useSelector } from 'react-redux';
@@ -57,7 +57,7 @@ const BannerCart: React.FC<BannerCardProps> = ({
 
         <div className="h-[10px] w-full"></div>
 
-        <ShopNowButton link={link} text={lang === 'bn' ? 'এখনই কিনুন' : 'Shop Now'} />
+        {/* <ShopNowButton link={link} text={lang === 'bn' ? 'এখনই কিনুন' : 'Shop Now'} /> */}
       </div>
 
       <div>
