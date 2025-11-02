@@ -56,7 +56,7 @@ function Footer() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-gray-100">
       <div className="h-[100px] w-full" />
       <div className="relative w-full bg-gradient-to-b from-[#00153B] to-[#003084] md:h-[500px]">
         <Image
