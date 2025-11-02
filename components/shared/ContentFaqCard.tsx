@@ -1,11 +1,9 @@
 'use client';
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
 type FAQ = {
   question: string;
@@ -71,9 +69,9 @@ export default function ContentFaqCard({ content, faqs }: Props) {
                 >
                   {faq.question}
                   {isOpen ? (
-                    <ChevronUp className="h-5 w-5 text-gray-500" />
+                    <BiChevronUp className="h-5 w-5 text-gray-500" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-500" />
+                    <BiChevronDown className="h-5 w-5 text-gray-500" />
                   )}
                 </button>
 
