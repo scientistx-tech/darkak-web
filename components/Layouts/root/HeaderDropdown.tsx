@@ -1,14 +1,12 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavLink from '@/components/shared/NavLink';
 import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
 import { useGetProductCategoriesQuery } from '@/redux/services/client/categories';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { textToSlug } from '@/utils/urlConverter';
 
 const shimmer = 'animate-pulse bg-secondaryLiteBlue rounded-md h-6 mb-2';
 
@@ -66,7 +64,7 @@ export default function Test() {
             ) : error ? (
               <p className="text-sm text-red-500">Failed to load.</p>
             ) : (
-              categories?.map((cat:any) => (
+              categories?.map((cat) => (
                 <div
                   key={cat.title}
                   ref={(el) => {
@@ -98,7 +96,7 @@ export default function Test() {
 
           {/* Subcategories */}
           {(() => {
-            const selectedMainCategory = categories?.find((c:any) => c.title === hoveredMain);
+            const selectedMainCategory = categories?.find((c) => c.title === hoveredMain);
 
             if (!selectedMainCategory?.sub_category?.length) return null;
 
@@ -109,7 +107,7 @@ export default function Test() {
               >
                 {isLoading
                   ? [...Array(4)].map((_, i) => <div key={i} className={shimmer} />)
-                  : selectedMainCategory.sub_category.map((sub:any) => (
+                  : selectedMainCategory.sub_category.map((sub) => (
                       <div
                         key={sub.title}
                         onMouseEnter={() => {
@@ -143,12 +141,12 @@ export default function Test() {
           {/* Sub-subcategories */}
           {(() => {
             const selectedSubCategory = categories
-              ?.find((c:any) => c.title === hoveredMain)
-              ?.sub_category.find((s:any) => s.title === hoveredSub);
+              ?.find((c) => c.title === hoveredMain)
+              ?.sub_category.find((s) => s.title === hoveredSub);
 
             if (!selectedSubCategory?.sub_sub_category?.length) return null;
 
-            const parentCategory = categories?.find((c:any) => c.title === hoveredMain);
+            const parentCategory = categories?.find((c) => c.title === hoveredMain);
             return (
               <div
                 className="absolute left-[550px] z-50 min-w-[250px] border border-primary bg-primaryBlue p-4 text-white shadow-lg"
@@ -156,7 +154,7 @@ export default function Test() {
               >
                 {isLoading
                   ? [...Array(3)].map((_, i) => <div key={i} className={shimmer} />)
-                  : selectedSubCategory.sub_sub_category.map((item:any) => (
+                  : selectedSubCategory.sub_sub_category.map((item) => (
                       <Link
                         key={item.title}
                         href={`/category/${parentCategory?.slug || ''}/${selectedSubCategory?.slug}/${item?.slug}`}

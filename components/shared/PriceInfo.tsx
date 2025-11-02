@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Rating } from 'react-simple-star-rating';
 import { setLocalStorage } from '@/utils/localStorage';
 
 const PriceInfo = ({

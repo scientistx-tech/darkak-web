@@ -30,7 +30,7 @@ export default function MobileDropdown({ onClose }: MobileDropdownProps) {
       ) : error ? (
         <p className="text-sm text-red-500">Failed to load categories.</p>
       ) : (
-        categories?.map((cat:any) => (
+        categories?.map((cat) => (
           <div key={cat.title} className="rounded-lg">
             <div
               onClick={() => toggleMain(cat.title)}
@@ -42,7 +42,7 @@ export default function MobileDropdown({ onClose }: MobileDropdownProps) {
 
             {openMain === cat.title && (
               <div className="mt-3 space-y-2 pl-4 border-l border-gray-200">
-                {cat.sub_category?.map((sub:any) => (
+                {cat.sub_category?.map((sub) => (
                   <div key={sub.title}>
                     <div
                       onClick={() =>
@@ -70,7 +70,7 @@ export default function MobileDropdown({ onClose }: MobileDropdownProps) {
                     {/* Sub-subcategory */}
                     {openSub === sub.title && sub.sub_sub_category?.length > 0 && (
                       <div className="mt-2 ml-3 space-y-1 border-l border-gray-100 pl-3">
-                        {sub.sub_sub_category.map((subSub:any) => (
+                        {sub.sub_sub_category.map((subSub) => (
                           <Link
                             key={subSub.title}
                             href={{

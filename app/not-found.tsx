@@ -1,24 +1,16 @@
 "use client";
 import Link from "next/link";
-import { Result } from "antd";
 import { useRouter } from "next/navigation";
 
 import Img from "@/Data/Img/7938322_3814347.svg";
 import Image from "next/image";
-
-import { ArrowLeftOutlined, HomeOutlined } from "@ant-design/icons";
 
 export default function NotFound() {
   const router = useRouter();
   return (
     <div className="w-full h-dvh flex justify-center items-center">
       <div className="w-full h-auto md:hidden">
-        <Result
-          status="404"
-          title="404"
-          subTitle="Sorry, the page you visited does not exist."
-          extra={<Link href="/">Go back</Link>}
-        />
+        
       </div>
 
       <div className="w-full h-auto white hidden md:flex">
@@ -37,7 +29,7 @@ export default function NotFound() {
               href="/"
               className="p-3 border-2 border-primary bg-primary hover:bg-primary rounded-lg text-white hover:text-white font-semibold"
             >
-              <HomeOutlined className="mr-2" />
+             
               Home
             </Link>
 
@@ -45,7 +37,7 @@ export default function NotFound() {
               onClick={() => router.back()}
               className="ml-[20px] p-[9px] text-white border-2 border-primary hover:bg-primary bg-primary rounded-lg hover:text-white font-semibold"
             >
-              <ArrowLeftOutlined className="mr-2" />
+              
               Back
             </button>
           </div>
