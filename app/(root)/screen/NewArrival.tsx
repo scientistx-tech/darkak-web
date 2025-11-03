@@ -39,7 +39,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
-          col-span-2 md:col-span-1 
+          col-span-2 md:col-span-1 mt-[-50px]
           lg:col-start-4 xl:col-start-5
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
@@ -92,7 +92,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
           col-span-2 md:col-span-1  md:col-end-3
-          lg:col-start-4 xl:col-start-5
+          lg:col-start-4 xl:col-start-5 mt-[-50px]
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
                 <div className="space-y-2">
@@ -143,7 +143,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
-          col-span-2 md:col-span-1 
+          col-span-2 md:col-span-1 mt-[-50px] 
           lg:col-start-4 xl:col-start-5 md:col-start-3
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
