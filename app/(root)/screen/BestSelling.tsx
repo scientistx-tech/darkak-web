@@ -1,87 +1,58 @@
-'use client';
+import Image from "next/image";
+import ProductCard from "@/components/shared/ProductCard";
+import Link from "next/link";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import ProductCard from '@/components/shared/ProductCard';
-import laptop from '@/Data/Demo/Rectangle 130 (1).png';
-import { useGetBestSellingProductsQuery } from '@/redux/services/client/products';
-import Link from 'next/link';
-import { useGetHomeContentQuery } from '@/redux/services/client/homeContentApi';
+interface BestSellingProps {
+  lang: string;
+  banner: any;
+}
 
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+export default async function BestSelling({ lang, banner }: BestSellingProps) {
+  const data = await getData("");
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
+  if (!data) return null;
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const BestSelling: React.FC = () => {
-  const lang = useSelector((state: RootState) => state.language.language);
-
-  const { data, error, isLoading, refetch } = useGetBestSellingProductsQuery('');
-  const { data: banner } = useGetHomeContentQuery();
-
-  if (isLoading || error) return null; // optional loading/error handling
-
-  const mostVisitedBanner = banner?.banners?.find((banner: any) => banner.type === 'best_selling');
+  const bestSellingBanner = banner?.banners?.find(
+    (b: any) => b.type === "best_selling"
+  );
 
   return (
-    <motion.section
-      className="container mx-auto mt-15 px-2"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
+    <section className="container mx-auto mt-15 px-2">
+      {/* Section Header */}
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
-          {lang === 'bn' ? 'সেরা বিক্রিত পণ্যসমূহ' : 'BEST SELLING PRODUCTS'}
+          {lang === "bn" ? "সেরা বিক্রিত পণ্যসমূহ" : "BEST SELLING PRODUCTS"}
         </h2>
-        <Link href="/more/best-selling" className="">
+        <Link href="/more/best-selling">
           <span className="cursor-pointer text-2xl">→</span>
         </Link>
       </div>
 
+      {/* Product Grid + Banner */}
       <div className="relative grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:gap-8">
         {/* LEFT SIDE BANNER */}
-        {/* LEFT SIDE BANNER */}
         <div className="relative hidden w-[236px] md:block">
-          {mostVisitedBanner ? (
-            <Link href={`/product/${mostVisitedBanner?.product?.slug}`}>
-              <motion.div
-                className="absolute bottom-0 right-0 z-10 hidden w-[236px] flex-col justify-between overflow-hidden rounded-xl bg-[#4C84FF] p-6 text-white md:flex"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 425, opacity: 1 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
+          {bestSellingBanner ? (
+            <Link href={`/product/${bestSellingBanner?.product?.slug}`}>
+              <div className="absolute bottom-0 right-0 z-10 hidden h-[425px] w-[236px] flex-col justify-between overflow-hidden rounded-xl bg-[#4C84FF] p-6 text-white md:flex">
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner?.type.replace('_', ' ')}
+                    {bestSellingBanner?.type?.replace("_", " ")}
                   </h3>
 
                   <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
-                    {mostVisitedBanner?.title}
+                    {bestSellingBanner?.title}
                   </p>
 
                   <p className="line-clamp-3 break-words text-sm leading-snug text-white/90">
-                    {mostVisitedBanner?.details}
+                    {bestSellingBanner?.details}
                   </p>
                 </div>
 
-                {mostVisitedBanner?.image && (
+                {bestSellingBanner?.image && (
                   <div className="mt-auto flex justify-center pt-8">
                     <Image
-                      src={mostVisitedBanner.image}
+                      src={bestSellingBanner.image}
                       alt="Banner Image"
                       width={200}
                       height={200}
@@ -89,7 +60,7 @@ const BestSelling: React.FC = () => {
                     />
                   </div>
                 )}
-              </motion.div>
+              </div>
             </Link>
           ) : (
             <div className="absolute bottom-0 right-0 hidden h-[425px] w-[236px] rounded-xl bg-[#4C84FF] md:flex" />
@@ -97,14 +68,22 @@ const BestSelling: React.FC = () => {
         </div>
 
         {/* PRODUCT CARDS */}
-        {data?.data.slice(0, 9).map((product: any) => (
-          <motion.div key={product.id} variants={itemVariants}>
+        {data?.data?.slice(0, 9)?.map((product: any) => (
+          <div key={product.id}>
             <ProductCard product={product} />
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
-};
+}
 
-export default BestSelling;
+// ✅ Server-side cached fetch
+async function getData(params: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/public/most-selling?${params}`,
+    { next: { revalidate: 86400 } } // Cache 1 day
+  );
+  if (!res.ok) throw new Error("Failed to fetch best selling products");
+  return res.json();
+}

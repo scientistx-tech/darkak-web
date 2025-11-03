@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import React from 'react';
 import {
   FaTruck,
   FaShieldAlt,
@@ -13,11 +10,7 @@ import {
   FaUserShield,
 } from 'react-icons/fa';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-
-const FeatureSection = () => {
-  const lang = useSelector((state: RootState) => state.language.language);
+const FeatureSection = ({ lang }: { lang: string }) => {
 
   const topFeatures = [
     {

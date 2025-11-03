@@ -3,15 +3,11 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { useGetProductCategoriesQuery } from '@/redux/services/client/categories';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
-export default function Categories() {
+export default function Categories({categories}: {categories: any}) {
   const lang = useSelector((state: RootState) => state.language.language);
-
-  const { data: categories, isLoading, error } = useGetProductCategoriesQuery('');
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -24,9 +20,6 @@ export default function Categories() {
       });
     }
   };
-
-  if (isLoading) return <p className="text-center">Loading categories...</p>;
-  if (error) return <p className="text-center text-red-500">Failed to load categories.</p>;
 
   return (
     <div className="mt-16 px-8 md:px-12">

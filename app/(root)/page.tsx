@@ -1,19 +1,8 @@
-import React from "react";
-import Index from "./screen/Index";
-import BestSelling from "./screen/BestSelling";
-import NewArrival from "./screen/NewArrival";
-import Banner from "./screen/Banner";
-import Categories from "./screen/Categories";
-import RecommendedSection from "./screen/RecommendedProducts";
-import SecondaryBanner from "./screen/SecondaryBanner";
-import ThardBanner from "./screen/ThardBanner";
-import FourthBanner from "./screen/FourthBanner";
-import BestDeals from "./screen/BestDeals";
+import getSeoData from './getSeoData';
+import Categories from './screen/Categories';
+import ClientComponent from './screen/ClientComponent';
+import Slider from './screen/Index';
 
-import MostVisitedProducts from "./screen/MostVisitedProducts";
-import FeatureSection from "./screen/FeatureSection";
-import getSeoData from "./getSeoData";
-import ContentFaqSection from "./screen/ContentFaqSection";
 // Fetch metadata for SEO
 export async function generateMetadata() {
   const data = await getSeoData("home");
@@ -38,41 +27,40 @@ export async function generateMetadata() {
   };
 }
 async function Page() {
+  const [category, slider, banner, home] = await Promise.all([getCategories(), getSlider("slider"), getSlider("banner"), getHome()])
   return (
     <div className="w-full">
       <div className="h-[65px] w-full bg-[#E6EFFF] md:h-[109px]" />
-
-      <Index />
-
-      <Categories />
-
-      <div className="container mx-auto flex flex-col gap-y-5 px-2 md:px-4">
-        <Banner />
-
-        <RecommendedSection />
-
-        <SecondaryBanner />
-
-        <MostVisitedProducts visitorId={"dfa"} />
-
-        <BestSelling />
-
-        {/* 
-          <ThardBanner />
-         */}
-
-        <NewArrival />
-
-        <FourthBanner />
-
-        <BestDeals />
-
-        <ContentFaqSection />
-
-        <FeatureSection />
-      </div>
+      <Slider sliderData={slider} />
+      <Categories categories={category} />
+      <ClientComponent home={home} banner={banner} />
     </div>
   );
 }
 
 export default Page;
+
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/category`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}
+async function getSlider(type: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/slider?sort=${type}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}
+async function getHome() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/home`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}

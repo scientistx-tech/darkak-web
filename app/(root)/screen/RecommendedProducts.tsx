@@ -1,48 +1,14 @@
-'use client';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ProductCard from '@/components/shared/ProductCard';
-import { useGetFeaturedQuery } from '@/redux/services/client/products';
 import Link from 'next/link';
-import { useGetHomeContentQuery } from '@/redux/services/client/homeContentApi';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-
-// Framer motion variants
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const RecommendedProducts: React.FC = () => {
-  const lang = useSelector((state: RootState) => state.language.language);
-
-  const { data, error, isLoading, refetch } = useGetFeaturedQuery('');
-  const { data: banner } = useGetHomeContentQuery();
-  if (data?.data?.length === 0) {
-    return null;
-  }
-
-  if (isLoading || error) return null; // optional loading/error handling
-
+const RecommendedProducts = async ({ lang, banner }: { lang: string, banner: any }) => {
+  const data = await getData('')
   const mostVisitedBanner = banner?.banners?.find((banner: any) => banner.type === 'featured');
   //console.log(mostVisitedBanner);
   return (
-    <motion.section
+    <div
       className="container mx-auto mt-15 px-2"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
     >
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
@@ -58,11 +24,9 @@ const RecommendedProducts: React.FC = () => {
         <div className="relative hidden w-[236px] md:block">
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner?.product?.slug}`}>
-              <motion.div
+              <div
                 className="absolute bottom-0 right-0 z-10 hidden w-[236px] flex-col justify-between overflow-hidden rounded-xl bg-[#4C84FF] p-6 text-white md:flex"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 425, opacity: 1 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
+
               >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
@@ -89,7 +53,7 @@ const RecommendedProducts: React.FC = () => {
                     />
                   </div>
                 )}
-              </motion.div>
+              </div>
             </Link>
           ) : (
             <div className="absolute bottom-0 right-0 hidden h-[425px] w-[236px] rounded-xl bg-[#4C84FF] md:flex" />
@@ -98,13 +62,20 @@ const RecommendedProducts: React.FC = () => {
 
         {/* PRODUCT CARDS */}
         {data?.data.slice(0, 9).map((product: any) => (
-          <motion.div key={product.id} variants={itemVariants}>
-            <ProductCard product={product} />
-          </motion.div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
-    </motion.section>
+    </div>
   );
 };
 
 export default RecommendedProducts;
+
+async function getData(params: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/featured?${params}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}
