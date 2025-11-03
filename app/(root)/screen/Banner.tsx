@@ -1,17 +1,7 @@
-'use client';
-
-import React, { useEffect } from 'react';
 import BannerCart from '@/components/shared/BannerCart';
-import { useGetPublicSlidersQuery } from '@/redux/services/client/sliderApis';
 
-const Banner: React.FC = () => {
-  const {
-    data: sliderData,
-    error,
-    isLoading,
-    refetch,
-  } = useGetPublicSlidersQuery({ type: 'banner' });
-
+const Banner = async ({ lang }: { lang: any }) => {
+  const sliderData = await getSlider("banner");
   function sortByIndex(sliders: any[]) {
     return [...sliders].sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
   }
@@ -19,6 +9,7 @@ const Banner: React.FC = () => {
   const bgColors = ['#00153B', '#323232', '#5694FF', '#07d38b', '#ff6b6b', '#ffa502'];
   // console.log("sorted banner", sortedSliderData);
   // ✅ Else: Show dynamic sliders without banners
+  if (!sliderData) return null
   return (
     <div className="mt-5 flex w-full flex-col gap-4 md:flex-row md:gap-10">
       {sortedSliderData.slice(0, 2).map((slide: any, idx: number) => {
@@ -44,3 +35,11 @@ const Banner: React.FC = () => {
 };
 
 export default Banner;
+async function getSlider(type: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/slider?sort=${type}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}

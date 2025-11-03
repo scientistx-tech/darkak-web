@@ -1,16 +1,6 @@
-"use client";
-
-import React, { useEffect } from "react";
 import BannerCart from "@/components/shared/BannerCart";
-import { useGetPublicSlidersQuery } from "@/redux/services/client/sliderApis";
 
-const SecondaryBanner: React.FC = () => {
-  const {
-    data: sliderData,
-    error,
-    isLoading,
-    refetch,
-  } = useGetPublicSlidersQuery({ type: "banner" });
+const ForthBanner = async ({ sliderData }: { sliderData: any }) => {
 
   function sortByIndex(sliders: any[]) {
     return [...sliders].sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
@@ -55,4 +45,4 @@ const SecondaryBanner: React.FC = () => {
   );
 };
 
-export default SecondaryBanner;
+export default ForthBanner;

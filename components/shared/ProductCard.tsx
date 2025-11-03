@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { Product } from "@/app/(root)/types/ProductType";
 import PriceInfo from "./PriceInfo";
 import RightIcons from "./RightIcons";
-import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
@@ -19,7 +18,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
   const lang = useSelector((state: RootState) => state.language.language);
   const [hovered, setHovered] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
-  const router = useRouter();
 
   // ✅ Toastify success handler
   const success = () => {
@@ -32,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
     });
   };
 
-  // Combine thumbnail + images, ensure no duplicates
+  // ✅ Combine thumbnail + additional images safely
   const allImages = [
     product.thumbnail,
     ...(product.Image || []).map((img: any) =>
@@ -44,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
 
   return (
     <div
-      className="relative mx-auto w-full border-1.5 border-primaryBlue max-w-sm overflow-hidden rounded-[20px] bg-primaryWhite shadow-md transition-all duration-300 md:h-[370px] xl:h-[400px] 2xl:h-[380px]"
+      className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[20px] border-1.5 border-primaryBlue bg-primaryWhite shadow-md transition-all duration-300 hover:shadow-lg md:h-[370px] xl:h-[400px] 2xl:h-[380px]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -71,10 +69,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
       {/* Product Image */}
       <Link
         href={`/product/${product.slug}`}
-        className="relative flex h-32 cursor-pointer items-center justify-center transition-all duration-500 md:h-48"
+        className="relative flex h-32 cursor-pointer items-center justify-center transition-all duration-300 md:h-48"
         onMouseEnter={() => {
           setTimeout(() => {
-            setActiveImage((activeImage + 1) % product.Image.length);
+            setActiveImage((activeImage + 1) % sliderImages.length);
           }, 1600);
         }}
       >
@@ -87,20 +85,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
           }}
         />
 
-        {/* Product Image */}
-        <motion.img
-          key={activeImage}
-          src={sliderImages[activeImage] || product.thumbnail}
-          alt={product.title}
-          initial={{ opacity: 0.5, scale: 0.98 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.6 }}
-          className="z-10 h-32 object-contain md:h-48 rounded-md"
-        />
+        <div className="relative z-10 h-32 w-full md:h-48 flex items-center justify-center">
+          <Image
+            src={sliderImages[activeImage] || product.thumbnail}
+            alt={product.title}
+            width={300}
+            height={300}
+            className="object-contain transition-transform duration-500 hover:scale-105 rounded-md"
+          />
+        </div>
       </Link>
 
       {/* Image Indicators */}
-      <div className="my-2 flex items-center justify-center gap-2 mt-3">
+      <div className="my-2 mt-3 flex items-center justify-center z-40 gap-2">
         {sliderImages.map((_, i) => (
           <div
             key={i}
