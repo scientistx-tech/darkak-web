@@ -25,7 +25,7 @@ export default function ClientComponent({ banner, home }: { banner: any, home: a
             <BestSelling banner={home} lang={lang} />
             <NewArrival banner={home} lang={lang} />
             <ForthBanner sliderData={banner} />
-            <BestDeals banner={banner} lang={lang} />
+            <BestDeals banner={home} lang={lang} />
             <ContentFaqSection data={home} />
             <FeatureSection lang={lang} />
         </div>
