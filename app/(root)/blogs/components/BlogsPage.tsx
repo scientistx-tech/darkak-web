@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { Pagination } from 'antd';
+import Pagination from '../../components/Pagination';
 
 // Dynamic imports for better performance
 const BlogsCart = dynamic(() => import('@/components/shared/BlogsCart'), {
@@ -99,10 +99,10 @@ const BlogsPage: React.FC = () => {
           current={page}
           pageSize={limit}
           total={total}
-          showSizeChanger={false}
           onChange={(p) => setPage(p)}
           aria-label="Blog pagination"
         />
+
       </div>
     </div>
   );
