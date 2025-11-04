@@ -1,9 +1,11 @@
-import ContactPage from './ContactPage';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';
+import TrendingProducts from './components/TrendingProducts';
+import BlogsPage from './components/BlogsPage';
 
 export async function generateMetadata() {
-  const data = await getSeoData('contact');
+  const data = await getSeoData('blog');
+  //console.log(data);
 
   return {
     title: data?.data?.meta_title || '',
@@ -24,12 +26,15 @@ export async function generateMetadata() {
   };
 }
 export default async function page() {
-  const data = await getSeoData('contact');
+  const data = await getSeoData('blog');
   return (
-    <div className="w-full">
+    <div>
       <div className="h-[65px] w-full md:h-[109px]" />
+      <BlogsPage />
 
-      <ContactPage />
+      <div className="container mx-auto flex flex-col gap-y-5 px-2 md:px-4">
+        <TrendingProducts />
+      </div>
 
       <div className="ml-[2.5%] mt-8 w-[95%] md:mt-16">
         <ContentFaqCard content={data?.data?.content} faqs={data?.data?.faq?.faq || []} />
