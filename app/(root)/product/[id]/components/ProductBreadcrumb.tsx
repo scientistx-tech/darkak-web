@@ -1,10 +1,9 @@
 "use client";
-
+import { useState } from "react";
 import SocialShare from "@/components/ShareSocialMedia";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { BiGitCompare } from "react-icons/bi";
+
 import { CiShare2 } from "react-icons/ci";
 
 import { useSelector } from 'react-redux';
