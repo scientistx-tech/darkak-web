@@ -1,7 +1,16 @@
 import getSeoData from './getSeoData';
+import Banner from './screen/Banner';
+import BestDeals from './screen/BestDeals';
+import BestSelling from './screen/BestSelling';
 import Categories from './screen/Categories';
-import ClientComponent from './screen/ClientComponent';
+import ContentFaqSection from './screen/ContentFaqSection';
+import FeatureSection from './screen/FeatureSection';
+import ForthBanner from './screen/FourthBanner';
 import Slider from './screen/Index';
+import MostVisitedProducts from './screen/MostVisitedProducts';
+import NewArrival from './screen/NewArrival';
+import RecommendedProducts from './screen/RecommendedProducts';
+import SecondaryBanner from './screen/SecondaryBanner';
 
 // Fetch metadata for SEO
 export async function generateMetadata() {
@@ -27,13 +36,29 @@ export async function generateMetadata() {
   };
 }
 async function Page() {
-  const [category, slider, banner, home] = await Promise.all([getCategories(), getSlider("slider"), getSlider("banner"), getHome()])
+  const [category, slider, banner, home] = await Promise.all([
+    getCategories(), getSlider("slider"), getSlider("banner"),
+    getHome(),
+  ])
+  // console.log(visited);
   return (
     <div className="w-full">
       <div className="h-[65px] w-full bg-[#E6EFFF] md:h-[109px]" />
       <Slider sliderData={slider} />
       <Categories categories={category} />
-      <ClientComponent home={home} banner={banner} />
+      <div className="container mx-auto flex flex-col gap-y-5 px-2 md:px-4">
+        <Banner />
+        <RecommendedProducts banner={home} />
+        <SecondaryBanner sliderData={banner} />
+        <MostVisitedProducts banner={home} />
+        <BestSelling banner={home} />
+        <NewArrival banner={home} />
+        <ForthBanner sliderData={banner} />
+        <BestDeals banner={home} />
+        <ContentFaqSection data={home} />
+        <FeatureSection />
+      </div>
+
     </div>
   );
 }
@@ -64,3 +89,8 @@ async function getHome() {
   if (!res.ok) throw new Error("Failed to fetch categories");
   return res.json();
 }
+
+
+
+
+

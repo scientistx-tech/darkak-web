@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import ProductCard from '@/components/shared/ProductCard';
 import Link from 'next/link';
+import { Translate } from './Translate';
 
-const RecommendedProducts = async ({ lang, banner }: { lang: string, banner: any }) => {
-  const data = await getData('')
+const RecommendedProducts = async ({ banner }: { banner: any }) => {
+  const data = await getRecomended('');
+
   const mostVisitedBanner = banner?.banners?.find((banner: any) => banner.type === 'featured');
   //console.log(mostVisitedBanner);
   return (
@@ -12,7 +14,7 @@ const RecommendedProducts = async ({ lang, banner }: { lang: string, banner: any
     >
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
-          {lang === 'bn' ? 'ফিচার্ড পণ্যসমূহ' : 'FEATURE PRODUCTS'}
+          <Translate text='FEATURE PRODUCTS' />
         </h2>
         <Link href="/more/feature" className="">
           <span className="cursor-pointer text-2xl">→</span>
@@ -71,7 +73,7 @@ const RecommendedProducts = async ({ lang, banner }: { lang: string, banner: any
 
 export default RecommendedProducts;
 
-async function getData(params: string) {
+async function getRecomended(params: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/featured?${params}`, {
     next: { revalidate: 86400 }, // ✅ cache 1 day
   });

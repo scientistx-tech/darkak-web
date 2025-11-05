@@ -1,13 +1,11 @@
-'use client';
+"use client"
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { Translate } from './Translate';
 
-export default function Categories({categories}: {categories: any}) {
-  const lang = useSelector((state: RootState) => state.language.language);
+export default function Categories({ categories }: { categories: any }) {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +22,8 @@ export default function Categories({categories}: {categories: any}) {
   return (
     <div className="mt-16 px-8 md:px-12">
       <h2 className="mb-10 text-center text-3xl font-medium text-primaryDarkBlue">
-        {lang === 'bn' ? 'ক্যাটাগরি অনুযায়ী পণ্য দেখুন' : 'Shop by Categories'}
+
+        <Translate text="Shop by Categories" />
       </h2>
 
       <div className="relative w-full">
@@ -81,3 +80,11 @@ const CategoriesComponent: React.FC<CategoriesProps> = ({ name, icon, href }) =>
     </Link>
   );
 };
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/category`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}

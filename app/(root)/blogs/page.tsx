@@ -2,6 +2,7 @@ import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';
 import TrendingProducts from './components/TrendingProducts';
 import BlogsPage from './components/BlogsPage';
+import { redirect } from 'next/navigation';
 
 export async function generateMetadata() {
   const data = await getSeoData('blog');
@@ -25,15 +26,23 @@ export async function generateMetadata() {
     },
   };
 }
-export default async function page() {
-  const data = await getSeoData('blog');
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+
+  const page = (await searchParams).page || "1"
+  const [data, blogs, products] = await Promise.all([await getSeoData('blog'),
+  await getData(page.toString(), "10"), await getProducts("")])
+
   return (
     <div>
       <div className="h-[65px] w-full md:h-[109px]" />
-      <BlogsPage />
+      <BlogsPage page={Number(page)} blogs={blogs?.blogs || []} total={blogs?.total || 1} />
 
       <div className="container mx-auto flex flex-col gap-y-5 px-2 md:px-4">
-        <TrendingProducts />
+        <TrendingProducts data={products} />
       </div>
 
       <div className="ml-[2.5%] mt-8 w-[95%] md:mt-16">
@@ -41,4 +50,21 @@ export default async function page() {
       </div>
     </div>
   );
+}
+
+async function getData(page: string, limit: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/blogs?page=${page}&limit=${limit}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}
+async function getProducts(params: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/new-arrival?${params}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
 }

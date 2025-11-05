@@ -1,14 +1,5 @@
-import React from 'react'
 import LoginPage from './LoginPage'
-// import { Metadata } from 'next';
-// export const metadata: Metadata = {
-//   title: "Login"
-// };
-
-
-
 import getSeoData from '../getSeoData';
-// Fetch metadata for SEO
 export async function generateMetadata() {
   const data = await getSeoData('log_in');
   //console.log(data);

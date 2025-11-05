@@ -1,5 +1,4 @@
 import baseApi from "@/redux/baseApi";
-import { AddToCartPayload, CartResponse } from "@/types/client/myCartTypes";
 
 export const myCartApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

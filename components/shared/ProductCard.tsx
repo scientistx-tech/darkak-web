@@ -30,6 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
     });
   };
 
+
   // ✅ Combine thumbnail + additional images safely
   const allImages = [
     product.thumbnail,
@@ -37,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
       typeof img === "string" ? img : img?.url
     ),
   ].filter((img, idx, arr) => img && arr.indexOf(img) === idx);
-
+  
   const sliderImages = allImages.slice(0, 6);
 
   return (
@@ -102,11 +103,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
           <div
             key={i}
             onClick={() => setActiveImage(i)}
-            className={`h-2 w-4 cursor-pointer rounded-full transition-all duration-300 hover:bg-primaryBlue ${
-              i === activeImage
+            className={`h-2 w-4 cursor-pointer rounded-full transition-all duration-300 hover:bg-primaryBlue ${i === activeImage
                 ? "w-8 bg-primaryBlue"
                 : "border-[1px] border-secondaryLiteBlue bg-secondaryWhite"
-            }`}
+              }`}
           />
         ))}
       </div>

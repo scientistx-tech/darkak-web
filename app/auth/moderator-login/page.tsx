@@ -1,9 +1,4 @@
-import React from "react";
-import { Metadata } from "next";
 import ModeratorLoginForm from "./component/ModeratorLoginForm";
-// export const metadata: Metadata = {
-//   title: "Moderator Login",
-// };
 import getSeoData from '../getSeoData';
 // Fetch metadata for SEO
 export async function generateMetadata() {

@@ -1,11 +1,5 @@
 
-import React from 'react';
 import ForgotPasswordPage from './ForgotPasswordPage';
-// import { Metadata } from 'next';
-// export const metadata: Metadata = {
-//   title: "Forget Passowrd"
-// };
-
 import getSeoData from '../getSeoData';
 // Fetch metadata for SEO
 export async function generateMetadata() {

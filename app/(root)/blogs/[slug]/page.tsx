@@ -1,6 +1,5 @@
-import React from 'react';
 import BlogView from './BlogView';
-import { Blog } from '@/app/admin/blog/type';
+import { Blog } from '../types';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const id = (await params).slug;
   const newsData = await fetchBlogs(id);

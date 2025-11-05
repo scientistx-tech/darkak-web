@@ -1,11 +1,4 @@
-import React from 'react'
 import SignupPage from './SignupPage'
-// import { Metadata } from 'next';
-// export const metadata: Metadata = {
-//   title: "Sign Up"
-// };
-
-
 import getSeoData from '../getSeoData';
 // Fetch metadata for SEO
 export async function generateMetadata() {

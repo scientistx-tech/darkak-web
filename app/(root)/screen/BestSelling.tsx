@@ -1,15 +1,15 @@
 import Image from "next/image";
 import ProductCard from "@/components/shared/ProductCard";
 import Link from "next/link";
+import { Translate } from "./Translate";
 
 interface BestSellingProps {
-  lang: string;
   banner: any;
 }
 
-export default async function BestSelling({ lang, banner }: BestSellingProps) {
-  const data = await getData("");
+export default async function BestSelling({ banner }: BestSellingProps) {
 
+  const data = await getMostSelling('');
   if (!data) return null;
 
   const bestSellingBanner = banner?.banners?.find(
@@ -21,7 +21,7 @@ export default async function BestSelling({ lang, banner }: BestSellingProps) {
       {/* Section Header */}
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
-          {lang === "bn" ? "সেরা বিক্রিত পণ্যসমূহ" : "BEST SELLING PRODUCTS"}
+          <Translate text="BEST SELLING PRODUCTS" />
         </h2>
         <Link href="/more/best-selling">
           <span className="cursor-pointer text-2xl">→</span>
@@ -79,7 +79,7 @@ export default async function BestSelling({ lang, banner }: BestSellingProps) {
 }
 
 // ✅ Server-side cached fetch
-async function getData(params: string) {
+async function getMostSelling(params: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/public/most-selling?${params}`,
     { next: { revalidate: 86400 } } // Cache 1 day
