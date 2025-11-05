@@ -1,6 +1,6 @@
 import BannerCart from '@/components/shared/BannerCart';
 
-const Banner = async ({ lang }: { lang: any }) => {
+const Banner = async () => {
   const sliderData = await getSlider("banner");
   function sortByIndex(sliders: any[]) {
     return [...sliders].sort((a, b) => (a.index ?? 0) - (b.index ?? 0));

@@ -1,10 +1,10 @@
 import ProductCard from '@/components/shared/ProductCard';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Translate } from './Translate';
 
-const BestDeals = async ({ lang, banner }: { lang: string; banner: any }) => {
-  const data = await getData('');
-
+const BestDeals = async ({ banner }: { banner: any }) => {
+  const data = await getBestDeal('');
   if (!data) return null;
 
   const todaysDealBanner = banner?.banners?.find(
@@ -16,7 +16,8 @@ const BestDeals = async ({ lang, banner }: { lang: string; banner: any }) => {
       {/* Header */}
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
-          {lang === 'bn' ? 'আজকের ডিল' : "TODAY'S DEAL"}
+
+          <Translate text={`TODAY'S DEAL`} />
         </h2>
         <Link href="/more/todays-deal">
           <span className="cursor-pointer text-2xl">→</span>
@@ -76,7 +77,7 @@ const BestDeals = async ({ lang, banner }: { lang: string; banner: any }) => {
 export default BestDeals;
 
 // Server-side fetch with ISR (cache 1 day)
-async function getData(params: string) {
+async function getBestDeal(params: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/public/best-deal?${params}`,
     { next: { revalidate: 86400 } } // Revalidate every 24h

@@ -1,10 +1,11 @@
 import ProductCard from '@/components/shared/ProductCard';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Translate } from './Translate';
 
-const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
-  const data = await getData('');
+const NewArrival = async ({ banner }: { banner: any }) => {
 
+  const data = await getNewArrival('');
   if (!data) return null;
 
   const mostVisitedBanner = banner?.banners?.find(
@@ -18,7 +19,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
         <div className="h-[50px]">
           <div className="flex items-center justify-between gap-6 md:justify-start">
             <h2 className="text-2xl font-semibold text-primaryDarkBlue">
-              {lang === 'bn' ? 'নতুন আগমন' : 'NEW ARRIVAL'}
+              <Translate text='NEW ARRIVAL' />
             </h2>
             <Link href="/more/new-arival">
               <span className="cursor-pointer text-2xl">→</span>
@@ -39,7 +40,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
-          col-span-2 md:col-span-1 
+          col-span-2 md:col-span-1 mt-[-50px]
           lg:col-start-4 xl:col-start-5
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
@@ -92,7 +93,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
           col-span-2 md:col-span-1  md:col-end-3
-          lg:col-start-4 xl:col-start-5
+          lg:col-start-4 xl:col-start-5 mt-[-50px]
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
                 <div className="space-y-2">
@@ -143,7 +144,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
               <div className="
-          col-span-2 md:col-span-1 
+          col-span-2 md:col-span-1 mt-[-50px] 
           lg:col-start-4 xl:col-start-5 md:col-start-3
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
         ">
@@ -203,7 +204,7 @@ const NewArrival = async ({ lang, banner }: { lang: string; banner: any }) => {
 export default NewArrival;
 
 // Server-side fetch with revalidation
-async function getData(params: string) {
+async function getNewArrival(params: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/public/new-arrival?${params}`,
     { next: { revalidate: 86400 } } // Cache for 1 day

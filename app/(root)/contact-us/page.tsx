@@ -1,7 +1,4 @@
-import React from 'react';
 import ContactPage from './ContactPage';
-import { Metadata } from 'next';
-
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';
 

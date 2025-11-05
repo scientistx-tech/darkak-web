@@ -1,3 +1,5 @@
+"use client"
+import { RootState } from '@/redux/store';
 import Link from 'next/link';
 import {
   FaTruck,
@@ -9,9 +11,10 @@ import {
   FaQuestionCircle,
   FaUserShield,
 } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
-const FeatureSection = ({ lang }: { lang: string }) => {
-
+const FeatureSection = () => {
+  const lang = useSelector((state: RootState) => state.language.language);
   const topFeatures = [
     {
       icon: <FaTruck className="text-3xl text-primaryBlue" />,
