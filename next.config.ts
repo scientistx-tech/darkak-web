@@ -66,6 +66,7 @@ const nextConfig: NextConfig = {
         port: "",
       },
     ],
+  
   },
   reactStrictMode: true,
   //output: 'export',
