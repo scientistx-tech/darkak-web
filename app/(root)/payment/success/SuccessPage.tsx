@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import Link from 'next/link';
-import { CheckCircle2 } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { setCart } from '@/redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
+import { BiCheckCircle } from 'react-icons/bi';
 
 export default function SuccessPage() {
   const params = useSearchParams();
@@ -30,7 +30,7 @@ export default function SuccessPage() {
       <div className="w-full max-w-lg rounded-2xl bg-white p-10 text-center shadow-lg">
         {/* Success Icon */}
         <div className="mb-6 flex justify-center">
-          <CheckCircle2 className="h-12 w-12 animate-bounce text-green-500 md:h-16 md:w-16" />
+          <BiCheckCircle className="h-12 w-12 animate-bounce text-green-500 md:h-16 md:w-16" />
         </div>
 
         {/* Title */}

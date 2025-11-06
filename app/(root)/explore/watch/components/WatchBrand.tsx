@@ -1,8 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import icon from '@/Data/Icon/dress.png';
 import { WatchBrand as WTF } from '../types';
 
 export default function WatchBrand({ brand }: { brand: WTF[] | undefined }) {

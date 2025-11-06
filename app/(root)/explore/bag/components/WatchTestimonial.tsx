@@ -1,32 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaRegCircleRight, FaRegCircleLeft } from 'react-icons/fa6';
 
 import { FaQuoteLeft } from 'react-icons/fa';
 import { Review } from '../types';
-
-const testimonials = [
-  {
-    id: 1,
-    rating: 5,
-    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    name: 'Tasnim Akash, Dhaka',
-  },
-  {
-    id: 2,
-    rating: 4,
-    text: "Amazing experience with the watch collection. Beautiful and long-lasting. I'd highly recommend!",
-    name: 'Shakib Hossen, Chattogram',
-  },
-  {
-    id: 3,
-    rating: 3,
-    text: 'This is the best watch I’ve ever purchased. Looks elegant and runs smoothly.',
-    name: 'Promy, Sylhet',
-  },
-];
-
 export default function WatchTestimonial({ review }: { review: Review[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 

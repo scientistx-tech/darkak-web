@@ -1,4 +1,3 @@
-import React from "react";
 import CartCheckout from "./CartCheckout";
 import { Metadata } from "next";
 export const metadata: Metadata = {

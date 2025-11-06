@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductPage from './ProductPage';
 import getSeoData from '../getSeoData';
 // Fetch metadata for SEO

@@ -1,12 +1,10 @@
-'use client';
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { XCircle } from 'lucide-react';
+"use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { BiXCircle } from 'react-icons/bi';
 
 export default function FailedPage() {
-  const router = useRouter();
+
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4">
@@ -23,7 +21,7 @@ export default function FailedPage() {
           transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
           className="mb-6 flex justify-center"
         >
-          <XCircle className="h-12 w-12 text-red-500 md:h-16 md:w-16" />
+          <BiXCircle className="h-12 w-12 text-red-500 md:h-16 md:w-16" />
         </motion.div>
 
         {/* Title */}

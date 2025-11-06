@@ -20,8 +20,8 @@ import { RootState } from '@/redux/store';
 import { useAddToCartMutation } from '@/redux/services/client/myCart';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import Button from '@/app/admin/components/Button';
 import { setLocalStorage } from '@/utils/localStorage';
+import Button from '@/components/Button/Button';
 
 const WishlistPage: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);

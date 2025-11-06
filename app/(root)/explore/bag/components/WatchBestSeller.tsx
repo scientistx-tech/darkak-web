@@ -1,5 +1,4 @@
-'use client';
-import React from 'react';
+"use client"
 import WatchCard from './WatchCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

@@ -2,7 +2,7 @@
 
 import VendorCard from '@/components/shared/VendorCard';
 import { useGetAllVendorsPublicQuery } from '@/redux/services/admin/adminVendorApis';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 import { useSelector } from 'react-redux';

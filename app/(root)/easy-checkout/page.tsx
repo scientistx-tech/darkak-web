@@ -1,7 +1,4 @@
-import React from 'react'
 import EasyCheckout from './EasyCheckout'
-
-
 import getSeoData from '../getSeoData';
 // Fetch metadata for SEO
 export async function generateMetadata() {

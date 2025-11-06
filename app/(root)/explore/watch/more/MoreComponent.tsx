@@ -1,7 +1,5 @@
 'use client';
-
 import Pagination from '@/components/category/Pagination';
-import ProductCard from '@/components/shared/ProductCard';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { SellerProduct, SellerProductResponse } from '../types';
@@ -87,4 +85,12 @@ export default function MoreProduct() {
       )}
     </div>
   );
+}
+async function getData(type: string, qs: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/watch-products/${type}?${qs}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 day
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
 }

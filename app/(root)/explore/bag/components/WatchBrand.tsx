@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,13 +21,13 @@ export default function WatchBrand({ brand }: { brand: WTF[] | undefined }) {
 const WatchBrandContainer = ({ img, alt, link }: { img: any; alt: string; link: string }) => {
   return (
     <Link
-  href={link}
-  className="group relative flex h-[90px] w-[90px] items-center justify-center overflow-hidden rounded-xl border-2 border-primary shadow-lg transition-transform duration-300 hover:scale-105 hover:border-primaryBlue bg-white md:h-[130px] md:w-[130px]"
->
-  <div className="relative h-[50px] w-[50px] md:h-[65px] md:w-[65px]">
-    <Image src={img} alt={alt} fill className="object-contain" />
-  </div>
-</Link>
+      href={link}
+      className="group relative flex h-[90px] w-[90px] items-center justify-center overflow-hidden rounded-xl border-2 border-primary shadow-lg transition-transform duration-300 hover:scale-105 hover:border-primaryBlue bg-white md:h-[130px] md:w-[130px]"
+    >
+      <div className="relative h-[50px] w-[50px] md:h-[65px] md:w-[65px]">
+        <Image height={400} width={400} src={img} alt={alt} fill className="object-contain" />
+      </div>
+    </Link>
 
   );
 };

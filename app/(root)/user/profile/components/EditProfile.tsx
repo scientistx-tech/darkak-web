@@ -10,7 +10,7 @@ import ClientLoading from '@/app/(root)/components/ClientLoading';
 import { toast } from 'react-toastify';
 import InputField from './InputField';
 import SelectField from './SelectField';
-import { rawDistricts, rawDivisions, rawSubDistricts } from '../../../../../../public/addressData';
+import { rawDistricts, rawDivisions, rawSubDistricts } from '../../../../../public/addressData';
 
 export default function EditProfile({ refetch, data }: any) {
   const lang = useSelector((state: RootState) => state.language.language);

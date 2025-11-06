@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { cookies } from 'next/headers';
 import RequireAccess from '@/components/Layouts/RequireAccess';
 import ShopViewPage from '../components/ShopViewPage';

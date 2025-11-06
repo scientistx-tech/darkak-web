@@ -151,6 +151,7 @@ export default function WatchCard({
             <Image
               src={isHovered ? img2 : img1}
               alt={isHovered ? img2Alt : img1Alt}
+              
               fill
               className="rounded-xl object-cover transition-opacity duration-500"
             />

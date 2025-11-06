@@ -1,4 +1,3 @@
-import React from 'react';
 import WatchSlider from './components/WatchSlider';
 import CasualWatch from './components/CasualWatch';
 import PremiumWatch from './components/PremiumWatch';

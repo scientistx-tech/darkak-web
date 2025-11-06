@@ -1,4 +1,3 @@
-import React from 'react';
 import getSeoData from '../getSeoData';
 
 import ContentFaqCard from '@/components/shared/ContentFaqCard';

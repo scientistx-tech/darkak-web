@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { SendHorizonal, ImageIcon, X, Loader2Icon } from 'lucide-react';
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
 import { useGetConversationMessagesQuery } from '@/redux/services/client/homeContentApi';
 import Loader from '@/components/shared/Loader';
@@ -11,6 +10,9 @@ import { useUploadImagesMutation } from '@/redux/services/admin/adminProductApis
 import { socket } from '@/socket';
 import { useGetMyOrdersQuery } from '@/redux/services/client/order';
 import Image from 'next/image';
+import { BiLoader, BiSend } from 'react-icons/bi';
+import { FaImage } from 'react-icons/fa';
+import { CgClose } from 'react-icons/cg';
 
 interface MessageFile {
   id: number;
@@ -195,37 +197,36 @@ export default function LiveChat({ id }: { id: number }) {
       )}
 
       <div ref={bottomRef} className="mb-2 flex max-h-96 flex-col gap-2 overflow-y-auto">
-  {isLoading ? (
-    <Loader />
-  ) : (
-    messages.map((msg) => {
-      const isUser = msg.senderId === user?.id;
-      return (
-        <div
-          key={msg.id}
-          className={`w-fit max-w-xs rounded-md p-2 text-sm ${
-            isUser
-              ? "ml-auto bg-blue-100 text-right"   // ✅ User message right side
-              : "mr-auto bg-gray-100 text-left"   // ✅ Admin reply left side
-          }`}
-        >
-          {msg.message_files?.length > 0 && (
-            <Image
-              src={msg.message_files[0].url}
-              alt="attachment"
-              className="mb-1 h-auto w-40 rounded"
-            />
-          )}
-          {msg.message}
-        </div>
-      );
-    })
-  )}
-</div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          messages.map((msg) => {
+            const isUser = msg.senderId === user?.id;
+            return (
+              <div
+                key={msg.id}
+                className={`w-fit max-w-xs rounded-md p-2 text-sm ${isUser
+                    ? "ml-auto bg-blue-100 text-right"   // ✅ User message right side
+                    : "mr-auto bg-gray-100 text-left"   // ✅ Admin reply left side
+                  }`}
+              >
+                {msg.message_files?.length > 0 && (
+                  <Image
+                    src={msg.message_files[0].url}
+                    alt="attachment"
+                    className="mb-1 h-auto w-40 rounded"
+                  />
+                )}
+                {msg.message}
+              </div>
+            );
+          })
+        )}
+      </div>
 
       {uploading && (
         <div className="bottom-0 my-2 flex items-center gap-1 text-sm text-blue-500">
-          <Loader2Icon /> Uploading image...
+          <BiLoader /> Uploading image...
         </div>
       )}
       <div className="flex items-center gap-2">
@@ -242,7 +243,7 @@ export default function LiveChat({ id }: { id: number }) {
           disabled={uploading}
           className="disabled:opacity-50"
         >
-          <ImageIcon className="h-8 w-8 text-gray-500" />
+          <FaImage className="h-8 w-8 text-gray-500" />
         </button>
         <input type="file" ref={fileInputRef} onChange={handleImageChange} className="hidden" />
         <button
@@ -250,7 +251,7 @@ export default function LiveChat({ id }: { id: number }) {
           disabled={uploading || input.trim() === ''}
           className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600 disabled:bg-blue-300"
         >
-          <SendHorizonal className="h-8 w-8" />
+          <BiSend className="h-8 w-8" />
         </button>
       </div>
 
@@ -261,7 +262,7 @@ export default function LiveChat({ id }: { id: number }) {
             className="absolute right-1 top-1 rounded-full bg-black bg-opacity-50 text-white"
             onClick={() => setSelectedImage(null)}
           >
-            <X className="h-4 w-4" />
+            <CgClose className="h-4 w-4" />
           </button>
         </div>
       )}

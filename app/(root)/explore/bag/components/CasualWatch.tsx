@@ -1,8 +1,5 @@
-import React from 'react';
 import WatchBannerCard from './WatchBannerCard';
 import WatchCard from './WatchCard';
-
-
 import { SellerProductResponse, WatchBanner } from '../types';
 import Link from 'next/link';
 
