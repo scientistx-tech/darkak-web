@@ -1,9 +1,6 @@
-'use client';
-
-import React from 'react';
 
 import Link from 'next/link';
-import { XCircle } from 'lucide-react';
+import { BiXCircle } from 'react-icons/bi';
 
 export default function CancelPage() {
   return (
@@ -16,7 +13,7 @@ export default function CancelPage() {
 
         {/* Cancel Icon */}
         <div className="mb-4 flex justify-center">
-          <XCircle className="h-12 w-12 md:h-16 md:w-16 text-red-500" />
+          <BiXCircle className="h-12 w-12 md:h-16 md:w-16 text-red-500" />
         </div>
 
         {/* Title */}

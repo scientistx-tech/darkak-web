@@ -1,6 +1,4 @@
 "use client";
-
-import React, { useState } from "react";
 import ProductBreadcrumb from "./components/ProductBreadcrumb";
 import ProductShow from "./components/ProductShow";
 import RelatedProductsSwiper from "./components/RelatedProductsSwiper";

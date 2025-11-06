@@ -1,7 +1,4 @@
 'use client';
-
-import React from 'react';
-
 interface PaginationProps {
   current: number;
   total: number;

@@ -6,10 +6,10 @@ import { FaWhatsapp, FaChevronLeft } from 'react-icons/fa';
 import LiveChat from './LiveChat';
 import { useLazyCreateConversationQuery } from '@/redux/services/client/homeContentApi';
 import { toast } from 'react-toastify';
-import Button from '@/app/admin/components/Button';
 
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import Button from '@/components/Button/Button';
 
 export default function CustomerCare() {
   const lang = useSelector((state: RootState) => state.language.language);

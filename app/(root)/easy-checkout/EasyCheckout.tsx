@@ -6,10 +6,7 @@ import { Input, Button, notification, Checkbox, Modal } from 'antd';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-
-import { useGetMyCartQuery } from '@/redux/services/client/myCart';
 import { RootState } from '@/redux/store';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
   useGetPaymentUrlMutation,
@@ -19,6 +16,7 @@ import { BD_Division, BD_District } from '@/Data/addressData';
 import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
 import getSeoData from '../getSeoData';
 import { getLocalStorage } from '@/utils/localStorage';
+import { useSelector } from 'react-redux';
 
 const EasyCheckout: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);
@@ -30,8 +28,6 @@ const EasyCheckout: React.FC = () => {
   const [division, setDivision] = useState(user?.address?.division || '');
   const [address, setAddress] = useState<any>(user?.address?.area || '');
   const [district, setDistrict] = useState(user?.address?.district || '');
-  const [subDistrict, setSubDistrict] = useState('-');
-  const [area, setArea] = useState('');
   const [agree, setAgree] = useState(true);
   const [checkoutItems, setCheckoutItems] = useState<any>([]);
   const [couponCode, setCouponCode] = useState<string>('');

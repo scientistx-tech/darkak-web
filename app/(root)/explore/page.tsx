@@ -1,4 +1,3 @@
-import React from 'react';
 import ExplorePage from './ExplorePage';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';

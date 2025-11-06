@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,6 +14,8 @@ export default function WatchPoster({ poster }: { poster: Poster | undefined }) 
                 src={poster.top_image}
                 alt={poster.top_alt}
                 fill
+                width={1200}
+                height={800}
                 className="duration-50 object-cover transition-opacity"
               />
             )}

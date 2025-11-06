@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -37,6 +36,8 @@ const WatchCategoriesContainer = ({
         src={img}
         alt={alt}
         fill
+        height={400}
+        width={400}
         className="rounded-xl object-cover transition-opacity duration-500"
       />
 

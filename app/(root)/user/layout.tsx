@@ -1,5 +1,5 @@
 import UserPrivateLayout from "@/components/Layouts/UserPrivateLayout";
-import React, { PropsWithChildren } from "react";
+import  { PropsWithChildren } from "react";
 
 function layout({ children }: PropsWithChildren) {
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import WatchBannerCard from './WatchBannerCard';
 import WatchCard from './WatchCard';
 

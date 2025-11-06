@@ -1,6 +1,4 @@
-import React from 'react'
 import CategoryPageServer from './CategoryPageServer'
-
 import getSeoData from '../getSeoData';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 export async function generateMetadata() {

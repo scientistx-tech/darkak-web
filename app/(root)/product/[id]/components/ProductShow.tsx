@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import { BsWhatsapp } from 'react-icons/bs';
 import DeliveryDetails from './DeliveryDetails';
@@ -63,8 +63,6 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [itemId: number]: number;
   }>({});
-  const [options, setOptions] = useState<any[]>([]);
-  const [showFullDesc, setShowFullDesc] = useState(false);
 
   // redux hooks
   const [addToCart, { isLoading }] = useAddToCartMutation();

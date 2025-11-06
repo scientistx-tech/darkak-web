@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { FaPlus, FaMinus, FaCheck } from 'react-icons/fa';
- import { notification, Checkbox, Modal } from 'antd';
+import { notification, Checkbox, Modal } from 'antd';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -25,6 +25,7 @@ import { BD_Division, BD_District } from '@/Data/addressData';
 import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
 import getSeoData from '../getSeoData';
 import { getLocalStorage } from '@/utils/localStorage';
+import { CheckIcon } from '@/assets/icons';
 
 const CartCheckout: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);
@@ -36,8 +37,6 @@ const CartCheckout: React.FC = () => {
   const [division, setDivision] = useState(user?.address?.division || '');
   const [address, setAddress] = useState<any>(user?.address?.area || '');
   const [district, setDistrict] = useState(user?.address?.district || '');
-  const [subDistrict, setSubDistrict] = useState('');
-  const [area, setArea] = useState('');
   const [agree, setAgree] = useState(true);
   const [checkoutItems, setCheckoutItems] = useState<any>([]);
   const [couponCode, setCouponCode] = useState<string>('');
@@ -346,7 +345,7 @@ const CartCheckout: React.FC = () => {
               }`}
               onClick={() => setPaymentMethod('online')}
             >
-              {paymentMethod === 'online' && <CheckOutlined className="text-xl" />}
+              {paymentMethod === 'online' && <CheckIcon className="text-xl" />}
               {lang === 'bn' ? 'অনলাইন পেমেন্ট' : 'Online Payment'}
             </button>
           </div>
