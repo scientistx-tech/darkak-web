@@ -39,7 +39,7 @@ async function getWatchPage() {
         // Authorization: Bearer ${process.env.API_TOKEN}, // Uncomment if needed
       },
       // You must disable caching for dynamic SSR data
-      next: { revalidate: 3600 },
+      next: { revalidate: 86400 },
     });
 
     if (!res.ok) {
