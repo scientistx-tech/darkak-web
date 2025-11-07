@@ -1,0 +1,26 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/darkak-web
+            git pull
+            rm -r package-lock.json
+            npm i --force
+            npm run build
+            pm2 restart darkak || pm2 start "npm run start" --name darkak
+            pm2 save
