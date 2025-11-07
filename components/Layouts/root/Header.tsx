@@ -51,6 +51,7 @@ import { useGetSearchPublicQuery } from "@/redux/services/client/searchedProduct
 import MobileDropdown from "./MobileDropdown";
 import { useGetHomeContentQuery } from "@/redux/services/client/homeContentApi";
 import { setLanguage } from "@/redux/slices/languageSlice";
+import ProductCard from "@/components/shared/ProductCard";
 
 const Header: React.FC = () => {
   const { data: home } = useGetHomeContentQuery();
@@ -741,7 +742,7 @@ const Header: React.FC = () => {
               <div className="search-custom-scrollbar grid max-h-[80vh] w-full grid-cols-1 gap-4 overflow-y-auto p-4 sm:grid-cols-2 lg:w-[70%] lg:grid-cols-3">
                 {products.map((product: any, index: number) => (
                   <div key={index}>
-                    {/* <ProductCard product={product} setIsOpen={setIsOpen} /> */}
+                    <ProductCard product={product} setIsOpen={setIsOpen} />
                   </div>
                 ))}
               </div>
