@@ -17,7 +17,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /var/www/darkak-web
+            cd /home/darkak-web
             git pull
             rm -r package-lock.json
             npm i --force
