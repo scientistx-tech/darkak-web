@@ -17,7 +17,7 @@ const SecondaryBanner = ({sliderData}:{sliderData:any}) => {
   // console.log("sorted banner", sortedSliderData);
   // ✅ Else: Show dynamic sliders without banners
   return (
-    <div className="mt-5 flex w-full flex-col gap-4 md:flex-row md:gap-10">
+    <div className="mt-5 flex w-full mb-5 md:my-16 px-5 md:px-0 gap-5 md:gap-3 flex-col   md:flex-row lg:gap-10">
       {sortedSliderData.slice(2, 4).map((slide: any, idx: number) => {
         const bgColour = bgColors[idx % bgColors.length];
         return (
