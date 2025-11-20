@@ -20,7 +20,7 @@ export default function Categories({ categories }: { categories: any }) {
   };
 
   return (
-    <div className="mt-16 px-8 md:px-12">
+    <div className="container mx-auto my-5 md:my-16 px-5 md:px-0">
       <h2 className="mb-10 text-center text-3xl font-medium text-primaryDarkBlue">
 
         <Translate text="Shop by Categories" />

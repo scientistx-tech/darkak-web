@@ -12,7 +12,7 @@ const BestDeals = async ({ banner }: { banner: any }) => {
   );
 
   return (
-    <section className="container mx-auto mt-15 px-2">
+    <section className="container mx-auto my-5 md:my-16 px-5 md:px-0">
       {/* Header */}
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">

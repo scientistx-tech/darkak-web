@@ -13,7 +13,7 @@ const NewArrival = async ({ banner }: { banner: any }) => {
   );
 
   return (
-    <main className="mt-15">
+    <main className="my-5 md:my-16 px-5 md:px-0">
       <div>
         {/* Header Section */}
         <div className="h-[50px]">

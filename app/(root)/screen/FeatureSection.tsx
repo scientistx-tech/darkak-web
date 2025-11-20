@@ -68,7 +68,7 @@ const FeatureSection = () => {
   ];
 
   return (
-    <section className="mt-8 w-full md:mt-10">
+    <section className="w-full my-5 md:my-16 px-5 md:px-0">
       {/* Top Features */}
       <div className="mt-10 grid grid-cols-1 gap-6 rounded-xl bg-blue-50 px-4 py-8 text-center md:grid-cols-2 lg:grid-cols-4">
         {topFeatures.map((feature, index) => (

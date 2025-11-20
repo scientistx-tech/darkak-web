@@ -20,7 +20,7 @@ export default async function MostVisitedProducts({
   );
 
   return (
-    <main className="mt-5">
+    <main className="my-5 md:my-16 px-5 md:px-0 ">
       <div>
         {/* Section Header */}
         <div className="h-[50px]">
