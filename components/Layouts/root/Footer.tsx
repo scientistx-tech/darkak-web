@@ -21,6 +21,8 @@ import { BiPhone } from 'react-icons/bi';
 import { CiMapPin } from 'react-icons/ci';
 import { FaFacebook, FaInstagram, FaPinterest, FaYoutube } from 'react-icons/fa';
 import { FiMessageCircle } from 'react-icons/fi';
+import { IconSSLCommerce, PaymentIcon, paymentIconData } from '@/Data/PaymentMethod';
+// import { paymentIconData } from '@/Data/paymentImage/PaymentMethod';
 
 function Footer() {
   const lang = useSelector((state: RootState) => state.language.language);
@@ -311,8 +313,27 @@ function Footer() {
         </div>
       </div>
 
-      <Image src={paymentBanner} alt="Payment Methods" className="w-full object-cover" />
-    </div>
+      {/* <Image src={paymentBanner} alt="Payment Methods" className="w-full object-cover" /> */}
+      <div className='flex  items-center gap-3 p-10'>
+
+        <div>
+          <h3>Payment Methods</h3>
+          <div className='flex items-center flex-wrap  gap-2'>
+            {
+              paymentIconData.map(({ name, icon: Icon }) => (
+                <Icon key={name} alt={name} className="" />
+              ))
+            }
+          </div>
+        </div>
+        <div className='ml-auto'>
+
+          <h1>Verified by</h1>
+          <IconSSLCommerce />
+        </div>
+      </div >
+
+    </div >
   );
 }
 
