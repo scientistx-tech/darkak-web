@@ -29,14 +29,15 @@ export default function Categories({ categories }: { categories: any }) {
       <div className="relative w-full">
         <button
           onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
+          className="absolute left-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
         >
           <FaAngleLeft className="text-xl" />
         </button>
 
         <div
           ref={scrollRef}
-          className="no-scrollbar flex h-[210px] w-full items-center gap-4 overflow-x-auto scroll-smooth px-2"
+          className="hide-scrollbar flex h-[210px] w-full items-center gap-4 overflow-x-auto scroll-smooth px-2"
+          style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
         >
           {categories?.map((category: any, index: number) => (
             <CategoriesComponent
@@ -47,10 +48,20 @@ export default function Categories({ categories }: { categories: any }) {
             />
           ))}
         </div>
+        <style jsx>{`
+          .hide-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+          }
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+            height: 0;
+          }
+        `}</style>
 
         <button
           onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
+          className="absolute right-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
         >
           <FaAngleRight className="text-xl" />
         </button>
