@@ -26,7 +26,7 @@ export default function Categories({ categories }: { categories: any }) {
         <Translate text="Shop by Categories" />
       </h2>
 
-      <div className="relative w-full">
+      <div className="relative w-full mb-5 md:my-20">
         <button
           onClick={() => scroll('left')}
           className="absolute left-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
@@ -36,7 +36,7 @@ export default function Categories({ categories }: { categories: any }) {
 
         <div
           ref={scrollRef}
-          className="hide-scrollbar flex h-[210px] w-full items-center gap-4 overflow-x-auto scroll-smooth px-2"
+          className="hide-scrollbar  flex h-[210px] ml-5 w-full items-center gap-5 overflow-x-auto scroll-smooth px-2"
           style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
         >
           {categories?.map((category: any, index: number) => (
