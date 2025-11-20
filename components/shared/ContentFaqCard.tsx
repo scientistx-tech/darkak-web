@@ -55,7 +55,7 @@ export default function ContentFaqCard({ content, faqs }: Props) {
           {lang === 'bn' ? 'প্রায়ই জিজ্ঞাসিত প্রশ্নাবলী' : 'Frequently Asked Questions'}
         </h2>
 
-        <div className="space-y-5">
+        <div className="grid lg:grid-cols-2 gap-5 items-start">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
