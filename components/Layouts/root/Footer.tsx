@@ -68,15 +68,15 @@ function Footer() {
         />
         <div className="absolute flex w-full flex-col bg-[#003084] md:flex-row md:bg-transparent">
           {/* Left Side */}
-          <div className="w-full pl-5 md:w-2/3 md:pl-10">
+          <div className="w-full pl-5 lg:w-2/3 lg:pl-10">
             {/* Subscribe Section */}
-            <div className="right-5 mt-[-65px] flex w-[97%] flex-col items-center justify-center rounded-md bg-[#F1F6FF] px-3 py-6 shadow-2xl md:w-[50%]">
-              <p className="text-xl font-semibold text-[#003084]">
+            <div className="right-5 mt-[-65px] flex max-w-fit flex-col items-center justify-center rounded-md bg-[#F1F6FF] px-3 py-6 shadow-2xl w-[100%] ">
+              <p className="xl:text-xl text-md xl:font-semibold text-[#003084]">
                 {lang === 'bn'
                   ? 'নতুন অফার ও আপডেট পেতে সাবস্ক্রাইব করুন'
                   : 'SUBSCRIBE TO OUR NEWSLETTER'}
               </p>
-              <div className="mt-5 flex w-[80%] rounded-full bg-white">
+              <div className="mt-5 flex w-full rounded-full bg-white">
                 <input
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
@@ -88,7 +88,7 @@ function Footer() {
                 <button
                   onClick={handleSubscribe}
                   disabled={subscribeLoading}
-                  className="w-1/3 rounded-r-full bg-primary py-2 text-white transition-all duration-500 ease-in-out hover:bg-[#003084] disabled:opacity-60 flex items-center justify-center gap-2"
+                  className="w-1/3 rounded-r-full text-sm bg-primary py-2 text-white transition-all duration-500 ease-in-out hover:bg-[#003084] disabled:opacity-60 flex items-center justify-center gap-2"
                 >
                   {subscribeLoading ? (
                     <>
@@ -218,9 +218,9 @@ function Footer() {
           </div>
 
           {/* Right Side */}
-          <div className="flex w-full flex-col items-start justify-start pl-5 md:w-1/3 md:items-end md:pl-0">
+          <div className="flex w-full flex-col items-start justify-start pl-5 lg:w-1/3 md:items-end md:pl-0">
             <div className="mt-[-40px] hidden w-[100%] rounded-bl-full rounded-tl-full bg-primary px-3 py-5 text-white md:block">
-              <p className="text-end text-lg font-medium">
+              <p className="text-end md:text-sm  xl:text-md xl:font-medium">
                 {lang === 'bn'
                   ? 'শুভ সময় কাটুক, DARKAK এর সাথেই থাকুন কেনাকাটায়'
                   : 'Have a Great Time and keep shopping with DARKAK'}
@@ -317,7 +317,7 @@ function Footer() {
       <div className='flex  items-center gap-3 p-10'>
 
         <div>
-          <h3>Payment Methods</h3>
+          <h3 className='text-xl font-semibold'>Payment Methods</h3>
           <div className='flex items-center flex-wrap  gap-2'>
             {
               paymentIconData.map(({ name, icon: Icon }) => (

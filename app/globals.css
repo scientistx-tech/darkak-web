@@ -2,7 +2,8 @@
 
 @theme {
   --color-primary: #5694ff;
-  --color-secondary: #161616;
+  /* Secondary color updated to a complementary, eye-catching accent based on primary (warm orange) */
+  --color-secondary: #ff8a56; /* complementary to #5694ff (more vibrant than #161616) */
 
   --color-primaryDarkBlue: #00153b;
   --color-primaryBlue: #003084;
