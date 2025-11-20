@@ -30,22 +30,45 @@ export default function ContentFaqCard({ content, faqs }: Props) {
       {/* Content */}
 
       <div>
-        <div
-          className={`text-justify rendered-html text-base font-light leading-relaxed tracking-wide text-gray-700 md:text-xl transition-all duration-300 overflow-hidden ${
-            showMore ? 'line-clamp-none' : 'line-clamp-[10]'
-          }`}
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
+        <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <h3 className="text-lg font-semibold text-primaryBlue md:text-xl">
+              {lang === 'bn' ? 'বিবরণ' : 'Description'}
+            </h3>
+          </div>
 
-        <div className='flex w-full justify-end'>
-          <button
-          onClick={() => setShowMore((prev) => !prev)}
-          className="mt-3 text-sm font-medium text-blue-600 hover:underline"
-        >
-          {showMore
-            ? lang === 'bn' ? 'কম দেখান' : 'See Less'
-            : lang === 'bn' ? 'আরও দেখুন' : 'See More'}
-        </button>
+          <div className="relative">
+            <div
+              className={`rendered-html prose prose-sm md:prose-lg text-gray-700 leading-relaxed transition-all duration-300 break-words pr-2 ${
+                showMore
+                  ? 'max-h-none overflow-visible'
+                  : 'max-h-56 md:max-h-72 lg:max-h-[16rem] overflow-y-auto hide-scrollbar'
+              }`}
+              dangerouslySetInnerHTML={{ __html: content }}
+              // ensure long words/images wrap and inner scroll on small screens
+            />
+
+            {/* Fade overlay when collapsed */}
+            {!showMore && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/95 to-transparent" />
+            )}
+          </div>
+
+          <div className="mt-4 flex w-full justify-end">
+            <button
+              onClick={() => setShowMore((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full  bg-primaryBlue px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity duration-200"
+              // style={{ backgroundColor: 'var(--color-secondary)' }}
+            >
+              {showMore
+                ? lang === 'bn'
+                  ? 'কম দেখান'
+                  : 'See Less'
+                : lang === 'bn'
+                ? 'আরও দেখুন'
+                : 'See More'}
+            </button>
+          </div>
         </div>
       </div>
 

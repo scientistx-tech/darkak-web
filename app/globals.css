@@ -12,3 +12,12 @@
   --color-primaryWhite: #ffffff;
   --color-secondaryWhite: #e6efff;
 }
+
+/* Utility: hide native scrollbars but keep scrolling functional */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
