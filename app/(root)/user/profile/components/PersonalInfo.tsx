@@ -39,7 +39,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ data, isLoading, isError })
     : 'Not Provided';
 
   return (
-    <div className="w-full rounded-3xl border border-gray-200 bg-gradient-to-br from-white via-[#f0f4ff] to-[#e4ecff] p-10 shadow-xl transition-all hover:shadow-2xl">
+    <div className="w-full ">
       <div className="mb-6 flex items-center justify-between md:mb-12">
         <h2 className="text-3xl font-semibold text-[#1e3a8a]">
           {lang === 'bn' ? 'ব্যক্তিগত তথ্য' : 'Personal Information'}

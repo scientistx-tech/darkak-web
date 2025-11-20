@@ -74,30 +74,7 @@ const ProfilePage: React.FC = () => {
         {/* Left Sidebar */}
         <div className="flex w-full flex-col items-center gap-4 md:w-1/3">
           {/* Profile Picture */}
-          <div className="relative">
-            <Image
-              src={imagePreview || "/default-avatar.png"}
-              alt="Profile"
-              width={200}
-              height={200}
-              className="h-[200px] w-[200px] rounded-full border-[5px] border-primaryBlue object-cover"
-            />
-            <label className="absolute bottom-2 right-2 cursor-pointer rounded-full bg-white p-2 shadow-md">
-              {isUploading ? (
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" />
-              ) : (
-                <>
-                  <FaCamera className="text-gray-600" />
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="hidden"
-                  />
-                </>
-              )}
-            </label>
-          </div>
+
 
           {/* Menu */}
           <div className="w-full">
@@ -106,7 +83,7 @@ const ProfilePage: React.FC = () => {
         </div>
 
         {/* Right Content */}
-        <div className="w-full md:w-2/3">
+        <div className="w-full  md:w-2/3">
           <AnimatePresence mode="wait">
             {activeTab === "personal" && (
               <motion.div
@@ -115,7 +92,40 @@ const ProfilePage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
+                className="rounded-3xl border border-gray-200 bg-[#f0f4ff] p-10 shadow transition-all "
               >
+                <div className="relative flex w-full justify-center pb-6">
+                  <div className="relative">
+                    <Image
+                      src={imagePreview || "/default-avatar.png"}
+                      alt="Profile"
+                      width={200}
+                      height={200}
+                      className="h-[200px] w-[200px] rounded-full border-[5px] border-primaryBlue object-cover"
+                    />
+
+                    <label
+                      htmlFor="profileImage"
+                      className="absolute inset-0 flex items-end justify-end rounded-full cursor-pointer transition-opacity"
+                      aria-label={lang === 'bn' ? 'প্রোফাইল ছবি পরিবর্তন করুন' : 'Change profile picture'}
+                    >
+                      {isUploading ? (
+                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" />
+                      ) : (
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-primaryBlue shadow-md">
+                          <FaCamera className="text-lg" />
+                        </div>
+                      )}
+                      <input
+                        id="profileImage"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="sr-only"
+                      />
+                    </label>
+                  </div>
+                </div>
                 <PersonalInfo
                   data={data}
                   isError={isError}
@@ -125,7 +135,7 @@ const ProfilePage: React.FC = () => {
             )}
             {activeTab === "edit" && (
               <motion.div key="edit" {...animationProps}>
-                <EditProfile refetch={refetch} data={data}/>
+                <EditProfile refetch={refetch} data={data} />
               </motion.div>
             )}
             {activeTab === "notification" && (

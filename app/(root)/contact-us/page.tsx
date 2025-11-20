@@ -31,7 +31,7 @@ export default async function page() {
 
       <ContactPage />
 
-      <div className="ml-[2.5%] mt-8 w-[95%] md:mt-16">
+      <div className="ml-[2.5%] mt-8 w-[95%] py-5 md:py-28 px-5 md:px-0">
         <ContentFaqCard content={data?.data?.content} faqs={data?.data?.faq?.faq || []} />
       </div>
     </div>

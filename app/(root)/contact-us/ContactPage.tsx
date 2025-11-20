@@ -64,133 +64,107 @@ const ContactPage: React.FC = () => {
       {/* Toast Container */}
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar theme="colored" />
 
-      <div className="flex w-full flex-col pb-5 pt-5 md:flex-row md:pb-20 md:pt-20">
-        {/* Left Section */}
-        <div className="flex w-full flex-col items-start justify-center pl-[5%] md:w-[50%] md:pl-[10%]">
-          <p className="mb-4 text-xl font-medium text-secondary md:text-2xl">
-            <span className="text-primaryBlue">
-              {lang === 'bn' ? 'যোগাযোগ' : 'Contact'}
-            </span>{' '}
-            {lang === 'bn' ? 'তথ্য' : 'Info.'}
-          </p>
-
-          <div className="mt-3 flex items-center gap-3 md:mt-5">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-primaryBlue md:h-[40px] md:w-[40px]">
-              <FaEnvelope className="text-white md:text-xl" />
+       <div className="grid container items-center mx-auto my-5 md:my-28 px-5 md:px-0 gap-8 md:grid-cols-2">
+          {/* Info Cards */}
+          <div className="space-y-9 ">
+            <div className="rounded-xl bg-linear-to-r from-white to-slate-50 p-6 shadow">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primaryBlue text-white">
+                  <FaEnvelope className="text-lg" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'ইমেইল' : 'Email'}</h4>
+                  <p className="mt-1 text-gray-600">info@darkak.com.bd</p>
+                </div>
+              </div>
             </div>
-            <p className="text-secondary md:text-xl">info@darkak.com.bd</p>
+
+            <div className="rounded-xl bg-linear-to-r from-white to-slate-50 p-6 shadow">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primaryBlue text-white">
+                  <FaPhoneAlt className="text-lg" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'ফোন' : 'Phone'}</h4>
+                  <p className="mt-1 text-gray-600">01711726501</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl bg-linear-to-r from-white to-slate-50 p-6 shadow">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primaryBlue text-white">
+                  <FaMapMarkerAlt className="text-lg" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'অবস্থান' : 'Location'}</h4>
+                  <p className="mt-1 text-gray-600">Upashahar, Bogura -5800</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-3 flex items-center gap-3 md:mt-5">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-primaryBlue md:h-[40px] md:w-[40px]">
-              <FaPhoneAlt className="text-white md:text-xl" />
-            </div>
-            <p className="text-secondary md:text-xl">01711726501</p>
-          </div>
+          {/* Form */}
+          <div className="rounded-xl bg-linear-to-r from-white to-slate-50 p-6 shadow">
+            <div >
+              <p className="mb-4 text-lg font-medium text-gray-800">{lang === 'bn' ? 'মেসেজ পাঠান' : 'Send us a message'}</p>
 
-          <div className="mt-3 flex items-center gap-3 md:mt-5">
-            <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-primaryBlue md:h-[40px] md:w-[40px]">
-              <FaMapMarkerAlt className="text-white md:text-xl" />
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'নাম' : 'Name'}</label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none "
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'ইমেইল' : 'Email'}</label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none "
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'ফোন' : 'Phone'}</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none "
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'বিষয়' : 'Subject'}</label>
+                  <input id="subject" type="text" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none " />
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <label htmlFor="message" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'বার্তা' : 'Message'}</label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="h-32 w-full resize-none rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none "
+                />
+              </div>
+
+              <div className="mt-4 flex items-center justify-end">
+                <SendButton link={handleSignup} text={isLoading ? (lang === 'bn' ? 'লোড হচ্ছে...' : 'Loading...') : (lang === 'bn' ? 'পাঠান' : 'Send')} />
+              </div>
             </div>
-            <p className="text-secondary md:text-xl">Upashahar , Bogura -5800</p>
           </div>
         </div>
-
-        {/* Right Section - Form */}
-        <div className="mt-10 flex w-full flex-col items-center rounded-md bg-white p-6 md:mt-0 md:w-[50%]">
-          <p className="mb-4 text-xl font-medium text-secondary md:text-2xl">
-            <span className="text-primaryBlue">{lang === 'bn' ? 'যোগাযোগ করুন' : 'Drop'}</span>{' '}
-            {lang === 'bn' ? '' : 'Us a Line'}
-          </p>
-
-          {/* Name Input */}
-          <div className="relative mt-3 w-[90%] md:mt-5">
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="peer block w-full rounded border border-gray-300 bg-white px-3 py-2 leading-[1.6] outline-none focus:border-primaryBlue focus:ring-1 focus:ring-primaryBlue"
-              required
-            />
-            <label
-              htmlFor="name"
-              className={`absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-600 transition-all duration-200 ease-out ${
-                name ? 'top-[-2px] bg-white px-1 text-sm text-primaryBlue' : ''
-              }`}
-            >
-              {lang === 'bn' ? 'নাম' : 'Name'}
-            </label>
-          </div>
-
-          {/* Email Input */}
-          <div className="relative mt-3 w-[90%] md:mt-5">
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="peer block w-full rounded border border-gray-300 bg-white px-3 py-2 leading-[1.6] outline-none focus:border-primaryBlue focus:ring-1 focus:ring-primaryBlue"
-              required
-            />
-            <label
-              htmlFor="email"
-              className={`absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-600 transition-all duration-200 ease-out ${
-                email ? 'top-[-2px] bg-white px-1 text-sm text-primaryBlue' : ''
-              }`}
-            >
-              {lang === 'bn' ? 'ইমেইল' : 'Email'}
-            </label>
-          </div>
-
-          {/* Phone Input */}
-          <div className="relative mt-3 w-[90%] md:mt-5">
-            <input
-              type="number"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="peer block w-full rounded border border-gray-300 bg-white px-3 py-2 leading-[1.6] outline-none focus:border-primaryBlue focus:ring-1 focus:ring-primaryBlue"
-              required
-            />
-            <label
-              htmlFor="phone"
-              className={`absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-600 transition-all duration-200 ease-out ${
-                phone ? 'top-[-2px] bg-white px-1 text-sm text-primaryBlue' : ''
-              }`}
-            >
-              {lang === 'bn' ? 'ফোন' : 'Phone'}
-            </label>
-          </div>
-
-          {/* Message Textarea */}
-          <div className="relative mt-3 w-[90%] md:mt-5">
-            <textarea
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="peer block h-[150px] w-full resize-none rounded border border-gray-300 bg-white px-3 py-2 leading-[1.6] outline-none focus:border-primaryBlue focus:ring-1 focus:ring-primaryBlue"
-              required
-            />
-            <label
-              htmlFor="message"
-              className={`absolute left-3 top-3 text-gray-600 transition-all duration-200 ease-out ${
-                message ? 'top-[-10px] bg-white px-1 text-sm text-primaryBlue' : ''
-              }`}
-            >
-              {lang === 'bn' ? 'বার্তা' : 'Message'}
-            </label>
-          </div>
-
-          {/* Submit Button */}
-          <div className="mt-5">
-            <SendButton
-              link={handleSignup}
-              text={isLoading ? 'Loading...' : lang === 'bn' ? 'পাঠান' : 'Send'}
-            />
-          </div>
-        </div>
-      </div>
 
       {/* Map */}
       <div className="tablet:mb-16 mb-8 h-auto w-full">

@@ -9,7 +9,7 @@ const SendButton: React.FC<SendButtonProps> = ({ link, text }) => {
   return (
     <button
       onClick={link}
-      className="group relative inline-flex items-center overflow-hidden rounded-full border-2 border-primaryBlue px-6 md:px-12 py-2 md:py-3 text-lg font-medium text-primaryBlue hover:bg-gray-50 hover:text-white"
+      className="group relative inline-flex items-center overflow-hidden rounded-full border-2 border-primaryBlue px-6 md:px-10 py-2  text-lg font-medium text-primaryBlue hover:bg-gray-50 hover:text-white"
     >
       <span className="duration-400 ease absolute left-0 top-1 md:top-1/2 block h-0 w-full bg-primaryBlue opacity-100 transition-all group-hover:top-0 group-hover:h-full"></span>
       <span className="ease absolute right-0 flex h-6 w-6 md:h-10 md:w-10 translate-x-full transform items-center justify-start duration-300 group-hover:translate-x-0">
