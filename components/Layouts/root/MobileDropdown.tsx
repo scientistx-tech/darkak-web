@@ -37,7 +37,7 @@ export default function MobileDropdown({ onClose }: MobileDropdownProps) {
               className="flex cursor-pointer items-center justify-between font-semibold hover:text-secondaryBlue"
             >
               <span>{cat.title}</span>
-              {openMain === cat.title ? <FaAngleUp /> : <FaAngleDown />}
+              {openMain === cat.title ? <FaAngleUp className="text-lg text-primaryBlue cursor-pointer"  /> : <FaAngleDown className="text-lg text-primaryBlue cursor-pointer"  />}
             </div>
 
             {openMain === cat.title && (

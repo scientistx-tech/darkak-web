@@ -459,7 +459,7 @@ const Header: React.FC = () => {
             <div className="px-5 py-2">
               {/* Search Bar */}
               <div className="relative">
-                <div className="mb-7 flex items-center overflow-hidden rounded border border-primaryBlue bg-white pl-3 shadow-md">
+                <div className="mb-7 flex items-center overflow-hidden rounded-full border border-primaryBlue bg-white pl-3 shadow">
                   <FaSearch className="mr-2 text-gray-500" />
                   <input
                     placeholder={
@@ -467,7 +467,7 @@ const Header: React.FC = () => {
                         ? "পণ্য অনুসন্ধান করুন..."
                         : "Search products..."
                     }
-                    className="w-3/4 border-none bg-transparent py-2 text-sm outline-none"
+                    className="w-full border-none bg-transparent py-3 pr-4 pl-0 text-sm outline-none"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     // onFocus={() => {
@@ -481,7 +481,7 @@ const Header: React.FC = () => {
                     //   onClose();
                     //   router.push(`/search?search=${searchTerm.trim()}`);
                     // }}
-                    className="w-1/4 border border-primaryBlue bg-primaryBlue py-2 text-white transition-all duration-300 hover:bg-primaryDarkBlue"
+                    className="rounded-full bg-primaryBlue px-4 py-[10px] text-sm text-white  duration-200 hover:bg-primaryDarkBlue"
                   >
                     {lang === "bn" ? "অনুসন্ধান" : "Search"}
                   </button>
@@ -493,9 +493,9 @@ const Header: React.FC = () => {
                 <Link
                   href="/"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaHome />
+                  <FaHome className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "হোম" : "Home"}
                 </Link>
 
@@ -504,19 +504,19 @@ const Header: React.FC = () => {
                   <Link
                     href="/category"
                     onClick={handleDrawerClose}
-                    className="flex items-center gap-3 hover:text-primary"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                   >
-                    <FaThLarge />
+                    <FaThLarge className="text-lg text-primaryBlue" />
                     <div className="flex w-full items-center justify-between">
                       <span>{lang === "bn" ? "ক্যাটাগরি" : "Category"}</span>
                     </div>
                   </Link>
 
-                  <button onClick={toggleSubmenu} className="w-auto">
+                  <button onClick={toggleSubmenu} className="w-auto p-1 text-gray-600 hover:text-primaryBlue">
                     {submenuOpen ? (
-                      <FaMinus className="text-xl" />
+                      <FaMinus className="text-xl cursor-pointer" />
                     ) : (
-                      <FaPlus className="text-xl" />
+                      <FaPlus className="text-xl cursor-pointer" />
                     )}
                   </button>
                 </div>
@@ -537,9 +537,9 @@ const Header: React.FC = () => {
                 <Link
                   href="/explore"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaBoxOpen />
+                  <FaBoxOpen className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "ঘুরে দেখুন" : "Explore Now"}
                 </Link>
                 {/* Vendors */}
@@ -547,36 +547,36 @@ const Header: React.FC = () => {
                 <Link
                   href="/vendors"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaShoppingBag />
+                  <FaShoppingBag className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "ভেন্ডরস" : "Vendors"}
                 </Link>
 
                 <Link
                   href="/blogs"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaBold />
+                  <FaBold className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "ব্লগ" : "Blogs"}
                 </Link>
 
                 <Link
                   href="/contact-us"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaPhone />
+                  <FaPhone className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "যোগাযোগ করুন" : "Contact Us"}
                 </Link>
 
                 <Link
                   href="/about-us"
                   onClick={handleDrawerClose}
-                  className="flex items-center gap-3 hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-gray-100"
                 >
-                  <FaInfoCircle />
+                  <FaInfoCircle className="text-lg text-primaryBlue" />
                   {lang === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
                 </Link>
               </nav>
