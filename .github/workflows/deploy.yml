@@ -18,8 +18,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/darkak-web
-            git pull
             rm -r package-lock.json
+            git pull
             npm i --force
             npm run build
             pm2 restart darkak || pm2 start "npm run start" --name darkak
