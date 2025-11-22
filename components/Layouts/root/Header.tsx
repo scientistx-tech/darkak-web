@@ -243,7 +243,7 @@ const Header: React.FC = () => {
                 <AnimatePresence>
                   {isDropdownOpen && (
                     <motion.div
-                      className="absolute right-0 top-9 z-30 w-[120px] rounded-md bg-primaryBlue shadow-md"
+                      className="absolute right-0 top-9 z-30 w-[120px] bg-primaryBlue border-2 border-primary shadow-md"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}

@@ -17,30 +17,30 @@ export default async function BestSelling({ banner }: BestSellingProps) {
   );
 
   return (
-    <section className="container mx-auto  my-5 md:my-16 px-5 md:px-0">
+    <section className="container mx-auto  my-5 md:my-8 px-5 md:px-0">
       {/* Section Header */}
       <div className="mb-1 flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-primaryDarkBlue md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
+        <h2 className="text-2xl font-semibold text-primary md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
           <Translate text="BEST SELLING PRODUCTS" />
         </h2>
         <Link href="/more/best-selling">
-          <span className="cursor-pointer text-2xl">→</span>
+          <span className="cursor-pointer text-2xl text-primary">→</span>
         </Link>
       </div>
 
       {/* Product Grid + Banner */}
       <div className="relative grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:gap-8">
         {/* LEFT SIDE BANNER */}
-        <div className="relative hidden w-[236px] md:block">
+        <div className="relative hidden md:block">
           {bestSellingBanner ? (
             <Link href={`/product/${bestSellingBanner?.product?.slug}`}>
-              <div className="absolute bottom-0 right-0 z-10 hidden h-[425px] w-[236px] flex-col justify-between overflow-hidden rounded-xl bg-[#4C84FF] p-6 text-white md:flex">
+              <div className="absolute bottom-0 right-0 z-10 hidden h-[425px] flex-col justify-between overflow-hidden rounded-xl bg-primary p-6 text-white md:flex">
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
                     {bestSellingBanner?.type?.replace("_", " ")}
                   </h3>
 
-                  <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
+                  <p className="line-clamp-2 break-words text-2xl font-semibold leading-tight">
                     {bestSellingBanner?.title}
                   </p>
 
