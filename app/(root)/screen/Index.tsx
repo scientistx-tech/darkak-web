@@ -42,7 +42,7 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
   const current = finalSlides[index];
   if (!sliderData) return null
   return (
-    <div className="w-full overflow-hidden `bg-linear-to-r from-primaryBlue via-primary to-primaryBlue text-white">
+    <div className="w-full overflow-hidden bg-linear-to-r from-primaryBlue via-primary to-primaryBlue text-white">
       <div className="w-full md:h-[calc(100vh-150px)]">
         <div className="h-0.5 w-full bg-primary" />
 
