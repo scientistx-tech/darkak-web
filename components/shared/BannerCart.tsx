@@ -55,7 +55,7 @@ const BannerCart: React.FC<BannerCardProps> = ({
           {text}
         </p>
 
-        <div className="h-[10px] w-full"></div>
+        <div className="h-2.5 w-full"></div>
 
         {/* <ShopNowButton link={link} text={lang === 'bn' ? 'এখনই কিনুন' : 'Shop Now'} /> */}
       </div>
@@ -67,7 +67,9 @@ const BannerCart: React.FC<BannerCardProps> = ({
           className="object-cover"
           width={200}
           height={300}
-          // sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 640px) 100vw, 200px"
+          quality={70}
+          decoding="async"
         />
       </div>
     </div>

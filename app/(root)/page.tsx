@@ -40,7 +40,7 @@ async function Page() {
     getCategories(), getSlider("slider"), getSlider("banner"),
     getHome(),
   ])
-  // console.log(visited);
+
   return (
     <div className="w-full">
       <div className="h-[65px] w-full bg-[#E6EFFF] md:h-[109px]" />
