@@ -56,7 +56,7 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
               transition={{ duration: 0.6 }}
               className="h-[500px] w-1/4 border-b-2 border-l-2 border-white px-6 py-6"
             >
-              <p className="mb-5 text-3xl font-light text-primary">
+              <p className="mb-5 text-3xl font-light text-red-500">
                 {current?.offer_name}
               </p>
               {current?.title?.split(" ").map((word: string, idx: number) => (
