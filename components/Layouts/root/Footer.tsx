@@ -1,27 +1,37 @@
-'use client';
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import img1 from '@/Data/Img/app_store_badge.svg';
-import img2 from '@/Data/Img/google_play_badge.svg';
-import imgBg from '@/Data/Img/Rectangle 136.jpeg';
-import paymentBanner from '@/Data/Img/Payment Banner 2 - Copy.png';
+"use client";
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import img1 from "@/Data/Img/app_store_badge.svg";
+import img2 from "@/Data/Img/google_play_badge.svg";
+import imgBg from "@/Data/Img/Rectangle 136.jpeg";
+import paymentBanner from "@/Data/Img/Payment Banner 2 - Copy.png";
 
-import { AppDispatch, RootState } from '@/redux/store';
-import { clearUser } from '@/redux/slices/authSlice';
-import { auth } from '@/utils/firebase';
-import { useGetProductCategoriesQuery } from '@/redux/services/client/categories';
-import { useAddSubscriberMutation } from '@/redux/services/client/subscribe';
-import { useGetHomeContentQuery } from '@/redux/services/client/homeContentApi';
-import { TbLoader2 } from 'react-icons/tb';
-import { CgMail } from 'react-icons/cg';
-import { BiPhone } from 'react-icons/bi';
-import { CiMapPin } from 'react-icons/ci';
-import { FaFacebook, FaInstagram, FaPinterest, FaYoutube } from 'react-icons/fa';
-import { FiMessageCircle } from 'react-icons/fi';
-import { IconSSLCommerce, PaymentIcon, paymentIconData } from '@/Data/PaymentMethod';
+import { AppDispatch, RootState } from "@/redux/store";
+import { clearUser } from "@/redux/slices/authSlice";
+import { auth } from "@/utils/firebase";
+import { useGetProductCategoriesQuery } from "@/redux/services/client/categories";
+import { useAddSubscriberMutation } from "@/redux/services/client/subscribe";
+import { useGetHomeContentQuery } from "@/redux/services/client/homeContentApi";
+import { TbLoader2 } from "react-icons/tb";
+import { CgMail } from "react-icons/cg";
+import { BiPhone } from "react-icons/bi";
+import { CiMapPin } from "react-icons/ci";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaPinterest,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
+
+import {
+  IconSSLCommerce,
+  PaymentIcon,
+  paymentIconData,
+} from "@/Data/PaymentMethod";
 // import { paymentIconData } from '@/Data/paymentImage/PaymentMethod';
 
 function Footer() {
@@ -30,23 +40,28 @@ function Footer() {
   const user = useSelector((state: RootState) => state.auth.user);
 
   const { data: home } = useGetHomeContentQuery();
-  const { data: categories, isLoading, error } = useGetProductCategoriesQuery('');
-  const [addSubscriber, { isLoading: subscribeLoading }] = useAddSubscriberMutation();
+  const {
+    data: categories,
+    isLoading,
+    error,
+  } = useGetProductCategoriesQuery("");
+  const [addSubscriber, { isLoading: subscribeLoading }] =
+    useAddSubscriberMutation();
 
-  const [email, setEmail] = React.useState('');
+  const [email, setEmail] = React.useState("");
 
   const handleSubscribe = async () => {
     if (!email) {
-      toast.warning('Please enter your email.');
+      toast.warning("Please enter your email.");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error('Please enter a valid email address.');
+      toast.error("Please enter a valid email address.");
     } else {
       try {
         await addSubscriber({ email }).unwrap();
-        toast.success('Subscribed successfully!');
-        setEmail('');
+        toast.success("Subscribed successfully!");
+        setEmail("");
       } catch (error: any) {
-        toast.error(error?.data?.message || 'Subscription failed!');
+        toast.error(error?.data?.message || "Subscription failed!");
       }
     }
   };
@@ -54,7 +69,7 @@ function Footer() {
   const handleLogOut = () => {
     dispatch(clearUser());
     auth.signOut();
-    toast.info('Logged out successfully');
+    toast.info("Logged out successfully");
   };
 
   return (
@@ -70,11 +85,11 @@ function Footer() {
           {/* Left Side */}
           <div className="w-full pl-5 lg:w-2/3 lg:pl-10">
             {/* Subscribe Section */}
-            <div className="right-5 mt-[-65px] flex max-w-fit flex-col items-center justify-center rounded-md bg-[#F1F6FF] px-3 py-6 shadow-2xl w-[100%] ">
+            <div className="right-5 mt-[-65px] border-2 border-[#003084] flex max-w-fit flex-col items-center justify-center rounded-md bg-[#F1F6FF] px-6 py-6 shadow-2xl w-[100%] ">
               <p className="xl:text-xl text-md xl:font-semibold text-[#003084]">
-                {lang === 'bn'
-                  ? 'নতুন অফার ও আপডেট পেতে সাবস্ক্রাইব করুন'
-                  : 'SUBSCRIBE TO OUR NEWSLETTER'}
+                {lang === "bn"
+                  ? "নতুন অফার ও আপডেট পেতে সাবস্ক্রাইব করুন"
+                  : "SUBSCRIBE TO OUR NEWSLETTER"}
               </p>
               <div className="mt-5 flex w-full rounded-full bg-white">
                 <input
@@ -82,7 +97,11 @@ function Footer() {
                   value={email}
                   className="w-2/3 rounded-l-full border-none py-2 pl-4 outline-none"
                   type="text"
-                  placeholder={lang === 'bn' ? 'আপনার ইমেইল লিখুন...' : 'Your email goes here...'}
+                  placeholder={
+                    lang === "bn"
+                      ? "আপনার ইমেইল লিখুন..."
+                      : "Your email goes here..."
+                  }
                   disabled={subscribeLoading}
                 />
                 <button
@@ -92,11 +111,11 @@ function Footer() {
                 >
                   {subscribeLoading ? (
                     <>
-                      <TbLoader2 className="h-4 w-4 animate-spin" />{' '}
-                      {lang === 'bn' ? 'লোড হচ্ছে...' : 'Loading...'}
+                      <TbLoader2 className="h-4 w-4 animate-spin" />{" "}
+                      {lang === "bn" ? "লোড হচ্ছে..." : "Loading..."}
                     </>
                   ) : (
-                    <>{lang === 'bn' ? 'সাবস্ক্রাইব করুন' : 'SUBSCRIBE'}</>
+                    <>{lang === "bn" ? "সাবস্ক্রাইব করুন" : "SUBSCRIBE"}</>
                   )}
                 </button>
               </div>
@@ -106,9 +125,9 @@ function Footer() {
             <div className="flex w-full justify-end md:hidden">
               <div className="mt-[40px] w-[80%] rounded-bl-full rounded-tl-full bg-primary px-3 py-2 text-white md:hidden">
                 <p className="text-end font-medium">
-                  {lang === 'bn'
-                    ? 'শুভ সময় কাটুক, DARKAK এর সাথেই থাকুন'
-                    : 'Have a Great Time and keep shopping with DARKAK'}
+                  {lang === "bn"
+                    ? "শুভ সময় কাটুক, DARKAK এর সাথেই থাকুন"
+                    : "Have a Great Time and keep shopping with DARKAK"}
                 </p>
               </div>
             </div>
@@ -119,14 +138,23 @@ function Footer() {
                   {/* Quick Links */}
                   <div className="flex w-1/2 flex-col">
                     <p className="mb-3 text-xl text-[#BBD4FF] md:mb-5">
-                      {lang === 'bn' ? 'দ্রুত লিংক' : 'Quick Links'}
+                      {lang === "bn" ? "দ্রুত লিংক" : "Quick Links"}
                     </p>
 
                     {[
-                      { href: '/', label: lang === 'bn' ? 'হোম' : 'Home' },
-                      { href: '/category', label: lang === 'bn' ? 'দোকান' : 'Shop' },
-                      { href: '/blogs', label: lang === 'bn' ? 'ব্লগ' : 'Blogs' },
-                      { href: '/contact-us', label: lang === 'bn' ? 'যোগাযোগ করুন' : 'Contact Us' },
+                      { href: "/", label: lang === "bn" ? "হোম" : "Home" },
+                      {
+                        href: "/category",
+                        label: lang === "bn" ? "দোকান" : "Shop",
+                      },
+                      {
+                        href: "/blogs",
+                        label: lang === "bn" ? "ব্লগ" : "Blogs",
+                      },
+                      {
+                        href: "/contact-us",
+                        label: lang === "bn" ? "যোগাযোগ করুন" : "Contact Us",
+                      },
                     ].map((link) => (
                       <Link
                         key={link.href}
@@ -141,26 +169,35 @@ function Footer() {
                   {/* Support */}
                   <div className="flex w-1/2 flex-col items-end md:items-start mr-5 md:mr-0">
                     <p className="mb-3 text-xl text-[#BBD4FF] md:mb-5">
-                      {lang === 'bn' ? 'সহায়তা' : 'Support'}
+                      {lang === "bn" ? "সহায়তা" : "Support"}
                     </p>
 
                     {[
-                      { href: '/about-us', label: lang === 'bn' ? 'আমাদের সম্পর্কে' : 'About Us' },
                       {
-                        href: '/privacy-policy',
-                        label: lang === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy',
+                        href: "/about-us",
+                        label: lang === "bn" ? "আমাদের সম্পর্কে" : "About Us",
                       },
                       {
-                        href: '/terms-and-condition',
-                        label: lang === 'bn' ? 'শর্তাবলি' : 'Terms and Condition',
+                        href: "/privacy-policy",
+                        label:
+                          lang === "bn" ? "গোপনীয়তা নীতি" : "Privacy Policy",
                       },
                       {
-                        href: '/return-refund-policy',
-                        label: lang === 'bn'
-                          ? 'রিটার্ন এবং রিফান্ড নীতিমালা'
-                          : 'Return and Refund Policy',
+                        href: "/terms-and-condition",
+                        label:
+                          lang === "bn" ? "শর্তাবলি" : "Terms and Condition",
                       },
-                      { href: '/faq', label: lang === 'bn' ? 'প্রশ্নোত্তর' : 'FAQ' },
+                      {
+                        href: "/return-refund-policy",
+                        label:
+                          lang === "bn"
+                            ? "রিটার্ন এবং রিফান্ড নীতিমালা"
+                            : "Return and Refund Policy",
+                      },
+                      {
+                        href: "/faq",
+                        label: lang === "bn" ? "প্রশ্নোত্তর" : "FAQ",
+                      },
                     ].map((link) => (
                       <Link
                         key={link.href}
@@ -175,7 +212,9 @@ function Footer() {
 
                 {/* App Download */}
                 <p className="mt-5 hidden text-2xl text-[#BBD4FF] md:block">
-                  {lang === 'bn' ? 'আমাদের মোবাইল অ্যাপ ডাউনলোড করুন' : 'Download Our Mobile App'}
+                  {lang === "bn"
+                    ? "আমাদের মোবাইল অ্যাপ ডাউনলোড করুন"
+                    : "Download Our Mobile App"}
                 </p>
                 <div className="mt-5 hidden justify-start gap-5 md:flex">
                   {[img1, img2].map((img, i) => (
@@ -192,7 +231,7 @@ function Footer() {
               {/* Categories */}
               <div className="mt-8 flex flex-col md:mt-0 md:w-1/3">
                 <p className="mb-3 text-xl text-[#BBD4FF] md:mb-5">
-                  {lang === 'bn' ? 'পণ্যের বিভাগসমূহ' : 'Product Categories'}
+                  {lang === "bn" ? "পণ্যের বিভাগসমূহ" : "Product Categories"}
                 </p>
 
                 {isLoading ? (
@@ -205,7 +244,10 @@ function Footer() {
                   categories?.map((cat) => (
                     <div key={cat.title} className="mb-1 md:mb-3">
                       <Link
-                        href={{ pathname: '/category', query: { categoryId: cat.title } }}
+                        href={{
+                          pathname: "/category",
+                          query: { categoryId: cat.title },
+                        }}
                         className="text-[#F6F6F6] hover:text-white"
                       >
                         {cat.title}
@@ -219,13 +261,14 @@ function Footer() {
 
           {/* Right Side */}
           <div className="flex w-full flex-col items-start justify-start pl-5 lg:w-1/3 md:items-end md:pl-0">
-            <div className="mt-[-40px] hidden w-[100%] rounded-bl-full rounded-tl-full bg-primary px-3 py-5 text-white md:block">
+            <div className="mt-[-40px] hidden w-[100%] rounded-bl-full rounded-tl-full bg-primary px-3 py-5 text-white md:block border-2 border-[#003084]">
               <p className="text-end md:text-sm  xl:text-md xl:font-medium">
-                {lang === 'bn'
-                  ? 'শুভ সময় কাটুক, DARKAK এর সাথেই থাকুন কেনাকাটায়'
-                  : 'Have a Great Time and keep shopping with DARKAK'}
+                {lang === "bn"
+                  ? "শুভ সময় কাটুক, DARKAK এর সাথেই থাকুন কেনাকাটায়"
+                  : "Have a Great Time and keep shopping with DARKAK"}
               </p>
             </div>
+
             <div className="flex flex-col items-start justify-center md:items-end md:pr-10">
               <p className="mt-5 text-2xl font-medium text-[#BBD4FF] md:mt-16">
                 {home?.content?.footer_title}
@@ -236,29 +279,29 @@ function Footer() {
                   onClick={handleLogOut}
                   className="mt-5 rounded-full border-[2px] border-primary bg-primary px-4 py-1 text-xl font-medium text-white transition-all duration-500 ease-in-out hover:bg-transparent hover:text-primary md:py-2"
                 >
-                  {lang === 'bn' ? 'প্রস্থান করুন' : 'Log Out'}
+                  {lang === "bn" ? "প্রস্থান করুন" : "Log Out"}
                 </button>
               ) : (
                 <Link
                   href="/auth/signup"
                   className="mt-5 rounded-full border-[2px] border-primary bg-primary px-4 py-1 text-xl font-medium text-white transition-all duration-500 ease-in-out hover:bg-transparent hover:text-primary md:py-2"
                 >
-                  {lang === 'bn' ? 'এখনই রেজিস্টার করুন' : 'Register now'}
+                  {lang === "bn" ? "এখনই রেজিস্টার করুন" : "Register now"}
                 </Link>
               )}
 
               <p className="mt-5 text-xl text-[#BBD4FF] md:mt-8">
-                {lang === 'bn' ? 'যোগাযোগ' : 'Contact'}
+                {lang === "bn" ? "যোগাযোগ" : "Contact"}
               </p>
 
               <p className="mt-1 text-[#F6F6F6] opacity-55 hover:text-white hover:opacity-100 md:mt-3 flex items-center gap-2">
-                <CgMail size={16} />{' '}
+                <CgMail size={16} />{" "}
                 <a href="mailto:info@darkak.com.bd" className="hover:underline">
                   info@darkak.com.bd
                 </a>
               </p>
               <p className="mt-1 text-[#F6F6F6] opacity-55 hover:text-white hover:opacity-100 md:mt-3 flex items-center gap-2">
-                <BiPhone size={16} />{' '}
+                <BiPhone size={16} />{" "}
                 <a href="tel:01711726501" className="hover:underline">
                   01711726501
                 </a>
@@ -268,7 +311,7 @@ function Footer() {
               </p>
 
               <p className="mt-5 text-xl text-[#BBD4FF] md:mt-8">
-                {lang === 'bn' ? 'সংযুক্ত থাকুন' : 'Stay Connected'}
+                {lang === "bn" ? "সংযুক্ত থাকুন" : "Stay Connected"}
               </p>
 
               <div className="mb-[80px] mt-3 flex gap-4 md:mb-0">
@@ -305,7 +348,7 @@ function Footer() {
                   target="_blank"
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
-                  <FiMessageCircle size={20} />
+                  <FaWhatsapp size={20} />
                 </a>
               </div>
             </div>
@@ -313,27 +356,22 @@ function Footer() {
         </div>
       </div>
 
-      {/* <Image src={paymentBanner} alt="Payment Methods" className="w-full object-cover" /> */}
-      <div className='flex  items-center gap-3 p-10'>
+      <Image
+        src={paymentBanner}
+        alt="Payment Methods"
+        className=" hidden md:block w-full object-cover"
+      />
 
-        <div>
-          <h3 className='text-xl font-semibold'>Payment Methods</h3>
-          <div className='flex items-center flex-wrap  gap-2'>
-            {
-              paymentIconData.map(({ name, icon: Icon }) => (
-                <Icon key={name} alt={name} className="" />
-              ))
-            }
-          </div>
+      <div className="hidden md:block bg-gradient-to-b from-[#00153B] to-[#003084] text-white">
+        <div className="max-w-7xl mx-auto py-3 text-center text-sm tracking-wide opacity-90">
+          <span className="block">
+            © {new Date().getFullYear()}{" "}
+            <span className="font-semibold">Darkak.com.bd</span> — All Rights
+            Reserved
+          </span>
         </div>
-        <div className='ml-auto'>
-
-          <h1>Verified by</h1>
-          <IconSSLCommerce />
-        </div>
-      </div >
-
-    </div >
+      </div>
+    </div>
   );
 }
 

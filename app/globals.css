@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #5694ff;
+  --color-primary: #3558E0;
+
   /* Secondary color updated to a complementary, eye-catching accent based on primary (warm orange) */
   --color-secondary: #ff8a56; /* complementary to #5694ff (more vibrant than #161616) */
 

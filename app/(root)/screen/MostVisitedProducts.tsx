@@ -20,17 +20,17 @@ export default async function MostVisitedProducts({
   );
 
   return (
-    <main className="my-5 md:my-16 px-5 md:px-0 ">
+    <main className="my-5 md:my-8 px-5 md:px-0 ">
       <div>
         {/* Section Header */}
         <div className="h-[50px]">
           <div className="flex items-center justify-between gap-6 md:justify-start">
-            <h2 className="text-2xl font-semibold text-primaryDarkBlue">
+            <h2 className="text-2xl font-semibold text-primary">
 
               <Translate text="MOST VISITED" />
             </h2>
             <Link href="/more/most-visited">
-              <span className="cursor-pointer text-2xl">→</span>
+              <span className="cursor-pointer text-2xl text-primary">→</span>
             </Link>
           </div>
         </div>
@@ -49,13 +49,13 @@ export default async function MostVisitedProducts({
               <div className="
           col-span-2 md:col-span-1 mt-[-50px]
           lg:col-start-4 xl:col-start-5
-          flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
+          flex flex-col justify-between rounded-xl bg-primary p-6 text-white h-[425px]
         ">
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
                     {mostVisitedBanner.type.replace('_', ' ')}
                   </h3>
-                  <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
+                  <p className="line-clamp-2 break-words text-2xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
                   </p>
                   <p className="line-clamp-3 break-words text-sm leading-snug text-white/90">
