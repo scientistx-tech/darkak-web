@@ -88,7 +88,7 @@ const WishlistPage: React.FC = () => {
 
       {/* Wishlist Items */}
       <div className="flex justify-center px-2 py-6 md:container md:mx-auto md:px-2 md:py-6 xl:px-4 xl:py-12">
-        <div className="flex w-full flex-col gap-6 md:w-[60%]">
+        <div className="flex w-full flex-col gap-6 lg:w-[70%] xl:w-[60%]">
           {wishlist?.map((item) => {
             const product = item.product;
             const hasDiscount = !!product?.discount && Number(product.discount) > 0;
@@ -176,62 +176,63 @@ const WishlistPage: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="relative flex items-center justify-start gap-4 rounded-xl border p-4 shadow-sm md:justify-between"
+                className="w-full rounded-xl border bg-white p-4 shadow-sm transition hover:shadow-md md:flex md:items-center md:gap-4"
               >
-                {/* Product Image */}
-                <div className="h-[80px] w-[80px] flex-shrink-0 overflow-hidden rounded-md md:h-[120px] md:w-[120px]">
-                  <Image
-                    src={item.product.thumbnail}
-                    alt={item.product.title}
-                    width={120}
-                    height={120}
-                    className="object-contain"
-                  />
-                </div>
-
-                <div className="w-[80%]">
-                  <div className="flex-1 space-y-1">
-                    <Link
-                      href={`/product/${item.product.slug}`}
-                      className="cursor-pointer text-base font-semibold text-[#00153B] hover:underline md:text-lg"
-                    >
-                      {lang === 'bn' ? 'পণ্যের নাম:' : 'Product Name:'} {item.product.title}
-                    </Link>
-                    <p className="text-[#00153B]">
-                      {lang === 'bn' ? 'ব্র্যান্ড:' : 'Brand:'} {item.product.brand.title}
-                    </p>
-                    <p className="font-medium text-[#00153B]">
-                      {lang === 'bn' ? 'মূল্য: ' : 'Price: '}
-                      {discountPrice}
-                    </p>
+                <div className="flex items-center gap-4">
+                  <div className="relative h-[90px] w-[90px] shrink-0 overflow-hidden rounded-lg bg-gray-50 md:h-[120px] md:w-[120px]">
+                    <Image
+                      src={item.product.thumbnail}
+                      alt={item.product.title}
+                      width={120}
+                      height={120}
+                      className="object-contain"
+                    />
+                    {hasDiscount && (
+                      <span className="absolute left-2 top-2 rounded-full bg-red-600 px-2 py-1 text-xs font-semibold text-white">
+                        {discountType === 'percentage' ? `${discount}%` : `Tk ${discount}`}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex items-end justify-end gap-2 md:flex-col md:justify-center md:gap-4">
-                    <button
-                      onClick={() => setDeleteId(item.id)}
-                      className="h-[35px] w-[35px] rounded-full border text-red-500 transition-all duration-300 hover:border-red-500 md:h-[40px] md:w-[40px]"
-                    >
-                      <DeleteOutlined className="md:text-xl" />
-                    </button>
+                  <div className="max-w-[60%]">
+                    <Link href={`/product/${item.product.slug}`} className="text-base font-semibold text-[#00153B] hover:underline md:text-lg">
+                      {item.product.title}
+                    </Link>
+                    <p className="mt-1 text-sm text-gray-600">{lang === 'bn' ? 'ব্র্যান্ড' : 'Brand'}: <span className="text-[#00153B]">{item.product.brand.title}</span></p>
 
-                    <div className="flex items-center justify-evenly gap-4">
-                      <Button className='bg-transparent p-0' onClick={(e: any) => handleBuyNow(e)}>
-                        <p className="text-primbg-primaryWhite scale-90 cursor-pointer rounded-full bg-primaryBlue px-4 py-2 text-sm font-medium text-secondaryWhite transition-all duration-300 hover:bg-primary hover:text-white md:scale-100 md:px-6 md:font-semibold lg:text-base">
-                          {lang === 'bn' ? 'এখনই কিনুন' : 'BUY NOW'}
-                        </p>
-                      </Button>
-
-                      <Button className='bg-transparent p-0' loading={cartLoading} onClick={(e: any) => handleAddToCart(e)}>
-                        <div className="flex h-[35px] w-[35px] items-center justify-center rounded-full border text-primaryBlue transition-all duration-300 hover:border-primaryBlue md:h-[40px] md:w-[40px]">
-                          <FaShoppingCart className="md:text-xl" />
-                        </div>
-                      </Button>
+                    <div className="mt-2 flex items-center gap-3">
+                      <div className="text-lg font-bold text-black">
+                        {discountPrice}
+                        <span className="ml-1 text-sm font-medium text-gray-500">{lang === 'bn' ? 'টাকা' : 'BDT'}</span>
+                      </div>
+                      {hasDiscount && (
+                        <div className="text-sm text-gray-400 line-through">{price} {lang === 'bn' ? 'টাকা' : 'BDT'}</div>
+                      )}
                     </div>
                   </div>
                 </div>
+
+                <div className="mt-4 flex items-center justify-between md:mt-0 md:ml-auto md:flex-col md:items-end md:gap-3">
+                  <button
+                    onClick={() => setDeleteId(item.id)}
+                    className="inline-flex items-center justify-center rounded-full border border-gray-200 p-2 text-red-500 hover:border-red-500"
+                    aria-label="Remove wishlist item"
+                  >
+                    <DeleteOutlined />
+                  </button>
+
+                  <div className="flex items-center gap-3">
+                    <Button onClick={(e: any) => handleBuyNow(e)} className="rounded-full bg-primaryBlue px-4 py-2 text-sm font-semibold text-nowrap text-white hover:bg-primaryBlue/90">
+                      {lang === 'bn' ? 'এখনই কিনুন' : 'Buy Now'}
+                    </Button>
+
+                    <Button loading={cartLoading} onClick={(e: any) => handleAddToCart(e)} className="rounded-full border border-primaryBlue bg-white px-3 py-2 text-primaryBlue hover:bg-primaryBlue hover:text-white">
+                      <FaShoppingCart />
+                    </Button>
+                  </div>
+                </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
