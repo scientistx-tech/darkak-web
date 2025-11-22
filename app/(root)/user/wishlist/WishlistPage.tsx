@@ -60,6 +60,7 @@ const WishlistPage: React.FC = () => {
 
 
 
+  
   if (isLoading) return <ClientLoading />;
   if (isError) return <div>Failed to load wishlist!</div>;
   if (!wishlist || wishlist.length === 0) {
