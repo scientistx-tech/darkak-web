@@ -209,8 +209,8 @@ const EasyCheckout: React.FC = () => {
   const divisionOptions = BD_Division.divisions;
   const districtOptions = division
     ? BD_District.districts.filter(
-        (d) => d.division_id === divisionOptions.find((div) => div.name === division)?.id
-      )
+      (d) => d.division_id === divisionOptions.find((div) => div.name === division)?.id
+    )
     : [];
 
   const handleApplyCoupon = async () => {
@@ -240,9 +240,16 @@ const EasyCheckout: React.FC = () => {
       }).unwrap();
       toast.success(res?.message || 'Coupon Applied');
       setCouponDiscount(res?.coupon);
+      console.log({ res });
     } catch (error: any) {
       toast.error(error?.data?.message);
     }
+  };
+
+  const handleRemoveCoupon = () => {
+    setCouponDiscount({});
+    setCouponCode('');
+    toast.info(lang === 'bn' ? 'কুপন বাতিল করা হয়েছে' : 'Coupon removed');
   };
 
   return (
@@ -281,11 +288,10 @@ const EasyCheckout: React.FC = () => {
 
           <div className="mt-5 flex w-full justify-evenly rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1 transition-all duration-500 md:w-[90%] md:px-3 md:py-2">
             <button
-              className={`flex items-center gap-2 rounded px-3 py-1 font-medium transition-all duration-300 md:px-3 md:py-1.5 ${
-                paymentMethod === 'cod'
+              className={`flex items-center gap-2 rounded px-3 py-1 font-medium transition-all duration-300 md:px-3 md:py-1.5 ${paymentMethod === 'cod'
                   ? 'bg-primaryBlue text-white'
                   : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
-              }`}
+                }`}
               onClick={() => setPaymentMethod('cod')}
             >
               {paymentMethod === 'cod' && <CheckOutlined className="text-xl" />}
@@ -293,11 +299,10 @@ const EasyCheckout: React.FC = () => {
             </button>
 
             <button
-              className={`flex items-center gap-2 rounded px-3 py-1.5 font-medium transition-all duration-300 ${
-                paymentMethod === 'online'
+              className={`flex items-center gap-2 rounded px-3 py-1.5 font-medium transition-all duration-300 ${paymentMethod === 'online'
                   ? 'bg-primaryBlue text-white'
                   : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
-              }`}
+                }`}
               onClick={() => setPaymentMethod('online')}
             >
               {paymentMethod === 'online' && <CheckOutlined className="text-xl" />}
@@ -544,22 +549,45 @@ const EasyCheckout: React.FC = () => {
             </div>
           ))}
 
-          {couponDiscount?.id ? (
-            <p className="animate-bounce py-3 text-right font-bold text-teal-400">
-              {lang === 'bn' ? 'কুপন প্রয়োগ করা হয়েছে' : 'Coupon Applied'}
-            </p>
-          ) : (
-            <div className="mt-3 flex items-center gap-2">
-              <Input
-                onChange={(e) => setCouponCode(e.target.value)}
-                placeholder="Coupon Code"
-                className="flex-1"
-              />
-              <Button onClick={handleApplyCoupon} type="primary">
-                {lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}
-              </Button>
-            </div>
-          )}
+          <div className="mt-3">
+            {couponDiscount?.id ? (
+              <div className="flex items-center justify-between rounded-md border border-green-200 bg-green-50 px-3 py-2">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-green-600">
+                    <CheckOutlined />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-black">
+                      {couponDiscount?.code || (lang === 'bn' ? 'কুপন' : 'Coupon')}
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {couponDiscount?.discount_type === 'flat'
+                        ? `${couponDiscount?.discount_amount} ${lang === 'bn' ? 'টাকা' : 'BDT'} ${lang === 'bn' ? 'ছাড়' : 'off'}`
+                        : `${couponDiscount?.discount_amount}% ${lang === 'bn' ? 'ছাড়' : 'off'}`}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button onClick={handleRemoveCoupon} type="default">
+                    {lang === 'bn' ? 'বাতিল করুন' : 'Remove'}
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-1 flex items-center gap-2">
+                <Input
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder={lang === 'bn' ? 'কুপন কোড' : 'Coupon Code'}
+                  className="flex-1 rounded-md  border border-gray-200 px-3 py-2"
+                />
+                <Button onClick={handleApplyCoupon} type="primary" disabled={!couponCode.trim()}>
+                  {lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}
+                </Button>
+              </div>
+            )}
+          </div>
 
           <div className="mt-5 space-y-1 text-sm">
             <div className="flex justify-between">

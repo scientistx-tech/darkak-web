@@ -288,6 +288,12 @@ const CartCheckout: React.FC = () => {
     }
   };
 
+  const handleRemoveCoupon = () => {
+    setCouponDiscount({});
+    setCouponCode('');
+    toast.info(lang === 'bn' ? 'কুপন বাতিল করা হয়েছে' : 'Coupon removed');
+  };
+
   console.log('coupon', couponDiscount);
 
   return (
@@ -596,22 +602,45 @@ const CartCheckout: React.FC = () => {
             </div>
           ))}
 
-          {couponDiscount?.id ? (
-            <p className="animate-bounce py-3 text-right font-bold text-teal-400">
-              {lang === 'bn' ? 'কুপন প্রয়োগ হয়েছে' : 'Coupon Applied'}
-            </p>
-          ) : (
-            <div className="mt-3 flex items-center gap-2">
-              <input
-                onChange={(e) => setCouponCode(e.target.value)}
-                placeholder="Coupon Code"
-                className="flex-1"
-              />
-              <button onClick={handleApplyCoupon} >
-                {lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}
-              </button>
-            </div>
-          )}
+          <div className="mt-3">
+            {couponDiscount?.id ? (
+              <div className="flex items-center justify-between rounded-md border border-green-200 bg-green-50 px-3 py-2">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-green-600">
+                    <FaCheck />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-black">
+                      {couponDiscount?.code || (lang === 'bn' ? 'কুপন' : 'Coupon')}
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {couponDiscount?.discount_type === 'flat'
+                        ? `${couponDiscount?.discount_amount} ${lang === 'bn' ? 'টাকা' : 'BDT'} ${lang === 'bn' ? 'ছাড়' : 'off'}`
+                        : `${couponDiscount?.discount_amount}% ${lang === 'bn' ? 'ছাড়' : 'off'}`}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button onClick={handleRemoveCoupon} className="rounded-md border px-3 py-1 text-sm">
+                    {lang === 'bn' ? 'বাতিল করুন' : 'Remove'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-1 flex items-center gap-2">
+                <input
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder={lang === 'bn' ? 'কুপন কোড' : 'Coupon Code'}
+                  className="flex-1 rounded-md border border-gray-200 px-3 py-2"
+                />
+                <button onClick={handleApplyCoupon} disabled={!couponCode.trim()} className={`rounded-md px-4 py-2 text-white ${couponCode.trim() ? 'bg-primaryBlue hover:bg-primaryBlue/90' : 'bg-gray-300 cursor-not-allowed'}`}>
+                  {lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}
+                </button>
+              </div>
+            )}
+          </div>
 
           <div className="mt-5 space-y-1 text-sm">
             <div className="flex justify-between">
