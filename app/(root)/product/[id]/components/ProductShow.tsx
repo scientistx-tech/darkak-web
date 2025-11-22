@@ -270,6 +270,10 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                   alt={data?.product.title}
                   className="h-auto w-full rounded object-cover"
                   style={{ maxHeight: '60vh' }}
+                  sizes="100vw"
+                  quality={70}
+                  decoding="async"
+                  loading="lazy"
                 />
               ) : (
                 <ReactImageMagnify
@@ -328,10 +332,16 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                   key={idx}
                   onClick={() => setSelectedImage(img)}
                   src={img}
-                  className={`h-16 w-16 min-w-16 flex-shrink-0 cursor-pointer rounded border object-cover ${
+                  width={64}
+                  height={64}
+                  className={`h-16 w-16 min-w-16 shrink-0 cursor-pointer rounded border object-cover ${
                     selectedImage === img ? 'border-primaryBlue ring-2 ring-primaryBlue' : ''
                   }`}
                   alt={`thumb-${idx}`}
+                  sizes="64px"
+                  quality={70}
+                  decoding="async"
+                  loading="lazy"
                   style={{
                     transition: 'box-shadow 0.2s',
                     scrollSnapAlign: 'start',

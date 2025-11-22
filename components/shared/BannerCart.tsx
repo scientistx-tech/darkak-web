@@ -68,8 +68,9 @@ const BannerCart: React.FC<BannerCardProps> = ({
           width={200}
           height={300}
           sizes="(max-width: 640px) 100vw, 200px"
-          quality={70}
+          quality={50}
           decoding="async"
+          loading="lazy"
         />
       </div>
     </div>
