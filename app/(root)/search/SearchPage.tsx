@@ -1,18 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import FilterSidebar from "@/components/search/FilterSidebar";
 import ProductGrid from "@/components/search/ProductGrid";
 import Pagination from "@/components/shared/Pagination";
+import SortingDropdown from "@/components/shared/SortingDropdown";
 import { useGetSearchPublicQuery } from "@/redux/services/client/searchedProducts";
 import {
-  sortItems,
   DEFAULT_SORTING_OPTIONS,
+  sortItems,
   useSortingState
 } from "@/utils/sortingUtils";
-import SortingDropdown from "@/components/shared/SortingDropdown";
 
 export default function SearchPage() {
   const router = useRouter();

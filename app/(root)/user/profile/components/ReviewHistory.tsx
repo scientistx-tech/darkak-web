@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Pagination } from 'antd';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
-import { useGetMyOrdersQuery, useGetMyReviewsQuery } from '@/redux/services/client/order';
 import ClientLoading from '@/app/(root)/components/ClientLoading';
-import { useSelector } from 'react-redux';
+import { useGetMyOrdersQuery, useGetMyReviewsQuery } from '@/redux/services/client/order';
 import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 export default function ReviewHistory() {
   const lang = useSelector((state: RootState) => state.language.language);

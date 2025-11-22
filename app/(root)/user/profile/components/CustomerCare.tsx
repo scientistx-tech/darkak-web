@@ -1,15 +1,15 @@
 'use client';
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { MdPhoneInTalk, MdMailOutline } from 'react-icons/md';
-import { FaWhatsapp, FaChevronLeft } from 'react-icons/fa';
-import LiveChat from './LiveChat';
 import { useLazyCreateConversationQuery } from '@/redux/services/client/homeContentApi';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+import { FaChevronLeft, FaWhatsapp } from 'react-icons/fa';
+import { MdMailOutline, MdPhoneInTalk } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import LiveChat from './LiveChat';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
 import Button from '@/components/Button/Button';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 export default function CustomerCare() {
   const lang = useSelector((state: RootState) => state.language.language);

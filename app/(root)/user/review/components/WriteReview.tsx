@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaStar, FaUpload, FaTimes, FaSpinner } from "react-icons/fa";
-import Link from "next/link";
-import Image from "next/image";
-import { useParams } from "next/navigation";
-import { toast } from "react-toastify";
-import { useAddReviewCreateMutation } from "@/redux/services/client/order";
 import { useGetUserQuery } from "@/redux/services/authApis";
-import { Review } from "@/types/client/createReviewTypes";
+import { useAddReviewCreateMutation } from "@/redux/services/client/order";
 import {
   useUploadMultipleImagesMutation,
   useUploadVideosMutation,
 } from "@/redux/services/userApis";
+import { Review } from "@/types/client/createReviewTypes";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import React, { useState } from "react";
+import { FaSpinner, FaStar, FaTimes, FaUpload } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function WriteReview({ refetch }: { refetch: () => void }) {
   const { data } = useGetUserQuery(undefined);

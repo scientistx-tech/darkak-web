@@ -1,15 +1,15 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import { Input, Button, message as antdMessage } from "antd";
+import { useUploadMultipleImagesPublicMutation } from "@/redux/services/userApis";
+import { socket } from "@/socket";
 import {
+  CloseOutlined,
   PaperClipOutlined,
   SendOutlined,
-  CloseOutlined,
 } from "@ant-design/icons";
-import { useUploadMultipleImagesPublicMutation } from "@/redux/services/userApis";
-import { toast } from "react-toastify";
-import { socket } from "@/socket";
+import { Button, Input, message as antdMessage } from "antd";
 import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 export interface MessageFile {
   id: number;
@@ -171,7 +171,7 @@ export default function NoneUserChat({ name, conversationId }: { name: string, c
               
               <button
                 onClick={() => setImagePreview(null)}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-[2px]"
+                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5"
               >
                 <CloseOutlined size={10} />
               </button>

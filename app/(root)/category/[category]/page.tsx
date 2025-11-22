@@ -1,6 +1,4 @@
-import React from 'react';
 import Page from './Component';
-import { slugToText } from '@/utils/urlConverter';
 
 // Fetch metadata for SEO
 export async function generateMetadata({

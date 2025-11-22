@@ -1,8 +1,8 @@
 "use client"
 import WatchCard from './WatchCard';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { WatchProduct } from '../types';
 
 export default function WatchBestSeller({ seller }: { seller: WatchProduct[] | undefined }) {

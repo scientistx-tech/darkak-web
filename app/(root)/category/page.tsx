@@ -1,6 +1,6 @@
-import CategoryPageServer from './CategoryPageServer'
-import getSeoData from '../getSeoData';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
+import getSeoData from '../getSeoData';
+import CategoryPageServer from './CategoryPageServer';
 export async function generateMetadata() {
   const data = await getSeoData('category');
 

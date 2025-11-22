@@ -1,7 +1,7 @@
+import Link from 'next/link';
+import { SellerProductResponse, WatchBanner } from '../types';
 import WatchBannerCard from './WatchBannerCard';
 import WatchCard from './WatchCard';
-import { SellerProductResponse, WatchBanner } from '../types';
-import Link from 'next/link';
 
 export default async function PremiumWatch({ banner }: { banner: WatchBanner | undefined }) {
   const data = await fetchSellerProducts();

@@ -13,7 +13,7 @@ export default function WatchBannerCard({ href, img, name, text, alt }: WatchBan
   return (
     <Link
       href={href}
-      className="group relative mt-[-20px] h-[250px] w-full cursor-pointer overflow-hidden rounded-xl shadow-md md:mt-[-22px] md:h-[350px]"
+      className="group relative mt-5 h-[250px] w-full cursor-pointer overflow-hidden rounded-xl shadow-md md:mt-5 md:h-[350px]"
     >
       {/* Background Image */}
       <Image
@@ -24,7 +24,7 @@ export default function WatchBannerCard({ href, img, name, text, alt }: WatchBan
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute group-hover:hidden inset-0 bg-gradient-to-t from-slate-400/40 via-slate-100/20 to-transparent transition duration-500"></div>
+      <div className="absolute group-hover:hidden inset-0 bg-linear-to-t from-slate-400/40 via-slate-100/20 to-transparent transition duration-500"></div>
 
       {/* Glassmorphism Content Box */}
       <div className="absolute bottom-4 group-hover:hidden left-4 right-4 rounded-xl bg-white/80 p-4 text-black shadow-lg backdrop-blur-md transition-all duration-500 group-hover:bottom-6">
@@ -33,7 +33,7 @@ export default function WatchBannerCard({ href, img, name, text, alt }: WatchBan
       </div>
 
       {/* Shine Effect */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 transition duration-500 group-hover:opacity-10" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/5 to-white/0 opacity-0 transition duration-500 group-hover:opacity-10" />
     </Link>
   );
 }

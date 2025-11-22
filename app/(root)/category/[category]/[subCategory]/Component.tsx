@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import CategoryPage from '@/components/category/CategoryPage';
-import { useParams, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
-import { slugToText } from '@/utils/urlConverter';
+import Link from 'next/link';
+import { useParams, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -66,7 +65,7 @@ export default function Page() {
   return (
     <div className="w-full">
       <div className="h-[65px] w-full md:h-[109px]" />
-      <div className="h-[10px] w-full md:h-[20px]" />
+      <div className="h-2.5 w-full md:h-5" />
       <div className="flex items-center gap-1 px-3 text-sm font-semibold md:px-5 lg:px-11">
         
        

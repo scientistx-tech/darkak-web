@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
 import { useGetMyOrdersQuery } from '@/redux/services/client/order';
-import { OrderProduct } from '@/types/client/orderTypes';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { OrderProduct } from '@/types/client/orderTypes';
+import Image from 'next/image';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function OrderHistory() {
   const lang = useSelector((state: RootState) => state.language.language);

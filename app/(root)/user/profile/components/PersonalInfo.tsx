@@ -1,22 +1,21 @@
 'use client';
 
-import React from 'react';
 import ClientLoading from '@/app/(root)/components/ClientLoading';
+import { User } from '@/types/userTypes';
+import React from 'react';
 import {
-  FaUser,
-  FaEnvelope,
-  FaPhone,
   FaBirthdayCake,
+  FaCalendarCheck,
+  FaEnvelope,
   FaHeart,
   FaMapMarkerAlt,
+  FaPhone,
   FaRing,
-  FaCalendarCheck,
-  FaKey,
+  FaUser
 } from 'react-icons/fa';
-import { User } from '@/types/userTypes';
 
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 interface PersonalInfoProps {
   data?: User;

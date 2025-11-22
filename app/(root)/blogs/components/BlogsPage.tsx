@@ -1,7 +1,7 @@
 "use client"
 import BlogsCart from '@/components/shared/BlogsCart';
-import Pagination from '../../components/Pagination';
 import { useRouter } from 'next/navigation';
+import Pagination from '../../components/Pagination';
 
 interface Blog {
   id: number;

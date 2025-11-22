@@ -1,9 +1,9 @@
 import './globals.css';
 
-import type { Metadata } from 'next';
-import { PropsWithChildren } from 'react';
 import ReduxProvider from '@/redux/ReduxProvider';
+import type { Metadata } from 'next';
 import Script from 'next/script';
+import { PropsWithChildren } from 'react';
 import DataLoader from './DataLoader';
 
 export const metadata: Metadata = {

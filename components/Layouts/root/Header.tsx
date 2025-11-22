@@ -44,8 +44,6 @@ import { useGetMyWishListQuery } from "@/redux/services/client/myWishList";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useGetProductCategoriesQuery } from "@/redux/services/client/categories";
 import { FaSpinner } from "react-icons/fa";
-import { BiSolidDownArrow } from "react-icons/bi";
-// import ProductCard from '@/components/shared/ProductCard';
 import { useRouter } from "next/navigation";
 import { useGetSearchPublicQuery } from "@/redux/services/client/searchedProducts";
 import MobileDropdown from "./MobileDropdown";
@@ -66,7 +64,6 @@ const Header: React.FC = () => {
   const wishs = useSelector((state: RootState) => state.auth.wish);
 
   const pathname = usePathname();
-  const [selectedLang, setSelectedLang] = useState("English");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearch = useDebounce(searchTerm, 500);
@@ -86,7 +83,6 @@ const Header: React.FC = () => {
   };
 
   const handleLanguageChange = (lang: "en" | "bn") => {
-    setSelectedLang(lang);
     setIsDropdownOpen(false);
     dispatch(setLanguage(lang));
   };
@@ -147,9 +143,9 @@ const Header: React.FC = () => {
   };
 
   // Search functionality
-  const { data: categories, error } = useGetProductCategoriesQuery("");
+  const { data: categories } = useGetProductCategoriesQuery("");
 
-  const { data, isFetching, isLoading } = useGetSearchPublicQuery({
+  const { data, isFetching} = useGetSearchPublicQuery({
     search: `${debouncedSearch}`,
   });
 
@@ -470,18 +466,9 @@ const Header: React.FC = () => {
                     className="w-full border-none bg-transparent py-3 pr-4 pl-0 text-sm outline-none"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    // onFocus={() => {
-                    //   if (searchTerm.trim() !== '') {
-                    //     setIsOpen(true);
-                    //   }
-                    // }}
                   />
                   <button
-                    // onClick={() => {
-                    //   onClose();
-                    //   router.push(`/search?search=${searchTerm.trim()}`);
-                    // }}
-                    className="rounded-full bg-primaryBlue px-4 py-[10px] text-sm text-white  duration-200 hover:bg-primaryDarkBlue"
+                    className="rounded-full bg-primaryBlue px-4 py-2.5 text-sm text-white  duration-200 hover:bg-primaryDarkBlue"
                   >
                     {lang === "bn" ? "অনুসন্ধান" : "Search"}
                   </button>
@@ -637,7 +624,7 @@ const Header: React.FC = () => {
                 <Link href="/user/wishlist" onClick={handleDrawerClose}>
                   <div className="relative flex flex-col items-center hover:text-primary">
                     <FaRegHeart className="text-xl" />
-                    <span className="absolute -top-1 right-7 flex h-[16px] w-[16px] items-center justify-center rounded-full bg-primaryBlue text-[10px] text-white">
+                    <span className="absolute -top-1 right-7 flex h-4 w-4 items-center justify-center rounded-full bg-primaryBlue text-[10px] text-white">
                       {wishlist ? wishlist.data.length : "0"}
                     </span>
                     <span className="mt-1">
@@ -648,7 +635,7 @@ const Header: React.FC = () => {
                 <Link href="/user/cart" onClick={handleDrawerClose}>
                   <div className="relative flex flex-col items-center hover:text-primary">
                     <FaShoppingCart className="text-xl" />
-                    <span className="absolute -top-1 right-7 flex h-[16px] w-[16px] items-center justify-center rounded-full bg-primaryBlue text-[10px] text-white">
+                    <span className="absolute -top-1 right-7 flex h-4 w-4 items-center justify-center rounded-full bg-primaryBlue text-[10px] text-white">
                       {cart ? cart.cart.length : "0"}
                     </span>
                     <span className="mt-1">

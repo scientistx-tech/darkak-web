@@ -65,7 +65,7 @@ const VendorsProductsSection = ({
     limit: 16,
   };
 
-  const { data, error, isLoading, refetch } = useGetAllProductsQuery(
+  const { data } = useGetAllProductsQuery(
     filtersWithPageAndLimit,
   );
 

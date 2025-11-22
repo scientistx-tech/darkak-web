@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FaRegCircleRight, FaRegCircleLeft } from 'react-icons/fa6';
+import { useEffect, useState } from 'react';
 import { FaQuoteLeft } from 'react-icons/fa';
+import { FaRegCircleLeft, FaRegCircleRight } from 'react-icons/fa6';
 import { Review } from '../types';
 
 export default function WatchTestimonial({ review }: { review: Review[] }) {

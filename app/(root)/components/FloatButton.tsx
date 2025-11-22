@@ -1,14 +1,14 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaWhatsapp, FaComments, FaMinus, FaTimes } from "react-icons/fa";
-import { Input, Button } from "antd";
+import Loader from "@/components/shared/Loader";
 import ProfileImg from "@/Data/Img/profile.jpg";
 import { useCreateLiveChatMutation, useGetLiveChatStatusQuery } from "@/redux/services/liveChatApis";
-import { toast } from "react-toastify";
+import { Button, Input } from "antd";
+import { AnimatePresence, motion } from "framer-motion";
 import Cookies from "js-cookie";
-import Loader from "@/components/shared/Loader";
+import Image from "next/image";
+import { useState } from "react";
+import { FaComments, FaMinus, FaTimes, FaWhatsapp } from "react-icons/fa";
+import { toast } from "react-toastify";
 import NoneUserChat from "./NoneUserChat";
 function generateRefToken(prefix = "REF") {
   const randomPart = Math.random().toString(36).substring(2, 10).toUpperCase();
@@ -138,7 +138,7 @@ export default function FloatButton() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 80 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-20 right-6 z-[60] w-[320px] rounded-xl bg-white p-5 shadow-2xl"
+          className="fixed bottom-20 right-6 z-60 w-[320px] rounded-xl bg-white p-5 shadow-2xl"
         >
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-primaryBlue">
@@ -185,7 +185,7 @@ export default function FloatButton() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 60 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-4 right-6 z-[70] flex h-[420px] w-[340px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"
+          className="fixed bottom-4 right-6 z-70 flex h-[420px] w-[340px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"
         >
           {/* Chat Header */}
           <div className="flex items-center justify-between bg-blue-600 px-4 py-2 text-white">
@@ -226,7 +226,7 @@ export default function FloatButton() {
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.3 }}
           onClick={handleReopenChat}
-          className="fixed bottom-6 right-6 z-[80] flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-blue-700"
+          className="fixed bottom-6 right-6 z-80 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-blue-700"
         >
           <FaComments />
           Continue Chat

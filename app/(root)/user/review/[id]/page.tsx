@@ -1,4 +1,3 @@
-import React from "react";
 import ReviewPage from "./ReviewPage";
 
 export default function page() {

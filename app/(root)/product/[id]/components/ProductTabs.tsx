@@ -1,9 +1,9 @@
 'use client';
-import { useRef, RefObject, useState } from 'react';
 import { motion } from 'framer-motion';
+import { RefObject, useRef, useState } from 'react';
 
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 const tabs = [
   { id: 'specification', label: 'Specification' },

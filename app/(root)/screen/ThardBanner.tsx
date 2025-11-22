@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
 import BannerCart from "@/components/shared/BannerCart";
 import { useGetPublicSlidersQuery } from "@/redux/services/client/sliderApis";
+import React, { useEffect } from "react";
 
 const ThardBanner: React.FC = () => {
   const {

@@ -1,29 +1,28 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { PlusOutlined, MinusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { message, Modal, Tooltip } from 'antd';
 import Image from 'next/image';
-import { Modal, message, Tooltip } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
-import ShopNowButton from '@/components/Button/ShopNowButton';
-import { Cart } from '@/types/client/myCartTypes';
 import {
   useDeleteCartMutation,
   useGetMyCartQuery,
   useUpdateCartMutation,
 } from '@/redux/services/client/myCart';
-import ClientLoading from '../../components/ClientLoading';
 import { setCart } from '@/redux/slices/authSlice';
+import { Cart } from '@/types/client/myCartTypes';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import ClientLoading from '../../components/ClientLoading';
 
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { setLocalStorage } from '@/utils/localStorage';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const CartPage: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);

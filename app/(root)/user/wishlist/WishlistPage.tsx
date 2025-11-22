@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Modal, Pagination, Spin } from 'antd';
+import { Modal, Pagination } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { FaShoppingCart } from 'react-icons/fa';
 import { WishlistItem } from '@/types/client/myWishlistType';
@@ -28,7 +28,7 @@ const WishlistPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const limit = 10; // items per page
 
-  const { data, isLoading, isError, refetch } = useGetMyWishListQuery({
+  const { data, isLoading, isError } = useGetMyWishListQuery({
     page,
     limit,
   });
@@ -81,7 +81,7 @@ const WishlistPage: React.FC = () => {
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="flex h-[60px] w-full items-center justify-center bg-gradient-to-r from-[#00153B] to-[#00286EF2] md:h-[100px]">
+      <div className="flex h-[60px] w-full items-center justify-center bg-linear-to-r from-[#00153B] to-[#00286EF2] md:h-[100px]">
         <p className="text-xl text-white md:text-2xl">
           {lang === 'bn' ? 'ইচ্ছেতালিকা' : 'Wishlist'}
         </p>

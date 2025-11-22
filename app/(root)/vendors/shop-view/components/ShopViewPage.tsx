@@ -1,13 +1,11 @@
 'use client';
 
-import ProductsSection from '@/components/category/ProductsSection';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import VendorsProductsSection from './VendorsProductSection';
 import CategoryPage from '@/components/category/CategoryPage';
-import { toast } from 'react-toastify';
+import Image from 'next/image';
 import { useParams, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 export default function ShopViewPage({ shop, products }: { shop: any; products: any }) {
   const searchParams = useSearchParams();

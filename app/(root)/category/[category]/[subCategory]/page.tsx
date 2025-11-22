@@ -1,6 +1,4 @@
-import React from 'react';
 import Page from './Component';
-import { slugToText } from '@/utils/urlConverter';
 interface Category {
   id: number;
   title: string;

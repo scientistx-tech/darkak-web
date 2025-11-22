@@ -2,9 +2,9 @@
 
 import Pagination from '@/components/category/Pagination';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { SellerProduct, SellerProductResponse } from '../types';
+import { useEffect, useState } from 'react';
 import WatchCard from '../components/WatchCard';
+import { SellerProduct, SellerProductResponse } from '../types';
 
 export default function MoreProduct() {
   const { type } = useParams();

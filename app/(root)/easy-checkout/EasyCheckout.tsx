@@ -1,22 +1,22 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { PlusOutlined, MinusOutlined, CheckOutlined } from '@ant-design/icons';
-import { Input, Button, notification, Checkbox, Modal } from 'antd';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import { RootState } from '@/redux/store';
-import { toast } from 'react-toastify';
+import { BD_District, BD_Division } from '@/Data/addressData';
+import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
 import {
   useGetPaymentUrlMutation,
   useOrderSingleProductMutation,
 } from '@/redux/services/client/checkout';
-import { BD_Division, BD_District } from '@/Data/addressData';
-import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
-import getSeoData from '../getSeoData';
+import { RootState } from '@/redux/store';
 import { getLocalStorage } from '@/utils/localStorage';
+import { CheckOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Input, Modal, notification } from 'antd';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import getSeoData from '../getSeoData';
 
 const EasyCheckout: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);
@@ -33,9 +33,8 @@ const EasyCheckout: React.FC = () => {
   const [couponCode, setCouponCode] = useState<string>('');
   const [couponDiscount, setCouponDiscount] = useState<any>({});
 
-  const [api, contextHolder] = notification.useNotification();
+  const [, contextHolder] = notification.useNotification();
   const router = useRouter();
-  const pathname = usePathname();
   const [privacy, setPrivacy] = useState();
   const [terms, setTerms] = useState();
 

@@ -1,8 +1,7 @@
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';
-import TrendingProducts from './components/TrendingProducts';
 import BlogsPage from './components/BlogsPage';
-import { redirect } from 'next/navigation';
+import TrendingProducts from './components/TrendingProducts';
 
 export async function generateMetadata() {
   const data = await getSeoData('blog');

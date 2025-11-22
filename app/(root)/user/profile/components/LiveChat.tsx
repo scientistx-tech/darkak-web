@@ -1,18 +1,18 @@
 'use client';
 
+import Loader from '@/components/shared/Loader';
+import { useUploadImagesMutation } from '@/redux/services/admin/adminProductApis';
+import { useGetConversationMessagesQuery } from '@/redux/services/client/homeContentApi';
+import { useGetMyOrdersQuery } from '@/redux/services/client/order';
+import { RootState } from '@/redux/store';
+import { socket } from '@/socket';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
-import { useGetConversationMessagesQuery } from '@/redux/services/client/homeContentApi';
-import Loader from '@/components/shared/Loader';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import { useUploadImagesMutation } from '@/redux/services/admin/adminProductApis';
-import { socket } from '@/socket';
-import { useGetMyOrdersQuery } from '@/redux/services/client/order';
-import Image from 'next/image';
 import { BiLoader, BiSend } from 'react-icons/bi';
-import { FaImage } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
+import { FaImage } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 interface MessageFile {
   id: number;

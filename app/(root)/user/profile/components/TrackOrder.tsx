@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { useGetMyOrdersQuery, useGetOrderDetailsQuery } from '@/redux/services/client/order';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Pagination } from 'antd';
+import { useSelector } from 'react-redux';
 
 const steps = [
   {

@@ -1,16 +1,16 @@
 'use client';
 
-import React, { use, useEffect, useState } from 'react';
+import ClientLoading from '@/app/(root)/components/ClientLoading';
 import SendButton from '@/components/Button/SendButton';
 import { useGetUserQuery } from '@/redux/services/authApis';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
 import { useUpdateUserAddressMutation, useUpdateUserMutation } from '@/redux/services/userApis';
-import ClientLoading from '@/app/(root)/components/ClientLoading';
+import { RootState } from '@/redux/store';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { rawDistricts, rawDivisions, rawSubDistricts } from '../../../../../public/addressData';
 import InputField from './InputField';
 import SelectField from './SelectField';
-import { rawDistricts, rawDivisions, rawSubDistricts } from '../../../../../public/addressData';
 
 export default function EditProfile({ refetch, data }: any) {
   const lang = useSelector((state: RootState) => state.language.language);

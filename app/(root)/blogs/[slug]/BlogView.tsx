@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import { FaUser, FaCalendarAlt, FaArrowLeft } from 'react-icons/fa';
-import Link from 'next/link';
 import BlogsCart from '@/components/shared/BlogsCart';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaArrowLeft, FaCalendarAlt, FaUser } from 'react-icons/fa';
 import { Blog } from '../types';
 
 export default async function BlogView({ data }: { data: Blog | undefined }) {

@@ -1,5 +1,5 @@
-import CartCheckout from "./CartCheckout";
 import { Metadata } from "next";
+import CartCheckout from "./CartCheckout";
 export const metadata: Metadata = {
   title: "Checkout"
 };

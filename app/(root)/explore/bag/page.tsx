@@ -1,12 +1,12 @@
-import WatchSlider from './components/WatchSlider';
 import CasualWatch from './components/CasualWatch';
 import PremiumWatch from './components/PremiumWatch';
-import WatchCategories from './components/WatchCategories';
-import WatchBrand from './components/WatchBrand';
 import WatchBestSeller from './components/WatchBestSeller';
-import WatchPoster from './components/WatchPoster';
-import WatchTestimonial from './components/WatchTestimonial';
+import WatchBrand from './components/WatchBrand';
+import WatchCategories from './components/WatchCategories';
 import WatchNewArrival from './components/WatchNewArrival';
+import WatchPoster from './components/WatchPoster';
+import WatchSlider from './components/WatchSlider';
+import WatchTestimonial from './components/WatchTestimonial';
 import { HomeDataResponse } from './types';
 
 export default async function page() {

@@ -1,27 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import CategoryPage from '@/components/category/CategoryPage';
-import { useParams, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
-type SidebarFilters = { [key: string]: any };
+
 
 export default function CategoryPageServer({ searchPage }: { searchPage?: boolean }) {
   const lang = useSelector((state: RootState) => state.language.language);
 
-  // const searchParams = useSearchParams();
-  // // Convert searchParams to a plain object
-  // const query: Record<string, string> = {};
-  // searchParams.forEach((value, key) => {
-  //   query[key] = value;
-  // });
 
   const [sidebarFilters, setSidebarFilters] = useState<{ [key: string]: any }>({});
   const [data, setData] = useState<any>({});
@@ -62,7 +56,7 @@ export default function CategoryPageServer({ searchPage }: { searchPage?: boolea
   //console.log('setSidebarFilters type:', typeof setSidebarFilters);
   return (
     <div className="w-full">
-      <div className="h-[10px] w-full md:h-[20px]" />
+      <div className="h-2.5 w-full md:h-5" />
       {!searchPage && (
         <div className="flex items-center gap-1 px-3 text-sm font-semibold md:px-5 lg:px-11">
           <Link className="text-primary underline" href={'/'}>

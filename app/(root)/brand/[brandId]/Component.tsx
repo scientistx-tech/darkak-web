@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { useParams, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { useParams, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 
 // ✅ Dynamic imports for performance optimization
 const CategoryPage = dynamic(() => import('@/components/category/CategoryPage'), {
@@ -81,7 +81,7 @@ export default function Page() {
     <div className="w-full" role="main">
       {/* Spacer for fixed header */}
       <div className="h-[65px] w-full md:h-[109px]" />
-      <div className="h-[10px] w-full md:h-[20px]" />
+      <div className="h-2.5 w-full md:h-5" />
 
       {/* Breadcrumb */}
       <nav

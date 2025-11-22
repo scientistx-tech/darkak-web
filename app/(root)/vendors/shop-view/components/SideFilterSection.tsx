@@ -1,64 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { IoIosArrowDown } from "react-icons/io";
-import { useGetProductCategoriesQuery } from "@/redux/services/client/categories";
-import { useGetBrandsPublicQuery } from "@/redux/services/client/brands";
-import { useRouter, useSearchParams } from "next/navigation";
 import Price from "@/components/category/leftSidebar/Price";
+import { useGetBrandsPublicQuery } from "@/redux/services/client/brands";
+import { useGetProductCategoriesQuery } from "@/redux/services/client/categories";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { IoIosArrowDown } from "react-icons/io";
 
-const availabilityOptions = [
-  { value: "in-stock", label: "In stock" },
-  { value: "pre-order", label: "Pre Order" },
-];
 
-const warrantyOptions = [
-  { value: "official", label: "Official" },
-  { value: "darkak", label: "Darkak" },
-];
-
-// const regionOptions = ["BD", "AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ"];
-
-const regionOptions = [
-  {
-    label: "BD",
-    value: "BD",
-  },
-  {
-    label: "AF",
-    value: "AF",
-  },
-  {
-    label: "AL",
-    value: "AL",
-  },
-  {
-    label: "DZ",
-    value: "DZ",
-  },
-  {
-    label: "AS",
-    value: "AS",
-  },
-  {
-    label: "AD",
-    value: "AD",
-  },
-  {
-    label: "AO",
-    value: "AO",
-  },
-  {
-    label: "AI",
-    value: "AI",
-  },
-  {
-    label: "AQ",
-    value: "AQ",
-  },
-];
 
 // Add your nested categories data here or fetch from API
 
@@ -98,17 +49,6 @@ const SideFilterSection: React.FC<{
     setOpen((pre) => !pre);
   };
 
-  const handleAvailabilityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAvailability(e.target.value);
-  };
-
-  const handleChangeWarranty = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWarranty(e.target.value);
-  };
-
-  const handleChangeRegion = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRegion(e.target.value);
-  };
 
   // Collapsible category filter component
   const CollapsibleCategoryFilter = ({
@@ -404,7 +344,7 @@ const SideFilterSection: React.FC<{
             )}
             <button
               onClick={handleOpenClose}
-              className="flex size-[30px] items-center justify-center rounded-full bg-[#003084]"
+              className="flex size-[30px] items-center justify-center rounded-full bg-[rgb(0,48,132)]"
             >
               <IoIosArrowDown
                 size={20}

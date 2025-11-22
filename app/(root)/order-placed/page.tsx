@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Result } from "antd";
 import { useRouter, useSearchParams } from "next/navigation";
 

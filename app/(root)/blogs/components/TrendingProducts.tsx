@@ -1,9 +1,9 @@
 'use client';
 import ProductCard from '@/components/shared/ProductCard';
+import { RootState } from '@/redux/store';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
 
 export default function TrendingProducts({ data }: { data: any }) {
   const lang = useSelector((state: RootState) => state.language.language);

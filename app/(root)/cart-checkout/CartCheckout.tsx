@@ -1,31 +1,29 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { FaPlus, FaMinus, FaCheck } from 'react-icons/fa';
-import { notification, Checkbox, Modal } from 'antd';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  useUpdateCartMutation
+} from '@/redux/services/client/myCart';
+import { Checkbox, Modal, notification } from 'antd';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import {
-  useDeleteCartMutation,
-  useGetMyCartQuery,
-  useUpdateCartMutation,
-} from '@/redux/services/client/myCart';
+import React, { useEffect, useState } from 'react';
+import { FaCheck, FaMinus, FaPlus } from 'react-icons/fa';
 
-import { RootState } from '@/redux/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import {
   useGetPaymentUrlMutation,
   useOrderCartProductsMutation,
 } from '@/redux/services/client/checkout';
+import { RootState } from '@/redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { setCart } from '@/redux/slices/authSlice';
-import { BD_Division, BD_District } from '@/Data/addressData';
-import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
-import getSeoData from '../getSeoData';
-import { getLocalStorage } from '@/utils/localStorage';
 import { CheckIcon } from '@/assets/icons';
+import { BD_District, BD_Division } from '@/Data/addressData';
+import { useCheckCouponCodeMutation } from '@/redux/services/client/applyCoupon';
+import { setCart } from '@/redux/slices/authSlice';
+import { getLocalStorage } from '@/utils/localStorage';
+import getSeoData from '../getSeoData';
 
 const CartCheckout: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);
@@ -42,15 +40,13 @@ const CartCheckout: React.FC = () => {
   const [couponCode, setCouponCode] = useState<string>('');
   const [couponDiscount, setCouponDiscount] = useState<any>({});
 
-  const [deleteCart] = useDeleteCartMutation();
-  const [api, contextHolder] = notification.useNotification();
+  const [, contextHolder] = notification.useNotification();
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
   const [cartUpdate] = useUpdateCartMutation();
   const [applyCoupon] = useCheckCouponCodeMutation();
 
-  const { data, isLoading, isError, refetch } = useGetMyCartQuery();
   const [createOrder] = useOrderCartProductsMutation();
 
   const [privacy, setPrivacy] = useState();

@@ -1,6 +1,6 @@
-import ContactPage from './ContactPage';
 import ContentFaqCard from '@/components/shared/ContentFaqCard';
 import getSeoData from '../getSeoData';
+import ContactPage from './ContactPage';
 
 export async function generateMetadata() {
   const data = await getSeoData('contact');

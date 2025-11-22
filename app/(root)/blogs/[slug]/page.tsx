@@ -1,5 +1,5 @@
-import BlogView from './BlogView';
 import { Blog } from '../types';
+import BlogView from './BlogView';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const id = (await params).slug;
   const newsData = await fetchBlogs(id);

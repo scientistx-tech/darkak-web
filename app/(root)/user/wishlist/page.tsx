@@ -1,4 +1,3 @@
-import React from 'react'
 import WishlistPage from './WishlistPage'
 
 export default function page() {

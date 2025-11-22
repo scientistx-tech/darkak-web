@@ -1,4 +1,3 @@
-import React from 'react';
 import CancelPage from './CancelPage';
 
 export default function page() {

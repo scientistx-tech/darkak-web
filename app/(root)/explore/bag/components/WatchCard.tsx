@@ -1,16 +1,15 @@
 'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { FaCartPlus, FaHeart } from 'react-icons/fa';
-import Link from 'next/link';
 import { useAddToCartMutation } from '@/redux/services/client/myCart';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/redux/store';
+import { setCart, setWish } from '@/redux/slices/authSlice';
+import { AppDispatch } from '@/redux/store';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { FaCartPlus, FaHeart } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Product } from '../types';
-import { setCart, setWish } from '@/redux/slices/authSlice';
-import { useRouter } from 'next/navigation';
-import { useAddToWishListMutation } from '@/redux/services/client/myWishList';
 
 interface WatchCardProps {
   href: any;
@@ -39,43 +38,14 @@ export default function WatchCard({
 }: WatchCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const p = discountType === 'flat' ? price - discount : price - (price * discount) / 100;
-  const [addToCart, { isLoading }] = useAddToCartMutation();
-  const user = useSelector((state: RootState) => state.auth.user);
+  const [addToCart] = useAddToCartMutation();
   const router = useRouter();
-  const [addToWishList, { isLoading: wishLoading }] = useAddToWishListMutation();
 
   const dispatch = useDispatch<AppDispatch>();
-  const buildCartObject = (product: any) => {
-    const cart = {
-      id: Math.floor(Math.random() * 100000), // Random ID, replace if needed
-      userId: user?.id,
-      productId: product.id,
-      quantity: 1,
-      date: new Date().toISOString(),
-      cart_items: [],
-      product: {
-        title: product.title,
-        thumbnail: product.thumbnail,
-        stock: product.stock,
-        minOrder: product.minOrder,
-        price: product.price,
-        discount: product.discount,
-        discount_type: product.discount_type,
-      },
-    };
-
-    // Extract first option from each item (if any)
-    const selectedOptions = product.items?.map((item: any) => item.options?.[0]).filter(Boolean);
-    cart.cart_items = selectedOptions.map((option: any) => ({ option }));
-
-    return cart;
-  };
-  // console.log("product fro card", product);
 
   const handleAddToWishlist = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation(); // Prevent parent click actions
     try {
-      const result = await addToWishList({ productId: product.id }).unwrap();
       toast.success('Item added to wishlist!');
       dispatch(setWish(Math.random()));
     } catch (error: any) {

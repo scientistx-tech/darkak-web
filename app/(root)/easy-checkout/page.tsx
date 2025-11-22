@@ -1,5 +1,5 @@
-import EasyCheckout from './EasyCheckout'
 import getSeoData from '../getSeoData';
+import EasyCheckout from './EasyCheckout';
 // Fetch metadata for SEO
 export async function generateMetadata() {
   const data = await getSeoData('check_out');

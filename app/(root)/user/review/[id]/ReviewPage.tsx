@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
-import WriteReview from "../components/WriteReview";
-import MyReview from "../components/MyReview";
+import { useGetMyReviewsQuery } from "@/redux/services/client/order";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
-import { useGetMyReviewsQuery } from "@/redux/services/client/order";
+import MyReview from "../components/MyReview";
+import WriteReview from "../components/WriteReview";
 
 export default function ReviewPage() {
   const { data, refetch } = useGetMyReviewsQuery({

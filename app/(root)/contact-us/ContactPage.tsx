@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
-import axios from 'axios';
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import SendButton from '@/components/Button/SendButton';
 import { RootState } from '@/redux/store';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SendButton from '@/components/Button/SendButton';
 
 const ContactPage: React.FC = () => {
   const lang = useSelector((state: RootState) => state.language.language);

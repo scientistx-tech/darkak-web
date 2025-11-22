@@ -1,4 +1,3 @@
-import React from 'react';
 import CategoryPageServer from '../category/CategoryPageServer';
 
 export default function page() {
