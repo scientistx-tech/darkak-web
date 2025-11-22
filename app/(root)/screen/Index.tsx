@@ -42,9 +42,9 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
   const current = finalSlides[index];
   if (!sliderData) return null
   return (
-    <div className="w-full overflow-hidden bg-gradient-to-r from-primaryBlue via-primary to-primaryBlue text-white">
+    <div className="w-full overflow-hidden `bg-linear-to-r from-primaryBlue via-primary to-primaryBlue text-white">
       <div className="w-full md:h-[calc(100vh-150px)]">
-        <div className="h-[2px] w-full bg-primary" />
+        <div className="h-0.5 w-full bg-primary" />
 
         <div className="relative flex h-full flex-col items-center justify-center lg:flex-row">
           <div className="absolute z-30 hidden w-[80%] items-center justify-between lg:flex">
@@ -79,7 +79,12 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
               <Image
                 src={New}
                 alt="Image"
-                className="mr-[17%] h-[80px] w-[80px]"
+                width={80}
+                height={80}
+                sizes="80px"
+                quality={80}
+                decoding="async"
+                className="mr-[17%] h-20 w-20"
               />
             </motion.div>
 
@@ -122,6 +127,9 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
                 className="mt-20 h-[300px] w-full object-contain opacity-80 md:w-[500px] lg:mt-0 lg:h-[500px]"
                 width={400}
                 height={300}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+                quality={75}
+                decoding="async"
                 priority
               />
             </motion.div>
@@ -164,7 +172,7 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
             <button
               key={i}
               onClick={() => handleDotClick(i)}
-              className={`h-[8px] w-[30px] transition-all duration-300 ${i === index ? "scale-110 bg-white" : "bg-primaryDarkBlue"
+              className={`h-2 w-[30px] transition-all duration-300 ${i === index ? "scale-110 bg-white" : "bg-primaryDarkBlue"
                 }`}
             />
           ))}
