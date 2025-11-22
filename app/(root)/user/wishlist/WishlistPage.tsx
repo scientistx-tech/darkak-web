@@ -187,6 +187,10 @@ const WishlistPage: React.FC = () => {
                       width={120}
                       height={120}
                       className="object-contain"
+                      sizes="(max-width: 640px) 30vw, 120px"
+                      quality={70}
+                      decoding="async"
+                      loading="lazy"
                     />
                     {hasDiscount && (
                       <span className="absolute left-2 top-2 rounded-full bg-red-600 px-2 py-1 text-xs font-semibold text-white">

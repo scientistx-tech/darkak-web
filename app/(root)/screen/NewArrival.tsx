@@ -64,6 +64,10 @@ const NewArrival = async ({ banner }: { banner: any }) => {
                       width={200}
                       height={200}
                       className="w-[200px] object-contain"
+                      sizes="200px"
+                      quality={70}
+                      decoding="async"
+                      loading="lazy"
                     />
                   </div>
                 )}

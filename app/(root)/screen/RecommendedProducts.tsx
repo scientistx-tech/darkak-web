@@ -48,10 +48,14 @@ const RecommendedProducts = async ({ banner }: { banner: any }) => {
                   <div className="mt-auto flex justify-center pt-8">
                     <Image
                       src={mostVisitedBanner.image}
-                      alt="Banner Image"
+                      alt={mostVisitedBanner?.title || 'Banner Image'}
                       width={200}
                       height={200}
                       className="w-[200px] object-contain"
+                      sizes="200px"
+                      quality={70}
+                      decoding="async"
+                      loading="lazy"
                     />
                   </div>
                 )}

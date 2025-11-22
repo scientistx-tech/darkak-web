@@ -93,6 +93,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
             width={140}
             height={140}
             className="object-contain transition-transform duration-500 hover:scale-105 rounded-md"
+            sizes="(max-width: 640px) 50vw, 140px"
+            quality={70}
+            decoding="async"
+            loading="lazy"
           />
         </div>
       </Link>

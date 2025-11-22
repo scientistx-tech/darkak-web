@@ -62,21 +62,29 @@ export default function ShopViewPage({ shop, products }: { shop: any; products: 
         {/* Banner Image */}
         <div className="relative h-[400px] w-full">
           <Image
-            src={shop?.shop_banner}
-            alt="Vendor Banner"
-            width={1200}
-            height={12}
-            className="h-full w-full rounded-xl"
-          />
+              src={shop?.shop_banner}
+              alt="Vendor Banner"
+              width={1200}
+              height={400}
+              className="h-full w-full rounded-xl"
+              sizes="100vw"
+              quality={70}
+              decoding="async"
+              loading="lazy"
+            />
           {/* Overlay for better text visibility */}
           <div className="absolute ml-[10px] mt-[-110px] flex h-[100px] items-center gap-5 rounded-xl bg-white px-6 text-black">
             <div className="">
               <Image
                 src={shop.shop_logo}
                 alt={`${shop.shop_name} Logo`}
-                width={48}
-                height={48}
+                width={70}
+                height={70}
                 className="h-[70px] w-[70px] rounded-full border border-primaryBlue object-cover shadow-lg"
+                sizes="70px"
+                quality={70}
+                decoding="async"
+                loading="lazy"
               />
             </div>
             <div>

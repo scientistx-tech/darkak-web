@@ -50,9 +50,13 @@ const BestDeals = async ({ banner }: { banner: any }) => {
                     <Image
                       src={todaysDealBanner.image}
                       alt="Today's Deal Banner"
-                      width={200}
+                        width={200}
                       height={200}
                       className="w-[200px] object-contain"
+                      sizes="200px"
+                      quality={70}
+                      decoding="async"
+                      loading="lazy"
                     />
                   </div>
                 )}
