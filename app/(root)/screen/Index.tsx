@@ -70,11 +70,11 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
             </motion.div>
 
             <div className="absolute w-full flex justify-center items-center">
-              <Image
+              {/* <Image
                 src={bg}
                 alt="Background"
                 className="inset-0 w-2/4 h-[50%] object-cover opacity-60 z-0"
-              />
+              /> */}
               <motion.div
                 key={`sign-${index}`}
                 initial={{ scale: 0 }}

@@ -30,7 +30,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
     });
   };
 
-
   // ✅ Combine thumbnail + additional images safely
   const allImages = [
     product.thumbnail,
@@ -38,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
       typeof img === "string" ? img : img?.url
     ),
   ].filter((img, idx, arr) => img && arr.indexOf(img) === idx);
-  
+
   const sliderImages = allImages.slice(0, 6);
 
   return (
@@ -86,14 +85,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
           }}
         />
 
-        <div className="relative z-10 h-32 w-full md:h-48 flex items-center justify-center">
+        <div
+          className="relative z-10 w-full flex items-center justify-center 
+                h-28 sm:h-32 md:h-48"
+        >
           <Image
             src={sliderImages[activeImage] || product.thumbnail}
             alt={product.title}
-            width={140}
-            height={140}
-            className="object-contain transition-transform duration-500 hover:scale-105 rounded-md"
-            sizes="(max-width: 640px) 50vw, 140px"
+            width={200}
+            height={200}
+            className="object-contain transition-transform duration-500 hover:scale-105 
+               rounded-md max-h-24 sm:max-h-32 md:max-h-48"
+            sizes="(max-width: 640px) 40vw, 140px"
             quality={70}
             decoding="async"
             loading="lazy"
@@ -107,10 +110,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setIsOpen }) => {
           <div
             key={i}
             onClick={() => setActiveImage(i)}
-            className={`h-2 w-4 cursor-pointer rounded-full transition-all duration-300 hover:bg-primaryBlue ${i === activeImage
+            className={`h-2 w-4 cursor-pointer rounded-full transition-all duration-300 hover:bg-primaryBlue ${
+              i === activeImage
                 ? "w-8 bg-primaryBlue"
                 : "border-[1px] border-secondaryLiteBlue bg-secondaryWhite"
-              }`}
+            }`}
           />
         ))}
       </div>
