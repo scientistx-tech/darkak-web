@@ -6,12 +6,11 @@ const Banner = async () => {
     return [...sliders].sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
   }
   const sortedSliderData = sliderData ? sortByIndex(sliderData) : [];
-  const bgColors = ['#00153B', '#323232', '#5694FF', '#07d38b', '#ff6b6b', '#ffa502'];
+  const bgColors = ['#003084', '#3558E0'];
   // console.log("sorted banner", sortedSliderData);
-  // ✅ Else: Show dynamic sliders without banners
   if (!sliderData) return null
   return (
-    <div className="flex w-full my-5 md:my-8 px-5 md:px-0 gap-5 md:gap-3 flex-col   md:flex-row lg:gap-10">
+    <div className="flex w-full md:my-8 px-5 md:px-0 gap-5 md:gap-3 flex-col   md:flex-row lg:gap-10">
       {sortedSliderData.slice(0, 2).map((slide: any, idx: number) => {
         const bgColour = bgColors[idx % bgColors.length];
         return (

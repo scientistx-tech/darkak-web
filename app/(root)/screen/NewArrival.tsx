@@ -1,15 +1,14 @@
-import ProductCard from '@/components/shared/ProductCard';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Translate } from './Translate';
+import ProductCard from "@/components/shared/ProductCard";
+import Image from "next/image";
+import Link from "next/link";
+import { Translate } from "./Translate";
 
 const NewArrival = async ({ banner }: { banner: any }) => {
-
-  const data = await getNewArrival('');
+  const data = await getNewArrival("");
   if (!data) return null;
 
   const mostVisitedBanner = banner?.banners?.find(
-    (b: any) => b.type === 'new_arrival'
+    (b: any) => b.type === "new_arrival"
   );
 
   return (
@@ -19,14 +18,13 @@ const NewArrival = async ({ banner }: { banner: any }) => {
         <div className="h-[50px]">
           <div className="flex items-center justify-between gap-6 md:justify-start">
             <h2 className="text-2xl font-semibold text-primary">
-              <Translate text='NEW ARRIVAL' />
+              <Translate text="NEW ARRIVAL" />
             </h2>
             <Link href="/more/new-arival">
               <span className="cursor-pointer text-2xl text-primary">→</span>
             </Link>
           </div>
         </div>
-
 
         <div className="hidden xl:grid gap-4 grid-cols-5 2xl:gap-8">
           {/* First 4 products */}
@@ -39,14 +37,16 @@ const NewArrival = async ({ banner }: { banner: any }) => {
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1 mt-[-50px]
           lg:col-start-4 xl:col-start-5
           flex flex-col justify-between rounded-xl bg-primary p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-2xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -57,7 +57,13 @@ const NewArrival = async ({ banner }: { banner: any }) => {
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-fuchsia-400"
+                    style={{
+                      clipPath:
+                        "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -95,14 +101,16 @@ const NewArrival = async ({ banner }: { banner: any }) => {
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1  md:col-end-3
           lg:col-start-4 xl:col-start-5 mt-[-50px]
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -113,7 +121,13 @@ const NewArrival = async ({ banner }: { banner: any }) => {
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-fuchsia-400"
+                    style={{
+                      clipPath:
+                        "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -147,14 +161,16 @@ const NewArrival = async ({ banner }: { banner: any }) => {
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1 mt-[-50px] 
           lg:col-start-4 xl:col-start-5 md:col-start-3
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -165,7 +181,13 @@ const NewArrival = async ({ banner }: { banner: any }) => {
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-fuchsia-400"
+                    style={{
+                      clipPath:
+                        "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -195,11 +217,7 @@ const NewArrival = async ({ banner }: { banner: any }) => {
               <ProductCard product={product} />
             </div>
           ))}
-
-
         </div>
-
-
       </div>
     </main>
   );
@@ -214,6 +232,6 @@ async function getNewArrival(params: string) {
     { next: { revalidate: 86400 } } // Cache for 1 day
   );
 
-  if (!res.ok) throw new Error('Failed to fetch new arrival products');
+  if (!res.ok) throw new Error("Failed to fetch new arrival products");
   return res.json();
 }
