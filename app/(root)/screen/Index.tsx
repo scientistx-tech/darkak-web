@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import New from "../../../Data/Icon/sign.png";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import bg from "@/Data/Img/pngwing.com.png";
 
 type SlideType = {
   banner: string;
@@ -19,6 +18,7 @@ type SlideType = {
 };
 
 const Slider = ({ sliderData }: { sliderData: any }) => {
+
   const finalSlides: SlideType[] = sliderData?.length > 0 ? sliderData : [];
   const lang = useSelector((state: RootState) => state.language.language);
 
@@ -40,7 +40,7 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
   };
 
   const current = finalSlides[index];
-  if (!sliderData) return null;
+  if (!sliderData) return null
   return (
     <div className="w-full overflow-hidden bg-linear-to-r from-primaryBlue via-primary to-primaryBlue text-white">
       <div className="w-full md:h-[calc(100vh-150px)]">
@@ -69,31 +69,24 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
               ))}
             </motion.div>
 
-            <div className="absolute w-full flex justify-center items-center">
-              {/* <Image
-                src={bg}
-                alt="Background"
-                className="inset-0 w-2/4 h-[50%] object-cover opacity-60 z-0"
-              /> */}
-              <motion.div
-                key={`sign-${index}`}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="flex z-20 absolute h-[500px] w-2/4 items-start justify-end"
-              >
-                <Image
-                  src={New}
-                  alt="Image"
-                  width={80}
-                  height={80}
-                  sizes="80px"
-                  quality={80}
-                  decoding="async"
-                  className="mr-[17%] h-20 w-20"
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              key={`sign-${index}`}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex h-[500px] w-2/4 items-start justify-end"
+            >
+              <Image
+                src={New}
+                alt="Image"
+                width={80}
+                height={80}
+                sizes="80px"
+                quality={80}
+                decoding="async"
+                className="mr-[17%] h-20 w-20"
+              />
+            </motion.div>
 
             <motion.div
               key={`details-${index}`}
@@ -179,9 +172,8 @@ const Slider = ({ sliderData }: { sliderData: any }) => {
             <button
               key={i}
               onClick={() => handleDotClick(i)}
-              className={`h-2 w-[30px] transition-all duration-300 ${
-                i === index ? "scale-110 bg-white" : "bg-primaryDarkBlue"
-              }`}
+              className={`h-2 w-[30px] transition-all duration-300 ${i === index ? "scale-110 bg-white" : "bg-primaryDarkBlue"
+                }`}
             />
           ))}
         </div>
