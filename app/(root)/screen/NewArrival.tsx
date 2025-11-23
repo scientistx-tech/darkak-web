@@ -58,7 +58,7 @@ const NewArrival = async ({ banner }: { banner: any }) => {
 
                 {mostVisitedBanner.image && (
                   <div
-                    className="mt-auto flex justify-center pt-8 bg-fuchsia-400"
+                    className="mt-auto flex justify-center pt-8 bg-teal-400"
                     style={{
                       clipPath:
                         "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)",

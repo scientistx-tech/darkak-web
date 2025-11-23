@@ -117,7 +117,7 @@ const PriceInfo = ({
       className="group cursor-pointer"
     >
       <div className="flex flex-col justify-between space-y-2 p-2 text-center md:h-[150px] md:space-y-1 lg:space-y-2 xl:h-[200px] xl:space-y-0 xl:p-6 2xl:h-[170px]">
-        <div className="flex w-full flex-wrap items-center justify-center gap-1">
+        <div className="flex w-full flex-wrap items-center justify-center md:gap-1">
           <span
             className={`hidden text-sm font-medium text-red-400 sm:block md:text-[15px] ${hasDiscount ? 'line-through' : ''}`}
           >

@@ -50,7 +50,7 @@ export default async function BestSelling({ banner }: BestSellingProps) {
                 </div>
 
                 {bestSellingBanner?.image && (
-                  <div className="mt-auto flex justify-center pt-8 bg-emerald-500" style={{
+                  <div className="mt-auto flex justify-center pt-8 bg-blue-400" style={{
                     clipPath: "polygon(20% 8%, 80% 8%, 80% 0, 100% 20%, 100% 100%, 0 100%, 0 20%, 20% 0)",
                   }}>
                     <Image
