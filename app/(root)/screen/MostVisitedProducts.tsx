@@ -4,15 +4,15 @@ import Link from "next/link";
 import { Translate } from "./Translate";
 
 interface MostVisitedProductsProps {
-  banner: any
+  banner: any;
 }
 
 export default async function MostVisitedProducts({
-  banner
+  banner,
 }: MostVisitedProductsProps) {
   // ✅ Run both fetches in parallel (cached for 1 day)
 
-  const data = await getMostVisited('visitorId=ssf');
+  const data = await getMostVisited("visitorId=ssf");
   if (!data) return null;
 
   const mostVisitedBanner = banner?.banners?.find(
@@ -26,7 +26,6 @@ export default async function MostVisitedProducts({
         <div className="h-[50px]">
           <div className="flex items-center justify-between gap-6 md:justify-start">
             <h2 className="text-2xl font-semibold text-primary">
-
               <Translate text="MOST VISITED" />
             </h2>
             <Link href="/more/most-visited">
@@ -46,14 +45,16 @@ export default async function MostVisitedProducts({
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1 mt-[-50px]
           lg:col-start-4 xl:col-start-5
           flex flex-col justify-between rounded-xl bg-primary p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-2xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -64,7 +65,13 @@ export default async function MostVisitedProducts({
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-primaryBlue shadow-2xl shadow-amber-50"
+                    style={{
+                      clipPath:
+                        "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -102,14 +109,16 @@ export default async function MostVisitedProducts({
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1  md:col-end-3
           lg:col-start-4 xl:col-start-5 mt-[-50px]
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -120,7 +129,13 @@ export default async function MostVisitedProducts({
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-primaryBlue shadow-2xl shadow-amber-50"
+                    style={{
+                      clipPath:
+                        "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -158,14 +173,16 @@ export default async function MostVisitedProducts({
           {/* BANNER */}
           {mostVisitedBanner ? (
             <Link href={`/product/${mostVisitedBanner.product.slug}`}>
-              <div className="
+              <div
+                className="
           col-span-2 md:col-span-1 mt-[-50px] 
           lg:col-start-4 xl:col-start-5 md:col-start-3
           flex flex-col justify-between rounded-xl bg-[#4C84FF] p-6 text-white h-[425px]
-        ">
+        "
+              >
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {mostVisitedBanner.type.replace('_', ' ')}
+                    {mostVisitedBanner.type.replace("_", " ")}
                   </h3>
                   <p className="line-clamp-2 break-words text-xl font-semibold leading-tight">
                     {mostVisitedBanner.title}
@@ -176,7 +193,13 @@ export default async function MostVisitedProducts({
                 </div>
 
                 {mostVisitedBanner.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-primaryBlue shadow-2xl shadow-amber-50"
+                    style={{
+                      clipPath:
+                        "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
+                    }}
+                  >
                     <Image
                       src={mostVisitedBanner.image}
                       alt="Banner Image"
@@ -210,10 +233,7 @@ export default async function MostVisitedProducts({
               <ProductCard product={product} />
             </div>
           ))}
-
-
         </div>
-
       </div>
     </main>
   );

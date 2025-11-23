@@ -1,14 +1,14 @@
-import ProductCard from '@/components/shared/ProductCard';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Translate } from './Translate';
+import ProductCard from "@/components/shared/ProductCard";
+import Image from "next/image";
+import Link from "next/link";
+import { Translate } from "./Translate";
 
 const BestDeals = async ({ banner }: { banner: any }) => {
-  const data = await getBestDeal('');
+  const data = await getBestDeal("");
   if (!data) return null;
 
   const todaysDealBanner = banner?.banners?.find(
-    (b: any) => b.type === 'todays_deal'
+    (b: any) => b.type === "todays_deal"
   );
 
   return (
@@ -16,7 +16,6 @@ const BestDeals = async ({ banner }: { banner: any }) => {
       {/* Header */}
       <div className="mb-1 flex items-center justify-between">
         <h2 className="text-2xl font-semibold text-primary md:ml-[33%] lg:ml-[25%] xl:ml-[20%]">
-
           <Translate text={`TODAY'S DEAL`} />
         </h2>
         <Link href="/more/todays-deal">
@@ -33,7 +32,7 @@ const BestDeals = async ({ banner }: { banner: any }) => {
               <div className="absolute bottom-0 right-0 z-10 hidden flex-col justify-between overflow-hidden rounded-xl bg-primary p-6 text-white md:flex h-[425px]">
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold uppercase">
-                    {todaysDealBanner?.type.replace('_', ' ')}
+                    {todaysDealBanner?.type.replace("_", " ")}
                   </h3>
 
                   <p className="line-clamp-2 break-words text-2xl font-semibold leading-tight">
@@ -46,11 +45,17 @@ const BestDeals = async ({ banner }: { banner: any }) => {
                 </div>
 
                 {todaysDealBanner?.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div
+                    className="mt-auto flex justify-center pt-8 bg-blue-400"
+                    style={{
+                      clipPath:
+                        "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+                    }}
+                  >
                     <Image
                       src={todaysDealBanner.image}
                       alt="Today's Deal Banner"
-                        width={200}
+                      width={200}
                       height={200}
                       className="w-[200px] object-contain"
                       sizes="200px"
@@ -70,7 +75,7 @@ const BestDeals = async ({ banner }: { banner: any }) => {
         {/* PRODUCT CARDS */}
         {data?.data.slice(0, 9).map((product: any) => (
           <div key={product.id}>
-            <ProductCard product={product}/>
+            <ProductCard product={product} />
           </div>
         ))}
       </div>
@@ -87,6 +92,6 @@ async function getBestDeal(params: string) {
     { next: { revalidate: 86400 } } // Revalidate every 24h
   );
 
-  if (!res.ok) throw new Error('Failed to fetch best deal products');
+  if (!res.ok) throw new Error("Failed to fetch best deal products");
   return res.json();
 }

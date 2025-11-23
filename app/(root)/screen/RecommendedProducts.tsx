@@ -45,7 +45,9 @@ const RecommendedProducts = async ({ banner }: { banner: any }) => {
                 </div>
 
                 {mostVisitedBanner?.image && (
-                  <div className="mt-auto flex justify-center pt-8">
+                  <div className="mt-auto flex justify-center pt-8 bg-cyan-400" style={{
+                    clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
+                  }}>
                     <Image
                       src={mostVisitedBanner.image}
                       alt={mostVisitedBanner?.title || 'Banner Image'}
