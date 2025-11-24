@@ -38,9 +38,8 @@ const VendorCard: React.FC<VendorCardProps> = ({
           height={300}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 640px) 100vw, 236px"
-          quality={70}
-          decoding="async"
-          loading="lazy"
+          loading="eager"
+         
         />
       </div>
 
@@ -55,10 +54,9 @@ const VendorCard: React.FC<VendorCardProps> = ({
               width={70}
               height={70}
               className="h-[70px] w-[70px] rounded-full border border-primaryBlue shadow-lg"
-              sizes="70px"
-              quality={70}
-              decoding="async"
-              loading="lazy"
+              sizes="(max-width: 70px) 100vw, 70px"
+
+              loading="eager"
             />
           </div>
           <div>

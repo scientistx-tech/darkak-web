@@ -163,6 +163,7 @@ export default function LiveChat({ id }: { id: number }) {
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-lg font-semibold">Live Chat</h2>
         <button
+          name="toggleOrders"
           className="text-blue-500 hover:text-blue-700"
           onClick={() => setShowOrders((prev) => !prev)}
         >
@@ -182,6 +183,8 @@ export default function LiveChat({ id }: { id: number }) {
                 className="flex cursor-pointer items-center gap-3 border-b"
               >
                 <Image
+                  height={48}
+                  width={48}
                   src={order.product.thumbnail}
                   alt={order.product.title}
                   className="h-12 w-12 rounded object-cover"
@@ -212,6 +215,8 @@ export default function LiveChat({ id }: { id: number }) {
               >
                 {msg.message_files?.length > 0 && (
                   <Image
+                    height={160}
+                    width={160}
                     src={msg.message_files[0].url}
                     alt="attachment"
                     className="mb-1 h-auto w-40 rounded"
@@ -239,6 +244,7 @@ export default function LiveChat({ id }: { id: number }) {
           disabled={uploading}
         />
         <button
+          name="uploadImage"
           onClick={() => fileInputRef.current?.click()}
           disabled={uploading}
           className="disabled:opacity-50"
@@ -247,6 +253,7 @@ export default function LiveChat({ id }: { id: number }) {
         </button>
         <input type="file" ref={fileInputRef} onChange={handleImageChange} className="hidden" />
         <button
+          name="sendMessage"
           onClick={handleSendMessage}
           disabled={uploading || input.trim() === ''}
           className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600 disabled:bg-blue-300"
@@ -259,6 +266,7 @@ export default function LiveChat({ id }: { id: number }) {
         <div className="relative mt-2 w-40">
           <Image src={selectedImage} alt="Selected" className="h-auto w-full rounded" />
           <button
+          name="removeSelectedImage"
             className="absolute right-1 top-1 rounded-full bg-black bg-opacity-50 text-white"
             onClick={() => setSelectedImage(null)}
           >

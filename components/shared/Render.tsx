@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import './content.css';
+import Link from 'next/link';
 
 type EditorJsBlock = {
   id?: string;
@@ -54,6 +55,8 @@ const EditorJsRenderer: React.FC<EditorJsRendererProps> = ({ data }) => {
               src={data.file?.url}
               alt={data.caption || 'Image'}
               className="mx-auto w-full rounded"
+              loading='eager'
+              sizes='(max-width: 768px) 100vw, 768px'
             />
             {data.caption && <p className="text-sm text-gray-500">{data.caption}</p>}
           </div>
@@ -61,7 +64,7 @@ const EditorJsRenderer: React.FC<EditorJsRendererProps> = ({ data }) => {
 
       case 'linkTool':
         return (
-          <a
+          <Link
             key={index}
             href={data.link}
             target="_blank"
@@ -69,7 +72,7 @@ const EditorJsRenderer: React.FC<EditorJsRendererProps> = ({ data }) => {
             className="my-2 block text-blue-600 underline"
           >
             {data.meta?.title || data.link}
-          </a>
+          </Link>
         );
 
       case 'raw':

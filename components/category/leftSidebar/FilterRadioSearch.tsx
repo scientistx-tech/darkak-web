@@ -44,6 +44,7 @@ const FilterRadioSearch: React.FC<FilterRadioSearchProps> = ({
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-blue-900">{title}</h2>
         <button
+          name="toggleFilterButton"
           onClick={handleOpenClose}
           className="flex size-[30px] items-center justify-center rounded-full bg-[#003084]"
         >
@@ -88,6 +89,7 @@ const FilterRadioSearch: React.FC<FilterRadioSearchProps> = ({
           {/* See More Button */}
           {showSeeMore && (
             <button
+              name="seeMoreFilterButton"
               onClick={onSeeMore}
               className="mt-4 w-full rounded-full bg-[#5694FF] py-2 text-sm font-medium text-white transition hover:bg-blue-600"
             >

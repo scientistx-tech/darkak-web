@@ -29,7 +29,6 @@ import {
   FaBold,
 } from "react-icons/fa";
 
-import { AnimatePresence, motion } from "framer-motion";
 import Bangla from "@/Data/Img/BanglaLag.svg";
 import English from "@/Data/Img/EnglishLag.svg";
 import HeadLineText from "./HeadLineText";
@@ -145,7 +144,7 @@ const Header: React.FC = () => {
   // Search functionality
   const { data: categories } = useGetProductCategoriesQuery("");
 
-  const { data, isFetching} = useGetSearchPublicQuery({
+  const { data, isFetching } = useGetSearchPublicQuery({
     search: `${debouncedSearch}`,
   });
 
@@ -195,250 +194,235 @@ const Header: React.FC = () => {
 
   return (
     <div className="relative w-full bg-black">
-      <motion.div
-        animate={{ y: show ? 0 : -130 }}
-        transition={
-          show
-            ? { type: "spring", stiffness: 130, damping: 30 }
-            : { type: "spring", stiffness: 50 }
-        }
-        className="fixed top-0 z-50 w-full"
-      >
-        {/* Top Bar */}
-        {lastScrollY < 45 && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 40 }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="mx-auto hidden w-full grid-cols-3 items-center overflow-visible bg-primary px-4 text-white md:px-6 lg:grid lg:px-12"
+          <div
+            className="fixed top-0 z-50 w-full"
           >
-            <p>🎉 {home?.content?.header_first_title} 🎉</p>
-            <p className="text-center">
-              ✨ {home?.content?.header_second_title} ✨
-            </p>
-
-            {/* DropDown-menu */}
-            <div className="flex w-full items-center justify-end gap-2">
+            {/* Top Bar */}
+            {lastScrollY < 45 && (
               <div
-                className="relative flex cursor-pointer items-center gap-1 rounded-md p-2 transition hover:bg-primaryDarkBlue"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
-                ref={dropdownRef}
+                className="mx-auto hidden w-full grid-cols-3 items-center overflow-visible bg-primary px-4 text-white md:px-6 lg:grid lg:px-12"
               >
-                <Image
-                  alt="Language"
-                  src={lang === "bn" ? Bangla : English}
-                  width={20}
-                  height={20}
-                />
-                <p className="text-sm font-medium uppercase text-primaryWhite">
-                  {lang === "bn" ? "বাংলা" : "English"}
+                <p>🎉 {home?.content?.header_first_title} 🎉</p>
+                <p className="text-center">
+                  ✨ {home?.content?.header_second_title} ✨
                 </p>
 
-                <p className="text-sm">
-                  {isDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
-                </p>
+                {/* DropDown-menu */}
+                <div className="flex w-full items-center justify-end gap-2">
+                  <div
+                    className="relative flex cursor-pointer items-center gap-1 rounded-md p-2 transition hover:bg-primaryDarkBlue"
+                    onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                    ref={dropdownRef}
+                  >
+                    <Image
+                      alt="Language"
+                      src={lang === "bn" ? Bangla : English}
+                      width={20}
+                      height={20}
+                      loading="eager"
+                      sizes="(max-width: 20px) 100vw, 20px"
+                    />
+                    <p className="text-sm font-medium uppercase text-primaryWhite">
+                      {lang === "bn" ? "বাংলা" : "English"}
+                    </p>
 
-                <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div
-                      className="absolute right-0 top-9 z-30 w-[120px] bg-primaryBlue border-2 border-primary shadow-md"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                    <p className="text-sm">
+                      {isDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
+                    </p>
+
+                      {isDropdownOpen && (
+                        <div
+                          className="absolute right-0 top-9 z-30 w-[120px] bg-primaryBlue border-2 border-primary shadow-md"
+                        >
+                          <p
+                            className="cursor-pointer px-4 py-2 text-sm uppercase text-primaryWhite hover:bg-primaryDarkBlue"
+                            onClick={() => handleLanguageChange("en")}
+                          >
+                            English
+                          </p>
+                          <p
+                            className="cursor-pointer px-4 py-2 text-sm uppercase text-primaryWhite hover:bg-primaryDarkBlue"
+                            onClick={() => handleLanguageChange("bn")}
+                          >
+                            বাংলা
+                          </p>
+                        </div>
+                      )}
+                  </div>
+                  {/* Login & Register Buttons */}
+                  {user ? (
+                    <button
+                      name="logoutButton"
+                      onClick={handleLogOut}
+                      className="rounded-md bg-secondaryLiteBlue px-4 py-1 text-sm text-primaryDarkBlue transition hover:bg-primaryDarkBlue hover:text-primaryWhite"
                     >
-                      <p
-                        className="cursor-pointer px-4 py-2 text-sm uppercase text-primaryWhite hover:bg-primaryDarkBlue"
-                        onClick={() => handleLanguageChange("en")}
+                      Log Out
+                    </button>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href="/auth/login"
+                        className="rounded-md bg-secondaryLiteBlue px-4 py-1 text-sm text-primaryDarkBlue transition hover:bg-primaryDarkBlue hover:text-primaryWhite"
                       >
-                        English
-                      </p>
-                      <p
-                        className="cursor-pointer px-4 py-2 text-sm uppercase text-primaryWhite hover:bg-primaryDarkBlue"
-                        onClick={() => handleLanguageChange("bn")}
+                        Login
+                      </Link>
+                      <Link
+                        href="/auth/signup"
+                        className="rounded-md border border-primary px-4 py-1 text-sm text-primaryWhite transition hover:bg-primaryDarkBlue"
                       >
-                        বাংলা
-                      </p>
-                    </motion.div>
+                        Register
+                      </Link>
+                    </div>
                   )}
-                </AnimatePresence>
-              </div>
-              {/* Login & Register Buttons */}
-              {user ? (
-                <button
-                  onClick={handleLogOut}
-                  className="rounded-md bg-secondaryLiteBlue px-4 py-1 text-sm text-primaryDarkBlue transition hover:bg-primaryDarkBlue hover:text-primaryWhite"
-                >
-                  Log Out
-                </button>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <Link
-                    href="/auth/login"
-                    className="rounded-md bg-secondaryLiteBlue px-4 py-1 text-sm text-primaryDarkBlue transition hover:bg-primaryDarkBlue hover:text-primaryWhite"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    href="/auth/signup"
-                    className="rounded-md border border-primary px-4 py-1 text-sm text-primaryWhite transition hover:bg-primaryDarkBlue"
-                  >
-                    Register
-                  </Link>
                 </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Main Header */}
-        <div className="mx-auto flex h-[65px] w-full items-center justify-between bg-primaryBlue px-4 text-white md:h-[70px] md:px-6 xl:px-12">
-          <Link href="/" className="">
-            <Image alt="Darkak-Logo" src={logo} height={50} className="" />
-          </Link>
-
-          <div className="hidden grid-flow-col items-center gap-8 lg:grid">
-            {/* Home Link */}
-            <NavLink href="/" className="font-serif text-lg hover:text-primary">
-              {lang === "bn" ? "হোম" : "Home"}
-            </NavLink>
-            <div className="relative font-serif text-lg">
-              <HeaderDropdown />
-            </div>
-
-            <NavLink
-              href="/explore"
-              className="font-serif text-lg hover:text-primary"
-            >
-              {lang === "bn" ? "ঘুরে দেখুন" : "Explore"}
-            </NavLink>
-
-            <NavLink
-              href="/vendors"
-              className="font-serif text-lg hover:text-primary"
-            >
-              {lang === "bn" ? "ভেন্ডরস" : "Vendors"}
-            </NavLink>
-
-            {/* Contact Us Link */}
-            <NavLink
-              href="/contact-us"
-              className="font-serif text-lg hover:text-primary"
-            >
-              {lang === "bn" ? "যোগাযোগ করুন" : "Contact Us"}
-            </NavLink>
-          </div>
-
-          <div className="relative w-[30%]">
-            <div className="relative hidden justify-center rounded-full bg-white md:flex">
-              <div className="relative w-[75%]">
-                <input
-                  className="ignore-click-outside w-full rounded-bl-full rounded-tl-full p-1.5 pl-4 pr-8 text-black outline-none"
-                  placeholder={
-                    lang === "bn" ? "অনুসন্ধান করুন..." : "Search..."
-                  }
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onFocus={() => {
-                    if (searchTerm.trim() !== "") {
-                      setIsOpen(true);
-                    }
-                  }}
-                />
-
-                {searchTerm && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchTerm("")}
-                    className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 text-lg font-semibold text-gray-500 hover:text-black"
-                  >
-                    ×
-                  </button>
-                )}
               </div>
-              <div className="flex w-[25%] justify-between">
-                <button className="w-[30%] text-black">
-                  <FaAlignLeft />
-                </button>
-                <button
-                  onClick={handleSearch}
-                  className="w-[70%] cursor-pointer rounded-br-full rounded-tr-full border-none bg-primary p-1.5 pl-5 pr-5 text-white"
+            )}
+
+            {/* Main Header */}
+            <div className="mx-auto flex h-[65px] w-full items-center justify-between bg-primaryBlue px-4 text-white md:h-[70px] md:px-6 xl:px-12">
+              <Link href="/" className="">
+                <Image alt="Darkak-Logo" src={logo} height={50} className="" loading="eager" sizes="(max-width: 50px) 100vw, 50px" />
+              </Link>
+
+              <div className="hidden grid-flow-col items-center gap-8 lg:grid">
+                {/* Home Link */}
+                <NavLink href="/" className="font-serif text-lg hover:text-primary">
+                  {lang === "bn" ? "হোম" : "Home"}
+                </NavLink>
+                <div className="relative font-serif text-lg">
+                  <HeaderDropdown />
+                </div>
+
+                <NavLink
+                  href="/explore"
+                  className="font-serif text-lg hover:text-primary"
                 >
-                  <FaSearch className="text-xl" />
-                </button>
+                  {lang === "bn" ? "ঘুরে দেখুন" : "Explore"}
+                </NavLink>
+
+                <NavLink
+                  href="/vendors"
+                  className="font-serif text-lg hover:text-primary"
+                >
+                  {lang === "bn" ? "ভেন্ডরস" : "Vendors"}
+                </NavLink>
+
+                {/* Contact Us Link */}
+                <NavLink
+                  href="/contact-us"
+                  className="font-serif text-lg hover:text-primary"
+                >
+                  {lang === "bn" ? "যোগাযোগ করুন" : "Contact Us"}
+                </NavLink>
               </div>
-              {/* <BiSolidDownArrow size={24} className={`rotate-180 ${isOpen ? 'absolute' : 'hidden'} -bottom-5 left-1/2 -translate-x-1/2 shadow-none`} /> */}
+
+              <div className="relative w-[30%]">
+                <div className="relative hidden justify-center rounded-full bg-white md:flex">
+                  <div className="relative w-[75%]">
+                    <input
+                      className="ignore-click-outside w-full rounded-bl-full rounded-tl-full p-1.5 pl-4 pr-8 text-black outline-none"
+                      placeholder={
+                        lang === "bn" ? "অনুসন্ধান করুন..." : "Search..."
+                      }
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onFocus={() => {
+                        if (searchTerm.trim() !== "") {
+                          setIsOpen(true);
+                        }
+                      }}
+                    />
+
+                    {searchTerm && (
+                      <button
+                        type="button"
+                        name="clearSearchButton"
+                        onClick={() => setSearchTerm("")}
+                        className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 text-lg font-semibold text-gray-500 hover:text-black"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex w-[25%] justify-between">
+                    <button name="alignLeftButton" className="w-[30%] text-black">
+                      <FaAlignLeft />
+                    </button>
+                    <button
+                      name="searchButton"
+                      onClick={handleSearch}
+                      className="w-[70%] cursor-pointer rounded-br-full rounded-tr-full border-none bg-primary p-1.5 pl-5 pr-5 text-white"
+                    >
+                      <FaSearch className="text-xl" />
+                    </button>
+                  </div>
+                  {/* <BiSolidDownArrow size={24} className={`rotate-180 ${isOpen ? 'absolute' : 'hidden'} -bottom-5 left-1/2 -translate-x-1/2 shadow-none`} /> */}
+                </div>
+              </div>
+
+              <div className="hidden grid-flow-col gap-5 lg:grid">
+                <Link
+                  href="/user/profile"
+                  className={`text-2xl transition-all duration-300 hover:scale-110 hover:text-primary ${pathname === "/user/profile" ? "opacity-100" : "opacity-70"
+                    }`}
+                >
+                  <FaUser />
+                </Link>
+
+                <Link
+                  href="/user/wishlist"
+                  className="group text-2xl transition-all duration-300 hover:scale-110 hover:text-primary"
+                >
+                  <FaRegHeart
+                    className={` ${pathname === "/user/wishlist" ? "opacity-100" : "opacity-70"
+                      }`}
+                  />
+                  <div
+                    className={`absolute ml-[15px] mt-[-33px] flex h-[15px] w-[15px] items-center justify-center rounded-full text-black group-hover:bg-primary group-hover:text-white ${pathname === "/user/wishlist"
+                      ? "bg-primary text-white"
+                      : "bg-white"
+                      }`}
+                  >
+                    <p className="text-[10px] font-semibold">
+                      {wishlist ? wishlist.data.length : "0"}
+                    </p>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/user/cart"
+                  className="group text-2xl transition-all duration-300 hover:scale-110 hover:text-primary"
+                >
+                  <FaShoppingCart
+                    className={` ${pathname === "/user/cart" ? "opacity-100" : "opacity-70"
+                      }`}
+                  />
+                  <div
+                    className={`absolute ml-[15px] mt-[-33px] flex h-[15px] w-[15px] items-center justify-center rounded-full text-black group-hover:bg-primary group-hover:text-white ${pathname === "/user/cart"
+                      ? "bg-primary text-white"
+                      : "bg-white"
+                      }`}
+                  >
+                    <p className="text-[10px] font-semibold">
+                      {cart ? cart.cart.length : "0"}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+
+              {/* For mobile menu Button */}
+              <button
+                name="mobileMenuButton"
+                onClick={open ? handleDrawerClose : handleDrawerOpen}
+                className="text-2xl cursor-pointer transition-all duration-500 ease-in-out hover:scale-110 lg:hidden"
+              >
+                {open ? <FaTimes /> : <FaBars />}
+              </button>
+
+
             </div>
           </div>
-
-          <div className="hidden grid-flow-col gap-5 lg:grid">
-            <Link
-              href="/user/profile"
-              className={`text-2xl transition-all duration-300 hover:scale-110 hover:text-primary ${
-                pathname === "/user/profile" ? "opacity-100" : "opacity-70"
-              }`}
-            >
-              <FaUser />
-            </Link>
-
-            <Link
-              href="/user/wishlist"
-              className="group text-2xl transition-all duration-300 hover:scale-110 hover:text-primary"
-            >
-              <FaRegHeart
-                className={` ${
-                  pathname === "/user/wishlist" ? "opacity-100" : "opacity-70"
-                }`}
-              />
-              <div
-                className={`absolute ml-[15px] mt-[-33px] flex h-[15px] w-[15px] items-center justify-center rounded-full text-black group-hover:bg-primary group-hover:text-white ${
-                  pathname === "/user/wishlist"
-                    ? "bg-primary text-white"
-                    : "bg-white"
-                }`}
-              >
-                <p className="text-[10px] font-semibold">
-                  {wishlist ? wishlist.data.length : "0"}
-                </p>
-              </div>
-            </Link>
-
-            <Link
-              href="/user/cart"
-              className="group text-2xl transition-all duration-300 hover:scale-110 hover:text-primary"
-            >
-              <FaShoppingCart
-                className={` ${
-                  pathname === "/user/cart" ? "opacity-100" : "opacity-70"
-                }`}
-              />
-              <div
-                className={`absolute ml-[15px] mt-[-33px] flex h-[15px] w-[15px] items-center justify-center rounded-full text-black group-hover:bg-primary group-hover:text-white ${
-                  pathname === "/user/cart"
-                    ? "bg-primary text-white"
-                    : "bg-white"
-                }`}
-              >
-                <p className="text-[10px] font-semibold">
-                  {cart ? cart.cart.length : "0"}
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          {/* For mobile menu Button */}
-          <button
-            onClick={open ? handleDrawerClose : handleDrawerOpen}
-            className="text-2xl cursor-pointer transition-all duration-500 ease-in-out hover:scale-110 lg:hidden"
-          >
-            {open ? <FaTimes /> : <FaBars />}
-          </button>
-
-          
-        </div>
-      </motion.div>
 
       {/* Mobile Drawer */}
       <CustomDrawer open={open} onClose={handleDrawerClose}>
@@ -447,9 +431,9 @@ const Header: React.FC = () => {
             {/* Header */}
             <div className="mb-3 flex h-[65px] items-center justify-between bg-primaryBlue">
               <Link href="/" onClick={handleDrawerClose} className="ml-5">
-                <Image alt="Darkak-Logo" src={logo} height={45} className="" />
+                <Image alt="Darkak-Logo" src={logo} height={45} className="" loading="eager" sizes="(max-width: 45px) 100vw, 45px" />
               </Link>
-              
+
             </div>
 
             <div className="px-5 py-2">
@@ -468,6 +452,7 @@ const Header: React.FC = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                   <button
+                    name="searchButton"
                     className="rounded-full bg-primaryBlue px-4 py-2.5 text-sm text-white  duration-200 hover:bg-primaryDarkBlue"
                   >
                     {lang === "bn" ? "অনুসন্ধান" : "Search"}
@@ -499,7 +484,7 @@ const Header: React.FC = () => {
                     </div>
                   </Link>
 
-                  <button onClick={toggleSubmenu} className="w-auto p-1 text-gray-600 hover:text-primaryBlue">
+                  <button name="toggleSubmenuButton" onClick={toggleSubmenu} className="w-auto p-1 text-gray-600 hover:text-primaryBlue">
                     {submenuOpen ? (
                       <FaMinus className="text-xl cursor-pointer" />
                     ) : (
@@ -508,19 +493,13 @@ const Header: React.FC = () => {
                   </button>
                 </div>
 
-                <AnimatePresence initial={false}>
                   {submenuOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                    <div
                       className="ml-[10%] overflow-hidden"
                     >
                       <MobileDropdown onClose={handleDrawerClose} />
-                    </motion.div>
+                    </div>
                   )}
-                </AnimatePresence>
                 <Link
                   href="/explore"
                   onClick={handleDrawerClose}
@@ -575,6 +554,8 @@ const Header: React.FC = () => {
                   src={lang === "bn" ? Bangla : English}
                   width={20}
                   height={20}
+                  loading="eager"
+                  sizes="(max-width: 20px) 100vw, 20px"
                 />
                 <select
                   value={lang}
@@ -588,6 +569,7 @@ const Header: React.FC = () => {
                 </select>
                 {user ? (
                   <button
+                    name="logoutButton"
                     onClick={handleLogOut}
                     className="rounded-md bg-secondaryLiteBlue px-4 py-1 text-sm text-primaryDarkBlue transition hover:bg-primaryDarkBlue hover:text-primaryWhite"
                   >

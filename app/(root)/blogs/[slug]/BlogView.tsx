@@ -31,7 +31,8 @@ export default async function BlogView({ data }: { data: Blog | undefined }) {
             width={1300}
             alt="Blog Hero"
             className="h-full w-full object-cover"
-            priority
+            sizes="(max-width: 640px) 100vw, 1300px"
+          loading="eager"
           />
         </div>
       </div>

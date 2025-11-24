@@ -67,10 +67,8 @@ export default function ShopViewPage({ shop, products }: { shop: any; products: 
               width={1200}
               height={400}
               className="h-full w-full rounded-xl"
-              sizes="100vw"
-              quality={70}
-              decoding="async"
-              loading="lazy"
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              loading="eager"
             />
           {/* Overlay for better text visibility */}
           <div className="absolute ml-[10px] mt-[-110px] flex h-[100px] items-center gap-5 rounded-xl bg-white px-6 text-black">
@@ -81,10 +79,8 @@ export default function ShopViewPage({ shop, products }: { shop: any; products: 
                 width={70}
                 height={70}
                 className="h-[70px] w-[70px] rounded-full border border-primaryBlue object-cover shadow-lg"
-                sizes="70px"
-                quality={70}
-                decoding="async"
-                loading="lazy"
+                sizes="(max-width: 70px) 100vw, 70px"
+                loading="eager"
               />
             </div>
             <div>

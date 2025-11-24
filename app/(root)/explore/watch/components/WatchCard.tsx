@@ -127,6 +127,7 @@ export default function WatchCard({
           {/* Action Buttons */}
           <div className="z-30 mr-3 flex translate-y-4 flex-col items-center gap-3 rounded-md bg-primary p-2 pr-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
             <button
+              name="addToCart"
               onClick={(e: any) => {
                 handleAddToCart(e);
               }}
@@ -136,6 +137,7 @@ export default function WatchCard({
             </button>
 
             <button
+              name="addToWishlist"
               onClick={(e: any) => {
                 handleAddToWishlist(e);
               }}

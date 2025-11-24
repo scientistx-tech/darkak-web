@@ -175,6 +175,7 @@ const LeftSidebar: React.FC<{ onFilterChange?: (params: any) => void }> = (props
               </span>
               {cat.sub_category && cat.sub_category.length > 0 && (
                 <button
+                  name="toggleCategoryButton"
                   className="ml-2 p-1 text-gray-500 hover:text-blue-600 focus:outline-none"
                   onClick={() => handleToggle(cat.id)}
                   aria-label={isExpanded(cat.id, selected) ? 'Collapse' : 'Expand'}
@@ -229,6 +230,7 @@ const LeftSidebar: React.FC<{ onFilterChange?: (params: any) => void }> = (props
                       </span>
                       {sub.sub_sub_category && sub.sub_sub_category.length > 0 && (
                         <button
+                          name="toggleSubCategoryButton"
                           className="ml-2 mt-2 p-1 text-gray-500 hover:text-blue-600 focus:outline-none"
                           onClick={() => handleToggle(sub.id)}
                           aria-label={
@@ -480,10 +482,13 @@ const LeftSidebar: React.FC<{ onFilterChange?: (params: any) => void }> = (props
               {/* Brand logo if available */}
               {brand.image && (
                 <Image
+                  height={20}
+                  width={20}
                   src={brand.image}
                   alt={brand.title}
                   className="h-5 w-5 object-contain"
-                  loading="lazy"
+                  loading="eager"
+                  sizes="(max-width: 20px) 100vw, 20px"
                 />
               )}
               <span className="truncate text-sm">{brand.title}</span>

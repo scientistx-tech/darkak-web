@@ -51,6 +51,7 @@ export default function ReviewHistory() {
       <div className="mb-8 flex justify-center gap-3 md:gap-0 md:space-x-6">
         {['toReview', 'toFollowUp', 'history'].map((tab) => (
           <button
+          name={tab}
             key={tab}
             onClick={() => setActiveTab(tab as any)}
             className={`rounded-full px-6 py-2 text-sm font-semibold ${activeTab === tab

@@ -1,7 +1,6 @@
 'use client';
 import ProductCard from '@/components/shared/ProductCard';
 import { RootState } from '@/redux/store';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
@@ -29,9 +28,9 @@ export default function TrendingProducts({ data }: { data: any }) {
 
         >
           {data?.data.map((product: any) => (
-            <motion.div key={product.id}>
-              <ProductCard product={product} />
-            </motion.div>
+                <div key={product.id}>
+                  <ProductCard product={product} />
+                </div>
           ))}
         </div>
       </div>

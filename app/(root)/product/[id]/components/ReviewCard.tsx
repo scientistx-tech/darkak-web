@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -21,12 +20,8 @@ export const ReviewCard = ({ review }: { review: Review }) => {
   };
 
   return (
-    <motion.div
+    <div
       className="mb-4 rounded-md bg-white p-4 shadow-sm shadow-secondaryBlue"
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
     >
       <div className="flex w-full items-start gap-1">
         <div className="flex w-[30%] flex-col items-center gap-2">
@@ -68,11 +63,13 @@ export const ReviewCard = ({ review }: { review: Review }) => {
           <Image
             key={idx}
             src={img}
+            height={64}
+            width={64}
             alt={`screenshot-${idx}`}
             className="h-16 w-16 rounded object-cover"
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };

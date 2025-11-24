@@ -56,12 +56,14 @@ export default function WatchTestimonial({ review }: { review: Review[] }) {
         {/* Navigation buttons */}
         <div className="mt-4 flex justify-center gap-6">
           <button
+            name="prevTestimonial"
             onClick={prevTestimonial}
             className="text-3xl text-[#1B1464] transition hover:scale-110 hover:text-blue-600"
           >
             <FaRegCircleLeft />
           </button>
           <button
+            name="nextTestimonial"
             onClick={nextTestimonial}
             className="text-3xl text-[#1B1464] transition hover:scale-110 hover:text-blue-600"
           >
@@ -72,6 +74,7 @@ export default function WatchTestimonial({ review }: { review: Review[] }) {
         {/* Button */}
         <div className="mt-5 flex justify-center">
           <button
+            name="shopNow"
             className="rounded-full !bg-[#1B1464] px-8 py-2 font-bold text-white shadow-md hover:!bg-blue-700"
           >
             SHOP NOW

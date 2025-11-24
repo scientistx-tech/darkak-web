@@ -113,6 +113,7 @@ export default function OrderHistory() {
       <div className="mt-8 flex flex-col items-center justify-between gap-4 md:flex-row">
         <div className="flex items-center gap-2">
           <button
+            name="previousPage"
             onClick={handlePrev}
             disabled={page === 1}
             className="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 disabled:opacity-50"
@@ -123,6 +124,7 @@ export default function OrderHistory() {
             Page {page} of {totalPages}
           </span>
           <button
+            name="nextPage"
             onClick={handleNext}
             disabled={page === totalPages}
             className="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 disabled:opacity-50"

@@ -11,6 +11,7 @@ export default function WatchPoster({ poster }: { poster: Poster | undefined }) 
           <div className="absolute mt-[-30px] w-[250px] border-[10px] border-slate-100 md:h-[250px]">
             {poster && (
               <Image
+                
                 src={poster.top_image}
                 alt={poster.top_alt}
                 fill

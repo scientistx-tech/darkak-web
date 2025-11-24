@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useGetHomeContentQuery } from '@/redux/services/client/homeContentApi';
 
@@ -28,22 +27,15 @@ export default function HeadLineText() {
     <div className="w-full overflow-hidden border-b border-t border-primaryWhite bg-primaryBlue text-primaryWhite">
       <div className="container mx-auto flex items-center space-x-4 px-4 py-2">
         <div className="relative flex-1 overflow-hidden" ref={containerRef}>
-          <motion.div
+          <div
             className="flex space-x-10 whitespace-nowrap"
-            animate={{ x: [width, -width] }}
-            // animate={{ x: [-width, 0] }}
-            transition={{
-              repeat: Infinity,
-              ease: 'linear',
-              duration: 30,
-            }}
           >
             {texts.map((text, index) => (
               <span key={index} className="text-sm font-medium">
                 {text}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

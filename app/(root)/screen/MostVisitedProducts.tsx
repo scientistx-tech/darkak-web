@@ -71,10 +71,8 @@ export default async function MostVisitedProducts({
                       width={200}
                       height={200}
                       className="w-[200px] object-contain"
-                      sizes="200px"
-                      quality={70}
-                      decoding="async"
-                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 200px"
+                      loading="eager"
                     />
                   </div>
                 )}
@@ -127,10 +125,8 @@ export default async function MostVisitedProducts({
                       width={200}
                       height={200}
                       className="w-[200px] object-contain"
-                      sizes="200px"
-                      quality={70}
-                      decoding="async"
-                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 200px"
+                      loading="eager"
                     />
                   </div>
                 )}
@@ -183,10 +179,8 @@ export default async function MostVisitedProducts({
                       width={200}
                       height={200}
                       className="w-[200px] object-contain"
-                      sizes="200px"
-                      quality={70}
-                      decoding="async"
-                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 200px"
+                      loading="eager"
                     />
                   </div>
                 )}

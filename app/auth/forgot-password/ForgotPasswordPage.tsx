@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import SVG from "@/Data/Img/LoginPage.svg";
 import EmailInput from "./EmailInput";
 import { usePasswordResetMailMutation } from "@/redux/services/authApis";
 import { toast } from "react-toastify";
@@ -15,7 +12,6 @@ const ForgotPasswordPage: React.FC = () => {
   const searchParams = useSearchParams();
 
   const id = searchParams.get("id");
-  const code = searchParams.get("code");
   const [email, setEmail] = useState("");
   const [timer, setTimer] = useState(60);
   const [resendDisabled, setResendDisabled] = useState(true);
@@ -57,16 +53,13 @@ const ForgotPasswordPage: React.FC = () => {
     return (
       <div className="flex h-screen items-center justify-center bg-primaryBlue">
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+        <div
           className="z-10 flex w-[90%] flex-col items-center justify-center rounded-lg bg-white p-6 shadow md:w-[60%]"
         >
           <div className="w-full">
             <ChangePasswordPage></ChangePasswordPage>
           </div>
-        </motion.div>
+        </div>
 
 
       </div>
@@ -75,10 +68,7 @@ const ForgotPasswordPage: React.FC = () => {
     <div className="flex h-screen items-center justify-center bg-primaryBlue">
 
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+      <div
         className="z-10 flex w-[90%] flex-col items-center justify-center rounded-lg bg-white p-6 shadow md:w-[60%]"
       >
         <p className="mb-1 text-2xl font-medium text-secondary">
@@ -91,6 +81,7 @@ const ForgotPasswordPage: React.FC = () => {
         <EmailInput value={email} onChange={setEmail} />
 
         <button
+          name="sendOtpButton"
           className={`my-4 w-[90%] rounded-lg bg-[#003084] py-2 font-semibold text-white transition hover:bg-[#00153B] md:w-[70%] ${sendingOtp && "opacity-50"
             }`}
           onClick={handleSendOtp}
@@ -102,6 +93,7 @@ const ForgotPasswordPage: React.FC = () => {
         {isOtpSent && (
           <p className="text-[14px]">
             <button
+              name="resendOtpButton"
               className={`font-medium text-secondary ${resendDisabled
                 ? "cursor-not-allowed opacity-50"
                 : "hover:bg-transparent hover:text-primary"
@@ -139,7 +131,7 @@ const ForgotPasswordPage: React.FC = () => {
             Continue as a Guest
           </Link>
         </div>
-      </motion.div>
+      </div>
 
 
     </div>

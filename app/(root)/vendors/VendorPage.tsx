@@ -42,7 +42,7 @@ export default function VendorPage() {
               onChange={(e) => setSearch(e.target.value)}
               className="w-full rounded-l-md border-[1.5px] border-blue-300 px-4 py-2 outline-none focus:border-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="rounded-r-md bg-primary px-4 text-white hover:bg-blue-800">
+            <button name="searchButton" className="rounded-r-md bg-primary px-4 text-white hover:bg-blue-800">
               <FaSearch />
             </button>
           </div>

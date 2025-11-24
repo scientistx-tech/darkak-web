@@ -24,6 +24,7 @@ const Page = () => {
         subTitle={`Order number: ${orderIds.join(", ")} Placed Successfully.`}
         extra={[
           <button
+            name="buyAgain"
             key="buy again"
             onClick={() => {
               router.push("/");

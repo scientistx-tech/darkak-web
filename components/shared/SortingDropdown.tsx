@@ -106,6 +106,7 @@ const SortingDropdown: React.FC<SortingDropdownProps> = ({
         ref={dropdownRef}
       >
         <button
+          name="sortingDropdownButton"
           onClick={(e) => {
             e.stopPropagation();
             toggleDropdown();

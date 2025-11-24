@@ -36,6 +36,7 @@ export default function NotFound() {
 
             <button
               onClick={() => router.back()}
+              name="back"
               className="ml-5-[9px] text-white border-2 border-primary hover:bg-primary bg-primary rounded-lg hover:text-white font-semibold"
             >
               
@@ -45,7 +46,7 @@ export default function NotFound() {
         </div>
 
         <div className="w-[50%] flex justify-center items-center">
-          <Image  src={Img} alt="Icon" />
+          <Image height={400}  width={400} src={Img} alt="Icon"  loading="eager" sizes="(max-width: 500px) 100vw, 500px" />
         </div>
       </div>
     </div>

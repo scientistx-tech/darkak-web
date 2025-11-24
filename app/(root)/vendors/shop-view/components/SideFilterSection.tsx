@@ -101,6 +101,7 @@ const SideFilterSection: React.FC<{
               </span>
               {cat.sub_category && cat.sub_category.length > 0 && (
                 <button
+                  name={`toggleCategory-${cat.id}`}
                   className="ml-2 p-1 text-gray-500 hover:text-blue-600 focus:outline-none"
                   onClick={() => handleToggle(cat.id)}
                   aria-label={
@@ -161,6 +162,7 @@ const SideFilterSection: React.FC<{
                         {sub.sub_sub_category &&
                           sub.sub_sub_category.length > 0 && (
                             <button
+                              name={`toggleSubCategory-${sub.id}`}
                               className="ml-2 mt-2 p-1 text-gray-500 hover:text-blue-600 focus:outline-none"
                               onClick={() => handleToggle(sub.id)}
                               aria-label={
@@ -324,6 +326,7 @@ const SideFilterSection: React.FC<{
               selectedSubCategory ||
               selectedSubSubCategory) && (
               <button
+              name="clearCategoryFilter"
                 onClick={() => {
                   setSelectedCategory("");
                   setSelectedSubCategory("");
@@ -343,6 +346,7 @@ const SideFilterSection: React.FC<{
               </button>
             )}
             <button
+              name="toggleCategoryFilter"
               onClick={handleOpenClose}
               className="flex size-[30px] items-center justify-center rounded-full bg-[rgb(0,48,132)]"
             >
@@ -424,8 +428,11 @@ const SideFilterSection: React.FC<{
                 <Image
                   src={brand.image}
                   alt={brand.title}
+                  height={20}
+                  width={20}
                   className="h-5 w-5 object-contain"
-                  loading="lazy"
+                  loading="eager"
+                  sizes="(max-width: 20px) 100vw, 20px"
                 />
               )}
               <span className="truncate text-sm">{brand.title}</span>
@@ -434,6 +441,7 @@ const SideFilterSection: React.FC<{
         </div>
         {filteredBrands.length > 10 && (
           <button
+            name="toggleBrandFilter"
             className="mt-2 w-full rounded bg-blue-200 py-1 text-xs font-medium text-blue-900 hover:bg-blue-300"
             onClick={() => setShowAllBrands((v) => !v)}
             type="button"

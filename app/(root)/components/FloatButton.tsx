@@ -3,13 +3,13 @@ import Loader from "@/components/shared/Loader";
 import ProfileImg from "@/Data/Img/profile.jpg";
 import { useCreateLiveChatMutation, useGetLiveChatStatusQuery } from "@/redux/services/liveChatApis";
 import { Button, Input } from "antd";
-import { AnimatePresence, motion } from "framer-motion";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useState } from "react";
 import { FaComments, FaMinus, FaTimes, FaWhatsapp } from "react-icons/fa";
 import { toast } from "react-toastify";
 import NoneUserChat from "./NoneUserChat";
+import Link from "next/link";
 function generateRefToken(prefix = "REF") {
   const randomPart = Math.random().toString(36).substring(2, 10).toUpperCase();
   const timestamp = Date.now().toString(36).toUpperCase();
@@ -82,41 +82,38 @@ export default function FloatButton() {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Hover Options */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.25 }}
-              className="mb-3 flex flex-col items-end gap-2"
-            >
-              {liveChatStatus && liveChatStatus.status ? (
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md transition-all hover:bg-blue-700"
-                >
-                  <FaComments />
-                  Live Chat
-                </button>
-              ) : null}
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-md transition-all hover:bg-green-600"
+        {isHovered && (
+          <div
+            className="mb-3 flex flex-col items-end gap-2"
+          >
+            {liveChatStatus && liveChatStatus.status ? (
+              <button
+                name="liveChat"
+                onClick={() => setIsFormOpen(true)}
+                className="flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md transition-all hover:bg-blue-700"
               >
-                <FaWhatsapp />
-                WhatsApp
-              </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <FaComments />
+                Live Chat
+              </button>
+            ) : null}
+
+            <Link
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-md transition-all hover:bg-green-600"
+            >
+              <FaWhatsapp />
+              WhatsApp
+            </Link>
+          </div>
+        )}
+
 
         {/* Main Floating Icon */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
+
+        <div
           className="relative cursor-pointer rounded-full border-2 border-primary shadow-lg"
         >
           <Image
@@ -124,20 +121,19 @@ export default function FloatButton() {
             alt="Support Agent"
             width={60}
             height={60}
+            loading="eager"
+            sizes="(max-width: 60px) 100vw, 60px"
             className="h-[60px] w-[60px] rounded-full border-2 border-white shadow-lg"
           />
           <span className="absolute right-0 top-0 h-3 w-3 animate-ping rounded-full border-2 border-white bg-green-500"></span>
           <span className="absolute right-0 top-0 h-3 w-3 rounded-full border-2 border-white bg-green-500"></span>
-        </motion.div>
+        </div>
       </div>
 
       {/* 1️⃣ Name & Email Form Modal (Floating) */}
       {isFormOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 80 }}
-          transition={{ duration: 0.3 }}
+
+        <div
           className="fixed bottom-20 right-6 z-60 w-[320px] rounded-xl bg-white p-5 shadow-2xl"
         >
           <div className="flex items-center justify-between">
@@ -145,6 +141,7 @@ export default function FloatButton() {
               Start Live Chat
             </h2>
             <button
+              name="closeForm"
               onClick={() => setIsFormOpen(false)}
               className="text-gray-500 hover:text-red-500"
             >
@@ -167,6 +164,7 @@ export default function FloatButton() {
             />
             <Button loading={chatCreating}
               disabled={chatCreating}
+              name="startChat"
               type="primary"
               className="bg-blue-600 hover:bg-blue-700"
               onClick={handleStartChat}
@@ -175,16 +173,12 @@ export default function FloatButton() {
               Start Chat
             </Button>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* 2️⃣ Floating Chat Modal */}
       {isChatOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.3 }}
+        <div
           className="fixed bottom-4 right-6 z-70 flex h-[420px] w-[340px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"
         >
           {/* Chat Header */}
@@ -193,18 +187,19 @@ export default function FloatButton() {
               Chat with Support ({name})
             </span>
             <div className="flex gap-2">
-              <button
+              <Button
+                name="minimizeChat"
                 onClick={handleMinimizeChat}
                 className="hover:text-yellow-300"
               >
                 <FaMinus />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleCloseChat}
                 className="hover:text-red-300"
               >
                 <FaTimes />
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -215,22 +210,18 @@ export default function FloatButton() {
               (<Loader />)}
 
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* 3️⃣ Minimized Chat Button */}
       {isMinimized && (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 40 }}
-          transition={{ duration: 0.3 }}
+        <div
           onClick={handleReopenChat}
           className="fixed bottom-6 right-6 z-80 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-blue-700"
         >
           <FaComments />
           Continue Chat
-        </motion.div>
+        </div>
       )}
     </>
   );

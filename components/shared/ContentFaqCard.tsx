@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
@@ -39,13 +38,12 @@ export default function ContentFaqCard({ content, faqs }: Props) {
 
           <div className="relative">
             <div
-              className={`rendered-html prose prose-sm md:prose-lg text-gray-700 leading-relaxed transition-all duration-300 break-words pr-2 ${
-                showMore
-                  ? 'max-h-none overflow-visible'
-                  : 'max-h-56 md:max-h-72 lg:max-h-[16rem] overflow-y-auto hide-scrollbar'
-              }`}
+              className={`rendered-html prose prose-sm md:prose-lg text-gray-700 leading-relaxed transition-all duration-300 break-words pr-2 ${showMore
+                ? 'max-h-none overflow-visible'
+                : 'max-h-56 md:max-h-72 lg:max-h-[16rem] overflow-y-auto hide-scrollbar'
+                }`}
               dangerouslySetInnerHTML={{ __html: content }}
-              // ensure long words/images wrap and inner scroll on small screens
+            // ensure long words/images wrap and inner scroll on small screens
             />
 
             {/* Fade overlay when collapsed */}
@@ -56,17 +54,18 @@ export default function ContentFaqCard({ content, faqs }: Props) {
 
           <div className="mt-4 flex w-full justify-end">
             <button
+              name="seeMoreButton"
               onClick={() => setShowMore((prev) => !prev)}
               className="inline-flex items-center gap-2 rounded-full  bg-primaryBlue px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity duration-200"
-              // style={{ backgroundColor: 'var(--color-secondary)' }}
+            // style={{ backgroundColor: 'var(--color-secondary)' }}
             >
               {showMore
                 ? lang === 'bn'
                   ? 'কম দেখান'
                   : 'See Less'
                 : lang === 'bn'
-                ? 'আরও দেখুন'
-                : 'See More'}
+                  ? 'আরও দেখুন'
+                  : 'See More'}
             </button>
           </div>
         </div>
@@ -87,6 +86,7 @@ export default function ContentFaqCard({ content, faqs }: Props) {
                 className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-md transition-all duration-300"
               >
                 <button
+                  name={`faqButton-${index}`}
                   className="flex w-full items-center justify-between px-6 py-5 text-left text-lg font-medium text-gray-800 transition hover:bg-gray-50"
                   onClick={() => toggleFAQ(index)}
                 >
@@ -98,21 +98,16 @@ export default function ContentFaqCard({ content, faqs }: Props) {
                   )}
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    >
-                      <div className="px-6 pb-6 pt-0 text-base leading-relaxed text-gray-600">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen && (
+                  <div
+                    key="content"
+
+                  >
+                    <div className="px-6 pb-6 pt-0 text-base leading-relaxed text-gray-600">
+                      {faq.answer}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

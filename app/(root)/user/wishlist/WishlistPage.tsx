@@ -188,9 +188,7 @@ const WishlistPage: React.FC = () => {
                       height={120}
                       className="object-contain"
                       sizes="(max-width: 640px) 30vw, 120px"
-                      quality={70}
-                      decoding="async"
-                      loading="lazy"
+                      loading="eager"
                     />
                     {hasDiscount && (
                       <span className="absolute left-2 top-2 rounded-full bg-red-600 px-2 py-1 text-xs font-semibold text-white">
@@ -219,6 +217,7 @@ const WishlistPage: React.FC = () => {
 
                 <div className="mt-4 flex items-center justify-between md:mt-0 md:ml-auto md:flex-col md:items-end md:gap-3">
                   <button
+                    name={`removeWishlistItem-${item.id}`}
                     onClick={() => setDeleteId(item.id)}
                     className="inline-flex items-center justify-center rounded-full border border-gray-200 p-2 text-red-500 hover:border-red-500"
                     aria-label="Remove wishlist item"
@@ -227,11 +226,11 @@ const WishlistPage: React.FC = () => {
                   </button>
 
                   <div className="flex items-center gap-3">
-                    <Button onClick={(e: any) => handleBuyNow(e)} className="rounded-full bg-primaryBlue px-4 py-2 text-sm font-semibold text-nowrap text-white hover:bg-primaryBlue/90">
+                    <Button name={`buyNow-${item.id}`} onClick={(e: any) => handleBuyNow(e)} className="rounded-full bg-primaryBlue px-4 py-2 text-sm font-semibold text-nowrap text-white hover:bg-primaryBlue/90">
                       {lang === 'bn' ? 'এখনই কিনুন' : 'Buy Now'}
                     </Button>
 
-                    <Button loading={cartLoading} onClick={(e: any) => handleAddToCart(e)} className="rounded-full border border-primaryBlue bg-white px-3 py-2 text-primaryBlue hover:bg-primaryBlue hover:text-white">
+                    <Button name={`addToCart-${item.id}`} loading={cartLoading} onClick={(e: any) => handleAddToCart(e)} className="rounded-full border border-primaryBlue bg-white px-3 py-2 text-primaryBlue hover:bg-primaryBlue hover:text-white">
                       <FaShoppingCart />
                     </Button>
                   </div>

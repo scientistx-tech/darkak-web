@@ -74,7 +74,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'ইমেইল' : 'Email'}</h4>
-                  <p className="mt-1 text-gray-600">info@darkak.com.bd</p>
+                  <p className="mt-1 text-gray-800">info@darkak.com.bd</p>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'ফোন' : 'Phone'}</h4>
-                  <p className="mt-1 text-gray-600">01711726501</p>
+                  <p className="mt-1 text-gray-800">01711726501</p>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">{lang === 'bn' ? 'অবস্থান' : 'Location'}</h4>
-                  <p className="mt-1 text-gray-600">Upashahar, Bogura -5800</p>
+                  <p className="mt-1 text-gray-800">Upashahar, Bogura -5800</p>
                 </div>
               </div>
             </div>
@@ -111,7 +111,7 @@ const ContactPage: React.FC = () => {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'নাম' : 'Name'}</label>
+                  <label htmlFor="name" className="mb-1 block text-sm text-gray-800">{lang === 'bn' ? 'নাম' : 'Name'}</label>
                   <input
                     id="name"
                     type="text"
@@ -122,7 +122,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'ইমেইল' : 'Email'}</label>
+                  <label htmlFor="email" className="mb-1 block text-sm text-gray-800">{lang === 'bn' ? 'ইমেইল' : 'Email'}</label>
                   <input
                     id="email"
                     type="email"
@@ -133,7 +133,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'ফোন' : 'Phone'}</label>
+                  <label htmlFor="phone" className="mb-1 block text-sm text-gray-800">{lang === 'bn' ? 'ফোন' : 'Phone'}</label>
                   <input
                     id="phone"
                     type="tel"
@@ -144,13 +144,13 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'বিষয়' : 'Subject'}</label>
+                  <label htmlFor="subject" className="mb-1 block text-sm text-gray-800">{lang === 'bn' ? 'বিষয়' : 'Subject'}</label>
                   <input id="subject" type="text" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none " />
                 </div>
               </div>
 
               <div className="mt-4">
-                <label htmlFor="message" className="mb-1 block text-sm text-gray-600">{lang === 'bn' ? 'বার্তা' : 'Message'}</label>
+                <label htmlFor="message" className="mb-1 block text-sm text-gray-800">{lang === 'bn' ? 'বার্তা' : 'Message'}</label>
                 <textarea
                   id="message"
                   value={message}
@@ -179,7 +179,7 @@ const ContactPage: React.FC = () => {
           height="400"
           style={{ border: 0 }}
           allowFullScreen={false}
-          loading="lazy"
+          loading="eager"
           referrerPolicy="no-referrer-when-downgrade"
           className="mt-5 rounded-xl shadow-xl"
         />

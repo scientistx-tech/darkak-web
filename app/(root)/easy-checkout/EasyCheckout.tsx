@@ -10,7 +10,6 @@ import { RootState } from '@/redux/store';
 import { getLocalStorage } from '@/utils/localStorage';
 import { CheckOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Input, Modal, notification } from 'antd';
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -254,27 +253,23 @@ const EasyCheckout: React.FC = () => {
   return (
     <div className="px-2 py-6 md:container md:mx-auto md:px-4 xl:px-6">
       {/* Animated Info Alert */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={paymentMethod}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.4 }}
-          className="mb-6 rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1.5 text-center text-primaryBlue md:px-4 md:py-3"
-        >
-          {paymentMethod === 'cod' ? (
-            <>
-              অর্ডার সংক্রান্ত যেকোনো প্রয়োজনে কথা বলুন আমাদের কাস্টমার সার্ভিস প্রতিনিধির সাথে -{' '}
-              <strong> 01711726501</strong>
-            </>
-          ) : (
-            <>
-              অনলাইন পেমেন্ট সংক্রান্ত সহায়তার জন্য হেল্পলাইন - <strong> 01711726501</strong>
-            </>
-          )}
-        </motion.div>
-      </AnimatePresence>
+
+            <div
+              key={paymentMethod}
+              className="mb-6 rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1.5 text-center text-primaryBlue md:px-4 md:py-3"
+            >
+              {paymentMethod === 'cod' ? (
+                <>
+                  অর্ডার সংক্রান্ত যেকোনো প্রয়োজনে কথা বলুন আমাদের কাস্টমার সার্ভিস প্রতিনিধির সাথে -{' '}
+                  <strong> 01711726501</strong>
+                </>
+              ) : (
+                <>
+                  অনলাইন পেমেন্ট সংক্রান্ত সহায়তার জন্য হেল্পলাইন - <strong> 01711726501</strong>
+                </>
+              )}
+            </div>
+     
 
       {/* Payment Method */}
       <div className="flex w-full flex-col gap-4 p-4 md:flex-row md:p-0">
@@ -287,9 +282,10 @@ const EasyCheckout: React.FC = () => {
 
           <div className="mt-5 flex w-full justify-evenly rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1 transition-all duration-500 md:w-[90%] md:px-3 md:py-2">
             <button
+              name="cod"
               className={`flex items-center gap-2 rounded px-3 py-1 font-medium transition-all duration-300 md:px-3 md:py-1.5 ${paymentMethod === 'cod'
-                  ? 'bg-primaryBlue text-white'
-                  : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
+                ? 'bg-primaryBlue text-white'
+                : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
                 }`}
               onClick={() => setPaymentMethod('cod')}
             >
@@ -298,9 +294,10 @@ const EasyCheckout: React.FC = () => {
             </button>
 
             <button
+              name="online"
               className={`flex items-center gap-2 rounded px-3 py-1.5 font-medium transition-all duration-300 ${paymentMethod === 'online'
-                  ? 'bg-primaryBlue text-white'
-                  : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
+                ? 'bg-primaryBlue text-white'
+                : 'text-black hover:bg-slate-50 hover:text-primaryBlue'
                 }`}
               onClick={() => setPaymentMethod('online')}
             >
@@ -470,6 +467,7 @@ const EasyCheckout: React.FC = () => {
 
             <div className="mt-5 hidden md:block">
               <button
+                name="checkout"
                 className="w-full rounded-md bg-primaryBlue px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-primaryBlue/90"
                 onClick={handleCheckout}
               >
@@ -496,6 +494,8 @@ const EasyCheckout: React.FC = () => {
                 width={64}
                 height={64}
                 className="rounded"
+                loading="eager"
+                sizes="(max-width: 64px) 100vw, 64px"
               />
               <div className="flex-1">
                 <div className="text-sm font-semibold">{item?.product?.title}</div>
@@ -529,6 +529,7 @@ const EasyCheckout: React.FC = () => {
 
                 <div className="flex">
                   <button
+                    name="decreaseQuantity"
                     onClick={() => updateQuantity(item.id, 'dec')}
                     className="bg-primaryBlue px-1.5 py-1 text-white opacity-80 transition-all duration-300 hover:opacity-100"
                   >
@@ -538,6 +539,7 @@ const EasyCheckout: React.FC = () => {
                     {item.quantity}
                   </p>
                   <button
+                    name="increaseQuantity"
                     onClick={() => updateQuantity(item.id, 'inc')}
                     className="bg-primaryBlue px-1.5 py-1 text-white opacity-80 transition-all duration-300 hover:opacity-100"
                   >
@@ -568,7 +570,7 @@ const EasyCheckout: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <Button onClick={handleRemoveCoupon} type="default">
+                  <Button  name="removeCoupon" onClick={handleRemoveCoupon} type="default">
                     {lang === 'bn' ? 'বাতিল করুন' : 'Remove'}
                   </Button>
                 </div>
@@ -622,6 +624,7 @@ const EasyCheckout: React.FC = () => {
         </div>
         <div className="mt-5 md:hidden">
           <button
+              name="checkout"
             className="w-full rounded-md bg-primaryBlue px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-primaryBlue/90"
             onClick={handleCheckout}
           >

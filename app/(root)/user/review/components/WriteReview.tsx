@@ -228,6 +228,7 @@ export default function WriteReview({ refetch }: { refetch: () => void }) {
               className="rounded-lg object-cover"
             />
             <button
+              name={`removeSelectedImage-${index}`}
               type="button"
               onClick={() => handleRemoveImage(index)}
               className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white"
@@ -244,6 +245,7 @@ export default function WriteReview({ refetch }: { refetch: () => void }) {
               controls
             />
             <button
+              name="removeSelectedVideo"
               type="button"
               onClick={handleRemoveVideo}
               className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white"
@@ -291,6 +293,7 @@ export default function WriteReview({ refetch }: { refetch: () => void }) {
             Cancel
           </Link>
           <button
+            name="submitReview"
             type="submit"
             disabled={isLoading || imageUploading || videoUploading}
             className={`w-32 rounded-full py-2 text-white transition ${

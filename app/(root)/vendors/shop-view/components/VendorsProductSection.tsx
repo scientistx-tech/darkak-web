@@ -109,6 +109,7 @@ const VendorsProductsSection = ({
       {/* Hamburger Button */}
       <div className="mb-4 block lg:hidden">
         <button
+          name="openSidebar"
           onClick={() => setIsSidebarOpen(true)}
           className="flex items-center gap-2 rounded-md px-4 py-2 text-[#003084]"
         >
@@ -132,7 +133,7 @@ const VendorsProductsSection = ({
           <div className="absolute left-0 top-0 h-full w-4/5 max-w-xs transform bg-white shadow-md transition-transform duration-300 ease-in-out">
             <div className="flex items-center justify-between border-b p-4">
               <h2 className="text-lg font-semibold">Filters</h2>
-              <button onClick={closeSidebar}>
+              <button name="closeSidebar" onClick={closeSidebar}>
                 <svg
                   className="h-6 w-6 text-gray-700 hover:text-red-500"
                   viewBox="0 0 24 24"

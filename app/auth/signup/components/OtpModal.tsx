@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useVerifyEmailOTPMutation, useVerifyPhoneOTPMutation } from '@/redux/services/authApis';
 import { toast } from 'react-toastify';
@@ -106,11 +105,7 @@ const OtpModal: React.FC<Props> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <motion.div
-        initial={{ y: 50, opacity: 0, scale: 0.95 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        exit={{ y: 50, opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.3 }}
+      <div
         className="w-[90%] max-w-md rounded-lg bg-white p-6 shadow-lg"
       >
         <h2 className="mb-4 text-center text-xl font-semibold text-gray-800">
@@ -129,12 +124,14 @@ const OtpModal: React.FC<Props> = ({
 
         <div className="mb-4 flex justify-between">
           <button
+            name="cancelOtpButton"
             onClick={onClose}
             className="rounded bg-gray-200 px-4 py-2 font-medium hover:bg-gray-300"
           >
             Cancel
           </button>
           <button
+            name="submitOtpButton"
             onClick={handleSubmit}
             disabled={isLoading}
             className="rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
@@ -150,6 +147,7 @@ const OtpModal: React.FC<Props> = ({
             </p>
           ) : (
             <button
+              name="resendOtpButton"
               onClick={handleResendOtp}
               className="text-sm font-medium text-blue-600 hover:underline"
             >
@@ -157,7 +155,7 @@ const OtpModal: React.FC<Props> = ({
             </button>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

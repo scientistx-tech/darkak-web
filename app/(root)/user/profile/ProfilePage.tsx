@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaCamera } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useGetUserQuery } from "@/redux/services/authApis";
@@ -84,14 +83,10 @@ const ProfilePage: React.FC = () => {
 
         {/* Right Content */}
         <div className="w-full  md:w-2/3">
-          <AnimatePresence mode="wait">
+
             {activeTab === "personal" && (
-              <motion.div
+              <div
                 key="personal"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
                 className="rounded-3xl border border-gray-200 bg-[#f0f4ff] p-10 shadow transition-all "
               >
                 <div className="relative flex w-full justify-center pb-6">
@@ -131,44 +126,43 @@ const ProfilePage: React.FC = () => {
                   isError={isError}
                   isLoading={isLoading}
                 />
-              </motion.div>
+              </div>
             )}
             {activeTab === "edit" && (
-              <motion.div key="edit" {...animationProps}>
+              <div key="edit" {...animationProps}>
                 <EditProfile refetch={refetch} data={data} />
-              </motion.div>
+              </div>
             )}
             {activeTab === "notification" && (
-              <motion.div key="notification" {...animationProps}>
+              <div key="notification" {...animationProps}>
                 <NotificationPage />
-              </motion.div>
+              </div>
             )}
             {activeTab === "order" && (
-              <motion.div key="order" {...animationProps}>
+              <div key="order" {...animationProps}>
                 <OrderHistory />
-              </motion.div>
+              </div>
             )}
             {activeTab === "track" && (
-              <motion.div key="track" {...animationProps}>
+              <div key="track" {...animationProps}>
                 <TrackOrder />
-              </motion.div>
+              </div>
             )}
             {activeTab === "return" && (
-              <motion.div key="return" {...animationProps}>
+              <div key="return" {...animationProps}>
                 <ReturnAndRefund />
-              </motion.div>
+              </div>
             )}
             {activeTab === "review" && (
-              <motion.div key="review" {...animationProps}>
+              <div key="review" {...animationProps}>
                 <ReviewHistory />
-              </motion.div>
+              </div>
             )}
             {activeTab === "customer" && (
-              <motion.div key="customer" {...animationProps}>
+              <div key="customer" {...animationProps}>
                 <CustomerCare />
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </div>

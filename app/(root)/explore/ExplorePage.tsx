@@ -31,7 +31,7 @@ export default function ExplorePage() {
     <div className="w-full">
       {/* Watch Section */}
       <div className="relative h-[500px] w-full overflow-hidden">
-        <Image src={watchImg} alt="Explore Banner" fill className="object-cover" priority />
+        <Image height={500} width={1920} src={watchImg} alt="Explore Banner"  fill className="object-cover" priority />
         <div className="absolute inset-0 flex flex-col items-start justify-end bg-black bg-opacity-40 p-12 px-4 text-center text-white md:p-20">
           <h1 className="mb-4 font-serif text-4xl font-medium">
             {lang === 'bn' ? 'আমাদের সংগ্রহ ঘুরে দেখুন' : 'Explore Our Collections'}

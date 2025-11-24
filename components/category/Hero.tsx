@@ -9,6 +9,8 @@ const Hero = () => {
         alt="Category image"
         fill
         className="object-cover"
+        loading="eager"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
       />
     </div>
   );

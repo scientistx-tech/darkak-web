@@ -66,6 +66,7 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className={`mt-6 flex flex-wrap ${justifyClass} gap-2`}>
       {currentPage > 1 && (
         <button
+          name="paginationPrevButton"
           onClick={() => onPageChange(currentPage - 1)}
           className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 px-4 py-2 text-sm font-semibold text-blue-700 shadow transition-all duration-200 hover:from-blue-200 hover:to-blue-300 hover:text-blue-900 active:scale-95"
           aria-label="Previous page"
@@ -82,6 +83,7 @@ const Pagination: React.FC<PaginationProps> = ({
           </span>
         ) : (
           <button
+            name={`paginationButton-${page}`}
             key={page}
             onClick={() => onPageChange(page)}
             className={`rounded-full px-4 py-2 text-sm font-semibold shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
@@ -98,6 +100,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
       {currentPage < totalPages && (
         <button
+          name="paginationNextButton"
           onClick={() => onPageChange(currentPage + 1)}
           className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 px-4 py-2 text-sm font-semibold text-blue-700 shadow transition-all duration-200 hover:from-blue-200 hover:to-blue-300 hover:text-blue-900 active:scale-95"
           aria-label="Next page"

@@ -199,6 +199,7 @@ export default function ReturnAndRefund() {
                   className="h-full w-full object-cover transition duration-200 hover:scale-105"
                 />
                 <button
+                  name="removeSelectedImage"
                   onClick={() => {
                     const updated = [...imageURLs];
                     updated.splice(idx, 1);
@@ -223,6 +224,7 @@ export default function ReturnAndRefund() {
           <div className="relative mt-4 w-full overflow-hidden rounded-xl shadow-lg sm:w-64">
             <video src={videoURL} controls className="w-full rounded-xl" />
             <button
+              name="removeSelectedVideo"
               onClick={() => {
                 setVideoURL(null);
                 setVideo(null);
@@ -282,6 +284,7 @@ export default function ReturnAndRefund() {
 
       {/* Submit Button */}
       <button
+        name="submitReturnRequest"
         disabled={!selectedOrder || !reason || !returnMethod || isSubmitting}
         className="w-full rounded-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 px-6 py-3 text-lg font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400"
         onClick={handleSubmitRequest}

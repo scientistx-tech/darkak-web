@@ -96,6 +96,7 @@ const SortBy = ({
           </p>
           {categoryTitle !== (lang === "bn" ? "সব প্রোডাক্ট" : "All Products") && (
             <button
+              name="showAllProductsButton"
               onClick={() => router.push("/category")}
               className="cursor-pointer text-sm text-blue-600 hover:underline"
             >
@@ -115,6 +116,7 @@ const SortBy = ({
             ref={dropdownRef}
           >
             <button
+              name="sortByDropdownButton"
               onClick={(e) => {
                 e.stopPropagation();
                 toggleDropdown();

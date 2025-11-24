@@ -164,12 +164,17 @@ export default function NoneUserChat({ name, conversationId }: { name: string, c
           <div className="mt-3 flex items-center justify-end">
             <div className="relative">
               <Image
+                height={96}
+                width={96}
                 src={imagePreview}
                 alt="Preview"
                 className="w-24 h-24 rounded-lg border object-cover shadow"
+                loading="eager"
+                sizes="(max-width: 96px) 100vw, 96px"
               />
               
               <button
+                name="removeImage"
                 onClick={() => setImagePreview(null)}
                 className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5"
               >
@@ -183,6 +188,7 @@ export default function NoneUserChat({ name, conversationId }: { name: string, c
       {/* Input Area */}
       <div className="mt-3 flex items-center gap-2 border-t border-gray-200 pt-3">
         <button
+          name="attachImage"
           onClick={() => fileInputRef.current?.click()}
           className="flex items-center justify-center rounded-lg border border-gray-300 bg-white p-2 text-gray-600 hover:text-blue-600 hover:border-blue-600 transition"
         >
@@ -205,6 +211,7 @@ export default function NoneUserChat({ name, conversationId }: { name: string, c
         />
         <Button loading={uploading} disabled={uploading}
           type="primary"
+          name="sendMessage"
           icon={<SendOutlined />}
           className="bg-blue-600 hover:bg-blue-700"
           onClick={handleSend}
@@ -223,6 +230,8 @@ function ImageBubble({ image, isUser }: { image: string; isUser: boolean }) {
       <Image
         src={image}
         alt="Sent"
+        loading="eager"
+        sizes="(max-width: 150px) 100vw, 150px"
         className="max-w-[150px] rounded-lg shadow-md border object-cover"
       />
     </div>

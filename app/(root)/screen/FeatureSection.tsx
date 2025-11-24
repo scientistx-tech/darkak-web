@@ -99,13 +99,14 @@ const FeatureSection = () => {
           <Link
             key={index}
             href={link.href || "#"}
+            prefetch={false}
             className="flex flex-col items-center border-2 border-primary justify-center rounded-lg bg-blue-50  px-4 py-6 text-center transition-shadow hover:shadow-md"
           >
             {link.icon}
             <h3 className="text-base font-semibold text-gray-800">
               {link.title}
             </h3>
-            <p className="text-sm text-gray-500">{link.description}</p>
+            <p className="text-sm text-gray-800">{link.description}</p>
           </Link>
         ))}
       </div>

@@ -37,6 +37,7 @@ export default function Categories({ categories }: { categories: any }) {
 
       <div className="relative w-full">
         <button
+          name="scrollLeft"
           onClick={() => scroll("left")}
           className="absolute left-0 top-1/2 z-20 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
         >
@@ -69,8 +70,9 @@ export default function Categories({ categories }: { categories: any }) {
         `}</style>
 
         <button
+          name="scrollRight"
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
+          className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-primaryBlue bg-transparent text-primaryBlue cursor-pointer shadow-md transition-all duration-300 hover:bg-primaryBlue hover:text-white"
         >
           <FaAngleRight className="text-xl" />
         </button>
@@ -93,7 +95,8 @@ const CategoriesComponent: React.FC<CategoriesProps> = ({
   return (
     <Link
       href={href}
-      className="group relative flex h-[180px] w-[160px] flex-shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl md:h-[220px] md:w-[200px]"
+      aria-label={`Category: ${name}`}
+      className="group relative flex h-[180px] w-40 flex-shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl md:h-[220px] md:w-[200px]"
     >
       {/* Animated Background Gradient */}
       <div
@@ -108,10 +111,12 @@ const CategoriesComponent: React.FC<CategoriesProps> = ({
         <span className="relative text-4xl transition-transform duration-500 group-hover:scale-110 md:text-5xl">
           <Image
             src={icon}
-            alt={name}
+            alt={name || "Category Icon"}
             width={40}
             height={40}
             className="object-contain"
+            loading="eager"
+            sizes="(max-width: 640px) 40px, 40px"
           />
         </span>
       </div>

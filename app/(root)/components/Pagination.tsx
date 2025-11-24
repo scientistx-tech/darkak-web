@@ -46,6 +46,7 @@ export default function Pagination({
     >
       {/* Prev button */}
       <button
+        name="prevPage"
         onClick={() => goToPage(current - 1)}
         disabled={current === 1}
         className="px-3 py-1 text-sm rounded-md border border-gray-300 disabled:opacity-50 hover:bg-gray-100"
@@ -61,6 +62,7 @@ export default function Pagination({
           </span>
         ) : (
           <button
+            name={`page${p}`}
             key={index}
             onClick={() => goToPage(p as number)}
             className={`px-3 py-1 text-sm rounded-md border border-gray-300 ${
@@ -76,6 +78,7 @@ export default function Pagination({
 
       {/* Next button */}
       <button
+        name="nextPage"
         onClick={() => goToPage(current + 1)}
         disabled={current === totalPages}
         className="px-3 py-1 text-sm rounded-md border border-gray-300 disabled:opacity-50 hover:bg-gray-100"

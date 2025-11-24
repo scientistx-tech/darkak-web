@@ -24,7 +24,7 @@ const WatchBrandContainer = ({ img, alt, link }: { img: any; alt: string; link: 
   className="group relative flex h-[90px] w-[90px] items-center justify-center overflow-hidden rounded-xl border-2 border-primary shadow-lg transition-transform duration-300 hover:scale-105 hover:border-primaryBlue bg-white md:h-[130px] md:w-[130px]"
 >
   <div className="relative h-[50px] w-[50px] md:h-[65px] md:w-[65px]">
-    <Image src={img} alt={alt} fill className="object-contain" />
+    <Image height={50} width={50} src={img} alt={alt} className="object-contain" />
   </div>
 </Link>
 

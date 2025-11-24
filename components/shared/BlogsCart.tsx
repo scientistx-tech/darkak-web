@@ -34,9 +34,7 @@ const BlogsCart: React.FC<BlogCardProps> = ({
             width={800}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, 400px"
-            quality={70}
-            decoding="async"
-            loading="lazy"
+            loading="eager"
           />
         </div>
 

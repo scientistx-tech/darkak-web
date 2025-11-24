@@ -68,6 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* Pagination Controls */}
       <div className="w-full lg:w-1/3 flex flex-wrap items-center justify-center gap-2">
         <button
+          name="paginationPrevButton"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
           className={`rounded-md px-3 py-2 text-sm text-blue-700 ${
@@ -86,6 +87,7 @@ const Pagination: React.FC<PaginationProps> = ({
             </span>
           ) : (
             <button
+              name={`paginationButton-${page}`}
               key={page}
               onClick={() => onPageChange(page as number)}
               className={`flex h-8 w-8 items-center justify-center rounded-full text-sm ${
@@ -100,6 +102,7 @@ const Pagination: React.FC<PaginationProps> = ({
         )}
 
         <button
+          name="paginationNextButton"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
           className={`rounded-md px-3 py-2 text-sm text-blue-700 ${

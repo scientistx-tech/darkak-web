@@ -34,6 +34,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
   return (
     <div className="flex space-x-4">
       <button
+        name="socialButton-facebook"
         onClick={() => openShareWindow('facebook')}
         aria-label="Share on Facebook"
         className="hover:text-blue-600"
@@ -41,6 +42,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
         <FaFacebookF size={24} />
       </button>
       <button
+        name="socialButton-twitter"
         onClick={() => openShareWindow('twitter')}
         aria-label="Share on Twitter"
         className="hover:text-blue-400"
@@ -48,6 +50,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
         <FaTwitter size={24} />
       </button>
       <button
+        name="socialButton-whatsapp"
         onClick={() => openShareWindow('whatsapp')}
         aria-label="Share on WhatsApp"
         className="hover:text-green-500"
@@ -55,6 +58,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
         <FaWhatsapp size={24} />
       </button>
       <button
+        name="socialButton-pinterest"
         onClick={() => openShareWindow('pinterest')}
         aria-label="Share on Pinterest"
         className="hover:text-red-600"
@@ -62,6 +66,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
         <FaPinterestP size={24} />
       </button>
       <button
+        name="socialButton-linkedin"
         onClick={() => openShareWindow('linkedin')}
         aria-label="Share on LinkedIn"
         className="hover:text-blue-700"
@@ -69,6 +74,7 @@ const SocialShare = ({ url, title }: { url: string; title: string }) => {
         <FaLinkedinIn size={24} />
       </button>
       <button
+        name="socialButton-telegram"
         onClick={() => openShareWindow('telegram')}
         aria-label="Share on Telegram"
         className="hover:text-blue-400"

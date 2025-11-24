@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import SocialButton from './components/SocialButton';
 import InputField from './components/InputField';
 import Link from 'next/link';
@@ -62,10 +61,7 @@ const SignupPage: React.FC = () => {
 
   return (
     <div className="flex h-screen items-center justify-center bg-primaryBlue">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+      <div
         className="z-10 flex w-full max-w-md flex-col items-center justify-center rounded-2xl bg-white px-8 py-10 shadow-lg"
       >
         <p className="mb-1 text-2xl font-medium text-secondary">
@@ -129,6 +125,7 @@ const SignupPage: React.FC = () => {
           onTogglePassword={() => setShowConfirmPassword(!showConfirmPassword)}
         />
         <button
+          name="signUpButton"
           onClick={handleSignup}
           className="w-[90%] rounded-lg bg-primaryBlue py-2 font-semibold text-white transition hover:bg-primary md:w-[70%]"
         >
@@ -159,7 +156,7 @@ const SignupPage: React.FC = () => {
             Continue as a Guest
           </Link>
         </div>
-      </motion.div>
+      </div>
 
       <OtpModal
         signUpMedium={signUpMedium}

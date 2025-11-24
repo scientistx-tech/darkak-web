@@ -37,6 +37,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
     <div>
       <div className="mt-6 flex w-full flex-col gap-2">
         <button
+          name="personalInformation"
           onClick={() => setActiveTab('personal')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'personal'
@@ -49,6 +50,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="editProfile"
           onClick={() => setActiveTab('edit')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'edit'
@@ -61,6 +63,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="notificationSettings"
           onClick={() => setActiveTab('notification')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'notification'
@@ -73,6 +76,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="orderHistory"
           onClick={() => setActiveTab('order')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'order'
@@ -85,6 +89,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="myReviews"
           onClick={() => setActiveTab('review')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'review'
@@ -97,6 +102,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="trackOrder"
           onClick={() => setActiveTab('track')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'track'
@@ -109,6 +115,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="returnAndRefund"
           onClick={() => setActiveTab('return')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'return'
@@ -121,6 +128,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({ setActiveTab, activeTab }) => {
         </button>
 
         <button
+          name="customerCare"
           onClick={() => setActiveTab('customer')}
           className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 transition-all duration-300 ${
             activeTab === 'customer'

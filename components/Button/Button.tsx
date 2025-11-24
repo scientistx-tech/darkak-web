@@ -21,6 +21,7 @@ function Button({
 }: Props) {
     return (
         <button
+            
             {...props}
             disabled={loading || disabled}
             className={cn(

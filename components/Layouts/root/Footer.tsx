@@ -77,8 +77,12 @@ function Footer() {
       <div className="h-[100px] w-full" />
       <div className="relative w-full bg-gradient-to-b from-[#00153B] to-[#003084] md:h-[500px]">
         <Image
+          height={500}
+          width={1920}
           alt=""
           src={imgBg}
+          loading="eager"
+          sizes="(max-width: 768px) 100vw, 768px"
           className="hidden h-full w-full object-cover opacity-10 md:absolute md:block"
         />
         <div className="absolute flex w-full flex-col bg-[#003084] md:flex-row md:bg-transparent">
@@ -222,7 +226,7 @@ function Footer() {
                       key={i}
                       className="h-[50px] w-auto opacity-70 transition-all duration-500 ease-in-out hover:opacity-100"
                     >
-                      <Image src={img} alt="" className="h-full w-full" />
+                      <Image height={50} width={150} src={img} alt="" className="h-full w-full" loading="eager" sizes="(max-width: 50px) 100vw, 50px" />
                     </button>
                   ))}
                 </div>
@@ -296,15 +300,15 @@ function Footer() {
 
               <p className="mt-1 text-[#F6F6F6] opacity-55 hover:text-white hover:opacity-100 md:mt-3 flex items-center gap-2">
                 <CgMail size={16} />{" "}
-                <a href="mailto:info@darkak.com.bd" className="hover:underline">
+                <Link href="mailto:info@darkak.com.bd" className="hover:underline">
                   info@darkak.com.bd
-                </a>
+                </Link>
               </p>
               <p className="mt-1 text-[#F6F6F6] opacity-55 hover:text-white hover:opacity-100 md:mt-3 flex items-center gap-2">
                 <BiPhone size={16} />{" "}
-                <a href="tel:01711726501" className="hover:underline">
+                <Link href="tel:01711726501" className="hover:underline">
                   01711726501
-                </a>
+                </Link>
               </p>
               <p className="mt-1 text-[#F6F6F6] opacity-55 hover:text-white hover:opacity-100 md:mt-3 flex items-center gap-2">
                 <CiMapPin size={16} /> Upashahar, Bogura - 5800
@@ -315,41 +319,41 @@ function Footer() {
               </p>
 
               <div className="mb-[80px] mt-3 flex gap-4 md:mb-0">
-                <a
+                <Link
                   href="https://www.facebook.com/darkakmart"
                   target="_blank"
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
                   <FaFacebook size={20} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.instagram.com/darkakmart"
                   target="_blank"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
                   <FaInstagram size={20} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.youtube.com/@DarKakMart"
                   target="_blank"
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
                   <FaYoutube size={20} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.pinterest.com/darkakmart"
                   target="_blank"
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
                   <FaPinterest size={20} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://api.whatsapp.com/send?phone=8801711726501&text=hello%F0%9F%98%87"
                   target="_blank"
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primaryDarkBlue text-white hover:bg-primary transition-all duration-500"
                 >
                   <FaWhatsapp size={20} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -357,9 +361,13 @@ function Footer() {
       </div>
 
       <Image
+        height={100}
+        width={1920}
         src={paymentBanner}
         alt="Payment Methods"
         className=" hidden md:block w-full object-cover"
+        loading="eager"
+        sizes="(max-width: 768px) 100vw, 768px"
       />
 
       <div className="hidden md:block bg-gradient-to-b from-[#00153B] to-[#003084] text-white">

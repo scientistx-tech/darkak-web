@@ -267,6 +267,7 @@ const CartPage: React.FC = () => {
                     }
                   >
                     <button
+                      name="decreaseQuantity"
                       onClick={() => decreaseQty(item.id)}
                       className="bg-primaryBlue px-1.5 py-1 text-white transition-all duration-300 hover:bg-primary md:rounded-bl-full md:rounded-tl-full md:px-3 md:py-1.5 md:text-xl"
                       disabled={item.quantity <= (item.product.minOrder ?? 1)}
@@ -285,6 +286,7 @@ const CartPage: React.FC = () => {
                     }
                   >
                     <button
+                      name="increaseQuantity"
                       onClick={() => increaseQty(item.id)}
                       className="bg-primaryBlue px-1.5 py-1 text-white transition-all duration-300 hover:bg-primary md:rounded-br-full md:rounded-tr-full md:px-3 md:py-1.5 md:text-xl"
                       disabled={item.quantity >= (item.product.stock ?? Infinity)}
@@ -330,6 +332,7 @@ const CartPage: React.FC = () => {
                   TK
                 </p>
                 <button
+                  name="deleteItem"
                   onClick={() => showModal(item.id)}
                   className="text-xl text-red-500 hover:text-red-600"
                 >
@@ -392,6 +395,7 @@ const CartPage: React.FC = () => {
           {/* Buttons */}
           <div className="mb-10 mt-16 flex w-full items-center justify-between">
             <button
+              name="continueShopping"
               onClick={() => router.back()}
               className="flex items-center gap-2 rounded-full bg-primaryBlue px-6 py-2.5 text-white transition-all duration-300 hover:bg-primary"
             >
@@ -401,6 +405,7 @@ const CartPage: React.FC = () => {
             </button>
 
             <button
+              name="checkout"
               className="flex items-center gap-2 rounded-full bg-primaryBlue px-6 py-2 text-white transition-all duration-300 ease-in hover:bg-blue-600"
               onClick={() => {
                 setLocalStorage('checkout_items', JSON.stringify(cartItems));

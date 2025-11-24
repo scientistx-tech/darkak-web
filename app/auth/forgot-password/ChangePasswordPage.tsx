@@ -123,6 +123,7 @@ const ChangePasswordPage: React.FC = () => {
 
         <button
           type="submit"
+          name="changePasswordButton"
           disabled={isLoading}
           className="w-full rounded bg-[#003084] py-2 font-semibold text-white hover:bg-[#00153B] disabled:opacity-60"
         >

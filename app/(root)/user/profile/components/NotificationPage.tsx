@@ -49,7 +49,7 @@ export default function NotificationPage() {
       {isError && (
         <p className="text-center text-red-500">
           {lang === 'bn' ? 'বিজ্ঞপ্তি লোড করতে ব্যর্থ হয়েছে।' : 'Failed to load notifications.'}
-          <button onClick={refetch} className="underline ml-2">
+          <button name="tryAgain" onClick={refetch} className="underline ml-2">
             {lang === 'bn' ? 'আবার চেষ্টা করুন' : 'Try again'}
           </button>
         </p>

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import ProductCard from '@/components/shared/ProductCard';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
@@ -33,12 +32,14 @@ export default function RelatedProductsSwiper({ data }: RelatedProductsSwiperPro
         </h2>
         <div className="flex gap-2">
           <button
+            name="scrollLeft"
             onClick={() => scroll('left')}
             className="rounded-full border border-gray-300 p-2 hover:bg-gray-100 transition"
           >
             ←
           </button>
           <button
+            name="scrollRight"
             onClick={() => scroll('right')}
             className="rounded-full border border-gray-300 p-2 hover:bg-gray-100 transition"
           >
@@ -48,11 +49,8 @@ export default function RelatedProductsSwiper({ data }: RelatedProductsSwiperPro
       </div>
 
       {/* Scrollable product list */}
-      <motion.div
+      <div
         ref={scrollRef}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
       >
         {data.map((product: any) => (
@@ -63,7 +61,7 @@ export default function RelatedProductsSwiper({ data }: RelatedProductsSwiperPro
             <ProductCard product={product} />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

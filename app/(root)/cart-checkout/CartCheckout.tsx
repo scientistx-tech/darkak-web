@@ -4,7 +4,6 @@ import {
   useUpdateCartMutation
 } from '@/redux/services/client/myCart';
 import { Checkbox, Modal, notification } from 'antd';
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -295,13 +294,8 @@ const CartCheckout: React.FC = () => {
   return (
     <div className="px-2 py-6 md:container md:mx-auto md:px-4 xl:px-6">
       {/* Animated Info Alert */}
-      <AnimatePresence mode="wait">
-        <motion.div
+        <div
           key={paymentMethod}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.4 }}
           className="mb-6 rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1.5 text-center text-primaryBlue md:px-4 md:py-3"
         >
           {paymentMethod === 'cod' ? (
@@ -314,8 +308,8 @@ const CartCheckout: React.FC = () => {
               অনলাইন পেমেন্ট সংক্রান্ত সহায়তার জন্য হেল্পলাইন - <strong> 01711726501</strong>
             </>
           )}
-        </motion.div>
-      </AnimatePresence>
+        </div>
+ 
 
       {/* Payment Method */}
       <div className="flex w-full flex-col gap-4 p-4 md:flex-row md:p-0">
@@ -328,6 +322,7 @@ const CartCheckout: React.FC = () => {
 
           <div className="mt-5 flex w-full justify-evenly rounded border border-primaryBlue bg-[#E6EFFF] px-2 py-1 transition-all duration-500 md:w-[90%] md:px-3 md:py-2">
             <button
+              name='code'
               className={`flex items-center gap-2 rounded px-3 py-1 font-medium transition-all duration-300 md:px-3 md:py-1.5 ${
                 paymentMethod === 'cod'
                   ? 'bg-primaryBlue text-white'
@@ -340,6 +335,7 @@ const CartCheckout: React.FC = () => {
             </button>
 
             <button
+              name='code'
               className={`flex items-center gap-2 rounded px-3 py-1.5 font-medium transition-all duration-300 ${
                 paymentMethod === 'online'
                   ? 'bg-primaryBlue text-white'
@@ -505,14 +501,14 @@ const CartCheckout: React.FC = () => {
               {/* Agreement Checkbox */}
               <Checkbox checked={agree} onChange={(e) => setAgree(e.target.checked)} required>
                 {lang === 'bn' ? 'আমি পড়েছি এবং একমত ' : 'I have read and agree to the '}
-                <button onClick={showModal} className="font-semibold text-primaryBlue">
+                <button name="terms" onClick={showModal} className="font-semibold text-primaryBlue">
                   {lang === 'bn' ? ' শর্তাবলী, ' : 'Terms & Conditions, '}
                 </button>
-                <button onClick={showModal3} className="font-semibold text-primaryBlue">
+                <button name="return" onClick={showModal3} className="font-semibold text-primaryBlue">
                   {lang === 'bn' ? ' রিটার্ন & রিফান্ড ' : ' Return & Refund '}
                 </button>
                 {lang === 'bn' ? ' এবং ' : ' and '}
-                <button onClick={showModal2} className="font-semibold text-primaryBlue">
+                <button name="privacy" onClick={showModal2} className="font-semibold text-primaryBlue">
                   {lang === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
                 </button>
               </Checkbox>
@@ -520,6 +516,7 @@ const CartCheckout: React.FC = () => {
 
             <div className="mt-5 hidden md:block">
               <button
+                name="order"
                 className="w-full rounded-md bg-primaryBlue px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-primaryBlue/90"
                 onClick={handleCheckout}
               >
@@ -546,6 +543,8 @@ const CartCheckout: React.FC = () => {
                 width={64}
                 height={64}
                 className="rounded"
+                loading="eager"
+                sizes="(max-width: 64px) 100vw, 64px"
               />
               <div className="flex-1">
                 <div className="text-sm font-semibold">{item?.product?.title}</div>
@@ -579,6 +578,7 @@ const CartCheckout: React.FC = () => {
 
                 <div className="flex">
                   <button
+                    name="decrease"
                     onClick={() => updateQuantity(item.id, 'dec')}
                     className="bg-primaryBlue px-1.5 py-1 text-white opacity-80 transition-all duration-300 hover:opacity-100"
                   >
@@ -588,6 +588,7 @@ const CartCheckout: React.FC = () => {
                     {item.quantity}
                   </p>
                   <button
+                    name="increase"
                     onClick={() => updateQuantity(item.id, 'inc')}
                     className="bg-primaryBlue px-1.5 py-1 text-white opacity-80 transition-all duration-300 hover:opacity-100"
                   >
@@ -618,7 +619,7 @@ const CartCheckout: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button onClick={handleRemoveCoupon} className="rounded-md border px-3 py-1 text-sm">
+                  <button name="remove" onClick={handleRemoveCoupon} className="rounded-md border px-3 py-1 text-sm">
                     {lang === 'bn' ? 'বাতিল করুন' : 'Remove'}
                   </button>
                 </div>
@@ -631,7 +632,7 @@ const CartCheckout: React.FC = () => {
                   placeholder={lang === 'bn' ? 'কুপন কোড' : 'Coupon Code'}
                   className="flex-1 rounded-md border border-gray-200 px-3 py-2"
                 />
-                <button onClick={handleApplyCoupon} disabled={!couponCode.trim()} className={`rounded-md px-4 py-2 text-white ${couponCode.trim() ? 'bg-primaryBlue hover:bg-primaryBlue/90' : 'bg-gray-300 cursor-not-allowed'}`}>
+                <button name='apply' onClick={handleApplyCoupon} disabled={!couponCode.trim()} className={`rounded-md px-4 py-2 text-white ${couponCode.trim() ? 'bg-primaryBlue hover:bg-primaryBlue/90' : 'bg-gray-300 cursor-not-allowed'}`}>
                   {lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}
                 </button>
               </div>
@@ -681,6 +682,7 @@ const CartCheckout: React.FC = () => {
 
         <div className="mt-5 block md:hidden">
           <button
+            name="order"
             className="w-full rounded-md bg-primaryBlue px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-primaryBlue/90"
             onClick={handleCheckout}
           >

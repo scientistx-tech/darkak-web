@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { useAddToCartMutation } from '@/redux/services/client/myCart';
 import { setCart } from '@/redux/slices/authSlice';
 import { setLocalStorage } from '@/utils/localStorage';
+import Link from 'next/link';
 
 interface ProductShowProps {
   data: {
@@ -100,12 +101,12 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
   const stockkkk = !data?.product?.items.length
     ? data?.product?.stock
     : data?.product?.items.map((item: any) => {
-        if (item?.id === Object.keys(selectedOptions)[0]) {
-          return (
-            item.options.find((option: any) => option.id === selectedOptions[item.id])?.stock || 0
-          );
-        }
-      });
+      if (item?.id === Object.keys(selectedOptions)[0]) {
+        return (
+          item.options.find((option: any) => option.id === selectedOptions[item.id])?.stock || 0
+        );
+      }
+    });
 
   //console.log('stockkkk', stockkkk);
   //console.log('product stock, items stock', data?.product?.stock, data?.product);
@@ -233,12 +234,12 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
     //   : [];
     const optionIds = data?.product?.items?.length
       ? data?.product?.items
-          .map((item: any) => {
-            if (selectedOptions[item.id]) {
-              return item.options?.find((d: any) => d.id === selectedOptions[item.id])?.id;
-            }
-          })
-          .filter(Boolean)
+        .map((item: any) => {
+          if (selectedOptions[item.id]) {
+            return item.options?.find((d: any) => d.id === selectedOptions[item.id])?.id;
+          }
+        })
+        .filter(Boolean)
       : [];
     try {
       const result = await addToCart({
@@ -270,10 +271,8 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                   alt={data?.product.title}
                   className="h-auto w-full rounded object-cover"
                   style={{ maxHeight: '60vh' }}
-                  sizes="100vw"
-                  quality={70}
-                  decoding="async"
-                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, 600px"
+                  loading="eager"
                 />
               ) : (
                 <ReactImageMagnify
@@ -334,14 +333,11 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                   src={img}
                   width={64}
                   height={64}
-                  className={`h-16 w-16 min-w-16 shrink-0 cursor-pointer rounded border object-cover ${
-                    selectedImage === img ? 'border-primaryBlue ring-2 ring-primaryBlue' : ''
-                  }`}
+                  className={`h-16 w-16 min-w-16 shrink-0 cursor-pointer rounded border object-cover ${selectedImage === img ? 'border-primaryBlue ring-2 ring-primaryBlue' : ''
+                    }`}
                   alt={`thumb-${idx}`}
-                  sizes="64px"
-                  quality={70}
-                  decoding="async"
-                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, 64px"
+                  loading='eager'
                   style={{
                     transition: 'box-shadow 0.2s',
                     scrollSnapAlign: 'start',
@@ -352,7 +348,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
 
             {/* BsWhatsapp Buttons */}
             <div className="mt-6 flex w-full items-center justify-center gap-4 xl:hidden">
-              <a
+              <Link
                 href="https://api.whatsapp.com/send?phone=8801711726501&text=hello%F0%9F%98%87"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -360,7 +356,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
               >
                 <BsWhatsapp className="h-5 w-5" />
                 {lang === 'bn' ? 'হোয়াটসঅ্যাপে বার্তা দিন' : 'Message on Whatsapp'}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -374,9 +370,8 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
 
             <div className="mt-4 flex flex-wrap gap-2">
               <span
-                className={`rounded bg-secondaryWhite px-4 py-2 text-sm font-medium text-primaryBlue shadow-1 md:text-lg ${
-                  hasDiscount ? 'line-through' : ''
-                }`}
+                className={`rounded bg-secondaryWhite px-4 py-2 text-sm font-medium text-primaryBlue shadow-1 md:text-lg ${hasDiscount ? 'line-through' : ''
+                  }`}
               >
                 {price?.toLocaleString('en-US')} BDT
               </span>
@@ -438,13 +433,12 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                             setSelectedImage(option.image);
                           }
                         }}
-                        className={`cursor-pointer rounded border-2 px-4 py-0.5 transition-colors duration-200 ${
-                          selectedOptions[item.id] === option.id
-                            ? 'border-primaryBlue bg-primaryBlue text-white shadow-2'
-                            : isOutOfStock
-                              ? 'cursor-not-allowed border border-red-500 bg-gray-100 text-red-500'
-                              : 'border border-blue-300 bg-white text-primaryBlue hover:border-primaryBlue'
-                        }`}
+                        className={`cursor-pointer rounded border-2 px-4 py-0.5 transition-colors duration-200 ${selectedOptions[item.id] === option.id
+                          ? 'border-primaryBlue bg-primaryBlue text-white shadow-2'
+                          : isOutOfStock
+                            ? 'cursor-not-allowed border border-red-500 bg-gray-100 text-red-500'
+                            : 'border border-blue-300 bg-white text-primaryBlue hover:border-primaryBlue'
+                          }`}
                         title={isOutOfStock ? 'This option is stock out' : ''}
                         style={isOutOfStock ? { pointerEvents: 'none' } : {}}
                       >
@@ -461,6 +455,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
               <p className="text-sm font-medium">{lang === 'bn' ? 'পরিমাণ' : 'Quantity'}</p>
               <div className="flex items-center overflow-hidden rounded border">
                 <button
+                  name="decreaseQuantity"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="mt-[-1px] border-[1.5px] border-primaryBlue bg-primaryBlue px-4 py-1 text-xl font-medium text-white transition-all duration-300 hover:border-secondaryBlue hover:bg-secondaryBlue"
                   disabled={quantity <= 1}
@@ -470,6 +465,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
                 </button>
                 <span className="px-4 text-xl font-medium">{quantity}</span>
                 <button
+                  name="increaseQuantity"
                   onClick={() => setQuantity(Math.min(quantity + 1, getMaxQuantity()))}
                   className="border-[1.5px] border-primaryBlue bg-primaryBlue px-4 py-1 text-xl font-medium text-white transition-all duration-300 hover:border-secondaryBlue hover:bg-secondaryBlue"
                   disabled={quantity >= getMaxQuantity()}
@@ -500,6 +496,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
               <div className="mt-6 flex w-full items-center gap-4">
                 {/* ADD TO CART Button */}
                 <button
+                  name="addToCart"
                   className="group relative overflow-hidden rounded bg-primaryBlue px-5 py-2.5 text-white transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-primaryBlue hover:to-primaryBlue/80 hover:ring-2 hover:ring-primaryBlue/80 hover:ring-offset-2 md:w-[50%] xl:w-[60%]"
                   onClick={(e) => {
                     if (data?.product?.stock > 0) {
@@ -517,6 +514,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
 
                 {/* BUY NOW Button */}
                 <button
+                  name="buyNow"
                   className="group relative inline-flex items-center justify-center overflow-hidden rounded border-2 border-primaryBlue p-4 px-5 py-2 font-medium text-primaryBlue shadow-md transition duration-300 ease-out"
                   onClick={() => {
                     if (data?.product?.stock > 0) {
@@ -553,6 +551,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
               </div>
             ) : (
               <button
+                name="preOrder"
                 className="mt-6 rounded border-2 bg-rose-600 px-8 py-2 font-medium text-white transition-all duration-300 hover:border-rose-600 hover:bg-rose-50 hover:text-rose-600"
                 onClick={() => {
                   handleBuyNow();
@@ -564,7 +563,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
 
             {/* BsWhatsapp Buttons for Desktop */}
             <div className="mt-6 xl:flex w-full items-center gap-4 hidden">
-              <a
+              <Link
                 href="https://api.whatsapp.com/send?phone=8801711726501&text=hello%F0%9F%98%87"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -572,7 +571,7 @@ const ProductShow = ({ data, slug }: ProductShowProps) => {
               >
                 <BsWhatsapp className="h-5 w-5" />
                 {lang === 'bn' ? 'হোয়াটসঅ্যাপে বার্তা দিন' : 'Message on Whatsapp'}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

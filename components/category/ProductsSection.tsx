@@ -155,6 +155,7 @@ const ProductsSection = ({
         {/* Hamburger Button */}
         <div className="mb-4 block lg:hidden">
           <button
+            name="filterButton"
             onClick={() => setIsSidebarOpen(true)}
             className="flex items-center gap-2 rounded-md px-4 py-2 text-[#003084]"
           >
@@ -178,7 +179,7 @@ const ProductsSection = ({
             <div className="absolute left-0 top-0 h-full w-4/5 max-w-xs transform bg-white shadow-md transition-transform duration-300 ease-in-out">
               <div className="flex items-center justify-between border-b p-4">
                 <h2 className="text-lg font-semibold">Filters</h2>
-                <button onClick={closeSidebar}>
+                <button name="closeSidebarButton" onClick={closeSidebar}>
                   <svg
                     className="h-6 w-6 text-gray-700 hover:text-red-500"
                     viewBox="0 0 24 24"
@@ -259,6 +260,7 @@ const ProductsSection = ({
       {products.length > 0 && visibleCount < (data?.totalPage || 1) && (
         <div className="mt-6 flex w-full justify-end pr-10">
           <button
+            name="seeMoreButton"
             onClick={() => setVisibleCount((prev: number) => prev + 1)}
             className="rounded bg-blue-600 px-6 py-2 text-white transition duration-300 hover:bg-blue-700"
             disabled={isFetching}

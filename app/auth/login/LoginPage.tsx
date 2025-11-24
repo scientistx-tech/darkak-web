@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter, usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { AppDispatch, RootState } from '@/redux/store';
 import { getLocalStorage, setLocalStorage } from '@/utils/localStorage';
@@ -88,10 +87,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primaryBlue px-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+      <div
         className="z-10 w-full max-w-md rounded-2xl bg-white px-8 py-10 shadow-lg"
       >
         <h2 className="mb-2 text-center text-3xl font-bold text-[#00153B]">Welcome Back</h2>
@@ -142,6 +138,7 @@ const LoginPage: React.FC = () => {
         </div>
 
         <button
+          name="loginButton"
           onClick={handleLogin}
           disabled={isLoading}
           className="w-full rounded-lg bg-primaryBlue py-2 font-semibold text-white transition hover:bg-primary disabled:opacity-50"
@@ -174,7 +171,7 @@ const LoginPage: React.FC = () => {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

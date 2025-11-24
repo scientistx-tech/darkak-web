@@ -90,6 +90,7 @@ const SocialButton = ({ signUpMedium, setSignUpMedium }: SocialButtonProps) => {
     <div className="my-6 flex flex-col items-center gap-4">
       {buttonData.map(({ text, color, icon, onClick }, index) => (
         <button
+          name={`socialButton-${text.replace(/\s+/g, '').toLowerCase()}`}
           key={index}
           onClick={onClick}
           className={`flex w-[80%] items-center justify-start rounded-md text-sm font-semibold text-white shadow-md transition duration-300 ${color}`}

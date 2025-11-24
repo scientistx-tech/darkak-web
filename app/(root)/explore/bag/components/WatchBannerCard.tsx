@@ -19,6 +19,7 @@ export default function WatchBannerCard({ href, img, name, text, alt }: WatchBan
       <Image
         src={img}
         alt={alt ?? name}
+        loading="eager"
         fill
         className="object-cover transition-transform duration-700 group-hover:scale-110"
       />

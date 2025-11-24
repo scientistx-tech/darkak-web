@@ -158,7 +158,7 @@ const PriceInfo = ({
         {product?.stock === 0 ? (
           <div className="flex items-center justify-evenly">
             <div>
-              <button className="group relative cursor-pointer overflow-hidden rounded bg-primaryBlue px-5 py-1.5 text-white transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-primaryBlue hover:to-primaryBlue/20 hover:ring-2 hover:ring-primaryBlue/20 hover:ring-offset-2">
+              <button name='pre-order' className="group relative cursor-pointer overflow-hidden rounded bg-primaryBlue px-5 py-1.5 text-white transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-primaryBlue hover:to-primaryBlue/20 hover:ring-2 hover:ring-primaryBlue/20 hover:ring-offset-2">
                 <span className="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 group-hover:-translate-x-40"></span>
                 <span className="relative">{lang === 'bn' ? 'পূর্ব অর্ডার' : 'Pre Order'}</span>
               </button>
@@ -170,7 +170,7 @@ const PriceInfo = ({
               {/* <p className="text-primbg-primaryWhite scale-90 cursor-pointer rounded-full bg-primaryBlue px-4 py-1 text-sm font-normal text-secondaryWhite transition-all duration-300 hover:bg-primaryDarkBlue hover:text-white md:scale-100 md:px-4 md:font-semibold lg:text-sm">
                 {lang === 'bn' ? 'এখনই কিনুন' : 'BUY NOW'}
               </p> */}
-              <button className="group relative cursor-pointer overflow-hidden rounded bg-primaryBlue px-5 py-1.5 text-white transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-primaryBlue hover:to-primaryBlue/20 hover:ring-2 hover:ring-primaryBlue/20 hover:ring-offset-2">
+              <button name='buy-now' className="group relative cursor-pointer overflow-hidden rounded bg-primaryBlue px-5 py-1.5 text-white transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-primaryBlue hover:to-primaryBlue/20 hover:ring-2 hover:ring-primaryBlue/20 hover:ring-offset-2">
                 <span className="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 group-hover:-translate-x-40"></span>
                 <span className="relative">{lang === 'bn' ? 'এখনই কিনুন' : 'BUY NOW'}</span>
               </button>

@@ -85,6 +85,8 @@ export default function Test() {
                       width={28}
                       height={28}
                       className="rounded-md"
+                      loading="eager"
+                      sizes="(max-width: 28px) 100vw, 28px"
                     />
                     <span className="line-clamp-1">{cat.title}</span>
                   </Link>
