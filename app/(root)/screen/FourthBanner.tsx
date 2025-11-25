@@ -18,7 +18,7 @@ const ForthBanner = async ({ sliderData }: { sliderData: any }) => {
   // ✅ Else: Show dynamic sliders without banners
   return (
     <div className="my-5 md:my-8 px-5 md:px-0 flex w-full flex-col gap-4 md:flex-row md:gap-10">
-      {sortedSliderData.slice(6, 8).map((slide: any, idx: number) => {
+      {sortedSliderData.slice(5, 7).map((slide: any, idx: number) => {
         const bgColour = bgColors[idx % bgColors.length];
         return (
           <div
